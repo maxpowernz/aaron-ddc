@@ -7,15 +7,32 @@ type User = {
   name: string;
 };
 
-export const Page: React.VFC = () => {
+type PageProps = {
+  /**
+   * Optional click handler
+   */
+  onLogin?: () => void;
+  /**
+   * Optional click handler
+   */
+  onLogout?: () => void;
+};
+
+export const Page = ({ onLogin, onLogout }: PageProps) => {
   const [user, setUser] = React.useState<User>();
 
   return (
     <article>
       <Header
         user={user}
-        onLogin={() => setUser({ name: 'Jane Doe' })}
-        onLogout={() => setUser(undefined)}
+        onLogin={() => {
+          onLogin?.();
+          setUser({ name: 'Jane Doe' });
+        }}
+        onLogout={() => {
+          onLogout?.();
+          setUser(undefined);
+        }}
         onCreateAccount={() => setUser({ name: 'Jane Doe' })}
       />
 
@@ -36,6 +53,7 @@ export const Page: React.VFC = () => {
         <ul>
           <li>
             Use a higher-level connected component. Storybook helps you compose such data from the
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             "args" of child component stories
           </li>
           <li>

@@ -16,6 +16,7 @@
     "incremental": true,
     "types": ["vitest/globals"],
     "baseUrl": "",
+    "setupFiles": ["./test/setup.ts"],
     "paths": {
       "test-utils": ["./test/test-utils"]
     }
