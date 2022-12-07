@@ -11,23 +11,28 @@
     "coverage": "vitest run --coverage",
     "preview": "vite preview",
     "test:ui": "vitest --ui",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "start-storybook -p 8008 -s public",
     "build-storybook": "build-storybook -s public",
     "serve-storybook": "serve storybook-static",
     "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
+    "@mui/base": "^5.0.0-alpha.109",
+    "formik": "^2.2.9",
     "next": "13.0.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
+    "@bbbtech/storybook-formik": "^2.5.0",
     "@storybook/addon-a11y": "^6.5.14",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-essentials": "^6.5.14",
     "@storybook/addon-interactions": "^6.5.14",
     "@storybook/addon-links": "^6.5.14",
+    "@storybook/addon-postcss": "^2.0.0",
     "@storybook/builder-webpack5": "^6.5.14",
     "@storybook/jest": "^0.0.10",
     "@storybook/manager-webpack5": "^6.5.14",
@@ -60,6 +65,7 @@
     "serve": "^14.1.2",
     "storybook-addon-designs": "^6.3.1",
     "storybook-addon-next": "^1.7.1",
+    "tailwindcss": "^3.2.4",
     "typescript": "4.9.3",
     "vitest": "0.25.4"
   },
