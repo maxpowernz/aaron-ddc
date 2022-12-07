@@ -1,5 +1,5 @@
-import { render, screen, within } from '../test/test-utils';
-import Home from '../pages';
+import { render, screen, within } from 'test-utils';
+import Home from '@/pages';
 
 test('home', () => {
   render(<Home />);

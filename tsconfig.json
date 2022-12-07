@@ -15,10 +15,10 @@
     "jsx": "preserve",
     "incremental": true,
     "types": ["vitest/globals"],
-    "baseUrl": "",
-    "setupFiles": ["./test/setup.ts"],
+    "baseUrl": ".",
     "paths": {
-      "test-utils": ["./test/test-utils"]
+      "test-utils": ["test/test-utils"],
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

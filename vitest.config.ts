@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 
+import path from 'path';
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
@@ -15,16 +16,26 @@ export default defineConfig({
        *   to resolve to vitest which, critically, exports { expect } as well.
        */
       '@storybook/jest': 'vitest',
+      'test-utils': path.resolve(__dirname, 'test/test-utils'),
+      '@': path.resolve(__dirname, './'),
     },
   },
   test: {
-    reporters: 'vitest-sonar-reporter',
-    outputFile: 'sonar-report.xml',
+    exclude: ['node_modules/', 'coverage/', 'public/', 'test/', 'stories/', '.storybook/'],
+    setupFiles: ['./test/setup.ts'],
     globals: true,
     environment: 'jsdom',
     coverage: {
       reporter: ['text', 'html'],
-      exclude: ['node_modules/', '__test__/', 'coverage/', 'public/', 'test/', 'stories/'],
+      exclude: [
+        'node_modules/',
+        '__tests__/',
+        'coverage/',
+        'public/',
+        'test/',
+        'stories/',
+        '.storybook/',
+      ],
     },
   },
 });
