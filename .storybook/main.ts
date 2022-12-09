@@ -6,7 +6,6 @@
 module.exports = {
   stories: ['../stories/**/*.stories.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    '@bbbtech/storybook-formik/register',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     'storybook-addon-next',

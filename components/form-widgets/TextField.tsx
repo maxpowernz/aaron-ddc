@@ -1,17 +1,19 @@
 import React from 'react';
 import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled';
-import { FieldHookConfig, useField } from 'formik';
+import { FieldValues } from 'react-hook-form';
+
+import { useField, IFieldProps } from './Field';
 
 const CustomInput = React.forwardRef(function CustomInput(
-  props: InputUnstyledProps,
+  props: InputUnstyledProps | any,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
+  const outline = props['data-outline'];
   return (
     <InputUnstyled
       slotProps={{
         input: {
-          className:
-            'bg-stone-100 rounded-sm outline outline-0 outline-fmg-green active:outline-1  focus:outline-1 p-1',
+          className: `bg-stone-100 rounded-sm outline outline-0 ${outline} active:outline-1 focus:outline-1 p-1`,
         },
       }}
       {...props}
@@ -20,25 +22,11 @@ const CustomInput = React.forwardRef(function CustomInput(
   );
 });
 
-type TextFieldProps = InputUnstyledProps &
-  FieldHookConfig<string> & {
-    label: string;
-    required: boolean;
-  };
-
-export function TextField({ label, required, ...props }: TextFieldProps): JSX.Element {
-  const [field, meta, helpers] = useField(props);
-
-  return (
-    <>
-      <label className="flex gap-2">
-        <div className="text-sm align-baseline p-1 flex gap-0.5 align-middle">
-          <span>{label}</span>
-          <span className="w-2 p-0.5 text-amber-500 text-center">{required ? '*' : ''}</span>
-        </div>
-        <CustomInput aria-label="Demo input" {...field} {...props} />
-      </label>
-      {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
-    </>
-  );
+export function TextField<T extends FieldValues>({
+  label,
+  required,
+  ...props
+}: IFieldProps<T>): JSX.Element {
+  const { render, field, outline } = useField<T>({ label, required, ...props });
+  return render(<CustomInput {...field} aria-label={label} data-outline={outline} />);
 }

@@ -17,16 +17,18 @@
     "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@mui/base": "^5.0.0-alpha.109",
-    "formik": "^2.2.9",
+    "@mui/material": "^5.10.17",
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.40.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
-    "@bbbtech/storybook-formik": "^2.5.0",
     "@storybook/addon-a11y": "^6.5.14",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-essentials": "^6.5.14",
