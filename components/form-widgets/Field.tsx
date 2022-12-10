@@ -1,63 +1,80 @@
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
-import { ControllerRenderProps } from 'react-hook-form/dist/types/controller';
+import React from 'react';
+import { Control, Controller } from 'react-hook-form';
+import { RegisterOptions } from 'react-hook-form/dist/types/validator';
+import { IOptionProps, Sizes } from 'components/inputs';
 
-export interface IFieldProps<T extends FieldValues = {}> extends UseControllerProps<T> {
+export interface IFieldProps {
+  control: Control<any>;
+  component: React.ComponentType<any>;
   label?: string;
-  required?: boolean;
-  options?: IOptionProps[];
-}
-
-export interface IFieldValidationProps extends ControllerRenderProps {
-  pattern?: string;
-  'data-outline'?: string;
-}
-
-export interface IOptionProps {
-  value: string;
   name: string;
-  label: string;
-  id: string;
+  options?: IOptionProps[];
+  required?: boolean;
+  rules?: Omit<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
+  size?: Sizes;
 }
 
-export function useField<T extends FieldValues>({ label, required, ...props }: IFieldProps<T>) {
-  const { rules } = props;
-  const { field, fieldState, formState } = useController({
-    ...props,
-    rules: { ...rules, required },
-  });
+export interface ITargetFieldProps extends Omit<IFieldProps, 'control'> {}
 
-  const { isDirty, isTouched, error } = fieldState;
+export interface IFieldGroupProps extends Omit<IFieldProps, 'component'> {
+  fields: ITargetFieldProps[];
+}
 
-  const hasError = (error && (isDirty || isTouched)) || (required && isTouched && !field.value);
-  const outline = hasError ? 'outline-orange-700 outline-1' : 'outline-fmg-green';
-  const render: Function = (Comp: JSX.Element) => (
+export function useFieldGroup({ label, required, control, options, fields }: IFieldGroupProps) {
+  const render = () => (
     <>
-      <label className="flex gap-2">
-        <div className="text-sm align-baseline p-1 flex gap-0.5 align-middle font-medium">
+      <div className="flex gap-2">
+        <div
+          id={`question-${label}`}
+          className="text-sm align-baseline p-1 flex gap-0.5 align-middle font-medium"
+        >
           <span>{label}</span>
           <span className="w-2 p-0.5 text-amber-500 text-center">{required ? '*' : ''}</span>
         </div>
-        {Comp}
-      </label>
-      {fieldState.isTouched || fieldState.isDirty || fieldState.error ? (
-        <>
-          <div className="error">{'isTouched: ' + String(fieldState.isTouched)}</div>
-          <div className="error">{'isDirty: ' + String(fieldState.isDirty)}</div>
-          <div className="error">{'error: ' + fieldState?.error?.type}</div>
-        </>
-      ) : null}
+        {fields.map(
+          ({ component: Comp, name: fieldName, label: subLabel, size = Sizes.w1, rules }) => (
+            <Controller
+              key={fieldName}
+              name={fieldName}
+              control={control}
+              rules={rules}
+              render={({ field: { ref, ...field }, fieldState: { isTouched, isDirty, error } }) => {
+                return (
+                  <div className="flex flex-col">
+                    <Comp
+                      {...field}
+                      inputRef={ref}
+                      size={size}
+                      error={error}
+                      label={subLabel}
+                      options={options}
+                    />
+                    {isTouched || isDirty || error ? (
+                      <>
+                        <div className="error">{'isTouched: ' + String(isTouched)}</div>
+                        <div className="error">{'isDirty: ' + String(isDirty)}</div>
+                        <div className="error">{'error: ' + error?.type}</div>
+                      </>
+                    ) : null}
+                  </div>
+                );
+              }}
+            />
+          )
+        )}
+      </div>
     </>
   );
-
-  console.log({ field, rules, required });
 
   return {
     label,
     required,
     render,
-    field: { ...field, ...rules, error: hasError },
-    formState,
-    fieldState,
-    outline,
   };
+}
+
+export function useField({ label, name, rules, component, required, ...props }: IFieldProps) {
+  const fields = [{ name, rules: { ...rules, required }, component }];
+
+  return useFieldGroup({ label, name, required, fields, ...props });
 }

@@ -28,3 +28,7 @@ a {
     background: black;
   }
 }
+
+.error {
+  @apply text-red-700 text-xs
+}

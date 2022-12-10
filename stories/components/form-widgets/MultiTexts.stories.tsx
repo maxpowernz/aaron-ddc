@@ -1,23 +1,25 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
-import { ITextProps, Text } from '@/components/form-widgets/Text';
+import { IMultiTextsProps, MultiTexts } from '@/components/form-widgets/MultiTexts';
 
 export default {
-  title: 'FormWidgets/TextField',
-  component: Text,
+  title: 'FormWidgets/MultiTexts',
+  component: MultiTexts,
   args: {
     label: '',
   },
   parameters: {},
-} as ComponentMeta<typeof Text>;
+} as ComponentMeta<typeof MultiTexts>;
 
 type FormValues = {
-  firstName: '';
+  firstName: string;
+  lastName: string;
 };
-const Template: ComponentStory<typeof Text> = (args: Partial<ITextProps>) => {
+
+const Template: ComponentStory<typeof MultiTexts> = (args: Partial<IMultiTextsProps>) => {
   const { handleSubmit, control } = useForm<FormValues>({
-    defaultValues: { firstName: '' },
+    defaultValues: { firstName: '', lastName: '' },
     mode: 'onChange',
   });
 
@@ -25,27 +27,25 @@ const Template: ComponentStory<typeof Text> = (args: Partial<ITextProps>) => {
     alert(JSON.stringify(data));
   }; // your form submit function which will invoke after successful validation
 
+  const fields = [
+    { name: 'firstName', label: 'First name', rules: { pattern: /^[A-Za-z]+$/i } },
+    { name: 'lastName', label: 'Last name', rules: { pattern: /^[A-Za-z]+$/i } },
+  ];
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Text name="firstName" control={control} {...args} />
+      <MultiTexts name="names" control={control} fields={fields} {...args} />
     </form>
   );
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'First name',
-  name: 'firstName',
+  label: 'Name',
 };
 
 export const Required = Template.bind({});
 Required.args = {
   ...Default.args,
   required: true,
-};
-
-export const AlphaOnly = Template.bind({});
-AlphaOnly.args = {
-  ...Default.args,
-  rules: { pattern: /^[A-Za-z]+$/i },
 };
