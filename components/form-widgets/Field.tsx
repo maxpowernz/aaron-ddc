@@ -1,8 +1,22 @@
 import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
+import { ControllerRenderProps } from 'react-hook-form/dist/types/controller';
 
 export interface IFieldProps<T extends FieldValues = {}> extends UseControllerProps<T> {
   label?: string;
   required?: boolean;
+  options?: IOptionProps[];
+}
+
+export interface IFieldValidationProps extends ControllerRenderProps {
+  pattern?: string;
+  'data-outline'?: string;
+}
+
+export interface IOptionProps {
+  value: string;
+  name: string;
+  label: string;
+  id: string;
 }
 
 export function useField<T extends FieldValues>({ label, required, ...props }: IFieldProps<T>) {
@@ -19,7 +33,7 @@ export function useField<T extends FieldValues>({ label, required, ...props }: I
   const render: Function = (Comp: JSX.Element) => (
     <>
       <label className="flex gap-2">
-        <div className="text-sm align-baseline p-1 flex gap-0.5 align-middle">
+        <div className="text-sm align-baseline p-1 flex gap-0.5 align-middle font-medium">
           <span>{label}</span>
           <span className="w-2 p-0.5 text-amber-500 text-center">{required ? '*' : ''}</span>
         </div>
@@ -35,5 +49,15 @@ export function useField<T extends FieldValues>({ label, required, ...props }: I
     </>
   );
 
-  return { label, required, render, field, formState, fieldState, outline };
+  console.log({ field, rules, required });
+
+  return {
+    label,
+    required,
+    render,
+    field: { ...field, ...rules, error: hasError },
+    formState,
+    fieldState,
+    outline,
+  };
 }

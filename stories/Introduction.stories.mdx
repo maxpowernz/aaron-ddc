@@ -24,7 +24,7 @@ import StackAlt from './assets/stackalt.svg';
       margin-top: 40px;
     }
 
-    .link-list {
+    .link-options {
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: 1fr 1fr;
@@ -32,7 +32,7 @@ import StackAlt from './assets/stackalt.svg';
     }
 
     @media (min-width: 620px) {
-      .link-list {
+      .link-options {
         row-gap: 20px;
         column-gap: 20px;
         grid-template-columns: 1fr 1fr;
@@ -40,7 +40,7 @@ import StackAlt from './assets/stackalt.svg';
     }
 
     @media all and (-ms-high-contrast:none) {
-    .link-list {
+    .link-options {
         display: -ms-grid;
         -ms-grid-columns: 1fr 1fr;
         -ms-grid-rows: 1fr 1fr;
@@ -125,7 +125,7 @@ We recommend building UIs with a [**component-driven**](https://componentdriven.
 
 <div className="subheading">Configure</div>
 
-<div className="link-list">
+<div className="link-options">
   <a
     className="link-item"
     href="https://storybook.js.org/docs/react/addons/addon-types"
@@ -174,7 +174,7 @@ We recommend building UIs with a [**component-driven**](https://componentdriven.
 
 <div className="subheading">Learn</div>
 
-<div className="link-list">
+<div className="link-options">
   <a className="link-item" href="https://storybook.js.org/docs" target="_blank">
     <img src={Repo} alt="repo" />
     <span>

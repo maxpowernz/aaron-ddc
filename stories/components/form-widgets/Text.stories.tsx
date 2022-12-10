@@ -1,24 +1,24 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
-import { TextField } from 'components/form-widgets/TextField';
+import { Text } from '@/components/form-widgets/Text';
 
 export default {
   title: 'FormWidgets/TextField',
-  component: TextField,
+  component: Text,
   args: {
     label: '',
   },
   parameters: {},
-} as ComponentMeta<typeof TextField>;
+} as ComponentMeta<typeof Text>;
 
 type FormValues = {
   firstName: '';
 };
-const Template: ComponentStory<typeof TextField<FormValues>> = (args) => {
+const Template: ComponentStory<typeof Text<FormValues>> = (args) => {
   const { handleSubmit, control } = useForm<FormValues>({
     defaultValues: { firstName: '' },
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   const onSubmit = (data: FormValues) => {
@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof TextField<FormValues>> = (args) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField<FormValues> control={control} {...args} />
+      <Text<FormValues> control={control} {...args} />
     </form>
   );
 };
@@ -47,5 +47,5 @@ Required.args = {
 export const AlphaOnly = Template.bind({});
 AlphaOnly.args = {
   ...Default.args,
-  rules: { required: true, pattern: /^[A-Za-z]+$/i },
+  rules: { pattern: /^[A-Za-z]+$/i },
 };

@@ -2,10 +2,10 @@ import React from 'react';
 import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled';
 import { FieldValues } from 'react-hook-form';
 
-import { useField, IFieldProps } from './Field';
+import { useField, IFieldProps, IFieldValidationProps } from './Field';
 
 const CustomInput = React.forwardRef(function CustomInput(
-  props: InputUnstyledProps | any,
+  { pattern, ...props }: InputUnstyledProps & IFieldValidationProps & any,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
   const outline = props['data-outline'];
@@ -13,7 +13,8 @@ const CustomInput = React.forwardRef(function CustomInput(
     <InputUnstyled
       slotProps={{
         input: {
-          className: `bg-stone-100 rounded-sm outline outline-0 ${outline} active:outline-1 focus:outline-1 p-1`,
+          pattern,
+          className: `bg-stone-100 rounded-sm outline outline-0 outline-fmg-green active:outline-1 focus:outline-1 p-1 ${outline}`,
         },
       }}
       {...props}
@@ -22,11 +23,13 @@ const CustomInput = React.forwardRef(function CustomInput(
   );
 });
 
-export function TextField<T extends FieldValues>({
+export function Text<T extends FieldValues>({
   label,
   required,
   ...props
 }: IFieldProps<T>): JSX.Element {
   const { render, field, outline } = useField<T>({ label, required, ...props });
-  return render(<CustomInput {...field} aria-label={label} data-outline={outline} />);
+  return render(
+    <CustomInput {...field} aria-label={label} data-outline={outline} required={required} />
+  );
 }
