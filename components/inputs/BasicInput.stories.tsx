@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { BasicInput } from '@/components/inputs/BasicInput';
-import { Sizes } from '@/components/inputs';
+import { Sizes } from '@/components/inputs/index';
 
 export default {
   title: 'CustomInputs/BasicInput',

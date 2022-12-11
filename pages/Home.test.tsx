@@ -1,5 +1,5 @@
 import { render, screen, within } from 'test-utils';
-import Home from '@/pages';
+import Home from './index.page';
 
 test('home', () => {
   render(<Home />);
