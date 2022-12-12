@@ -24,7 +24,7 @@ const BpIcon = styled('span')(({ theme }) => ({
     outlineOffset: 2,
   },
   'input:hover ~ &': {
-    backgroundColor: theme.palette.mode === 'dark' ? '#30404d' : '#ebf1f5',
+    backgroundColor: theme.palette.mode === 'dark' ? '#30404d' : '#20940033',
   },
   'input:disabled ~ &': {
     boxShadow: 'none',
@@ -43,17 +43,23 @@ const BpCheckedIcon = styled(BpIcon)({
     content: '""',
   },
   'input:hover ~ &': {
-    backgroundColor: '#15803d',
+    backgroundColor: '#209400',
   },
 });
 
+type CustomRadioGroupProps = {
+  cols?: number;
+} & IInputProps &
+  RadioGroupProps;
+
 export const RadioGroup = React.forwardRef(function CustomInput(
-  { options, ...props }: RadioGroupProps & IInputProps,
+  { options, cols, ...props }: CustomRadioGroupProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
+  const layout = cols ? `grid grid-cols-1 sm:grid-cols-${cols}` : 'flex';
   return (
     <RadioGroupMui {...props} ref={ref}>
-      <div className="flex items-center gap-4 mx-2 pt-0.5">
+      <div className={`${layout} items-center gap-x-4 mx-2 pt-0.5`}>
         {options?.map(({ id, name, label, value }: IOptionProps) => {
           return (
             <FormControlLabel
@@ -62,8 +68,8 @@ export const RadioGroup = React.forwardRef(function CustomInput(
               control={
                 <Radio
                   name={name}
+                  focusRipple
                   sx={{ padding: 0.6, color: 'green' }}
-                  disableRipple
                   checkedIcon={<BpCheckedIcon />}
                   icon={<BpIcon />}
                 />

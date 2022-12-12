@@ -1,7 +1,7 @@
 import React from 'react';
 import { Control, Controller } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
-import { IOptionProps, Sizes } from 'components/inputs';
+import { IOptionProps } from 'components/inputs';
 
 export interface IFieldProps {
   control: Control<any>;
@@ -11,7 +11,7 @@ export interface IFieldProps {
   options?: IOptionProps[];
   required?: boolean;
   rules?: Omit<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
-  size?: Sizes;
+  size?: number;
 }
 
 export interface ITargetFieldProps extends Omit<IFieldProps, 'control'> {}
@@ -20,19 +20,27 @@ export interface IFieldGroupProps extends Omit<IFieldProps, 'component'> {
   fields: ITargetFieldProps[];
 }
 
-export function useFieldGroup({ label, required, control, options, fields }: IFieldGroupProps) {
+export function useFieldGroup({
+  label,
+  required,
+  control,
+  options,
+  fields,
+  size: totalSize = 4,
+  ...props
+}: IFieldGroupProps) {
   const render = () => (
     <>
       <div className="flex gap-2">
         <div
           id={`question-${label}`}
-          className="text-sm align-baseline p-1 flex gap-0.5 align-middle font-medium"
+          className="text-sm p-1 flex gap-0.5 justify-end align-middle font-medium w-5"
         >
           <span>{label}</span>
-          <span className="w-2 p-0.5 text-amber-500 text-center">{required ? '*' : ''}</span>
+          <span className="w-[1em] p-0.5 text-amber text-center">{required ? '*' : ''}</span>
         </div>
         {fields.map(
-          ({ component: Comp, name: fieldName, label: subLabel, size = Sizes.w1, rules }) => (
+          ({ component: Comp, name: fieldName, label: subLabel, size = totalSize, rules }) => (
             <Controller
               key={fieldName}
               name={fieldName}
@@ -43,7 +51,8 @@ export function useFieldGroup({ label, required, control, options, fields }: IFi
                   <div className="flex flex-col">
                     <Comp
                       {...field}
-                      inputRef={ref}
+                      {...props}
+                      ref={ref}
                       size={size}
                       error={error}
                       label={subLabel}
@@ -51,9 +60,9 @@ export function useFieldGroup({ label, required, control, options, fields }: IFi
                     />
                     {isTouched || isDirty || error ? (
                       <>
-                        <div className="error">{'isTouched: ' + String(isTouched)}</div>
-                        <div className="error">{'isDirty: ' + String(isDirty)}</div>
-                        <div className="error">{'error: ' + error?.type}</div>
+                        <div className="text-error">{'isTouched: ' + String(isTouched)}</div>
+                        <div className="text-error">{'isDirty: ' + String(isDirty)}</div>
+                        <div className="text-error">{'error: ' + error?.type}</div>
                       </>
                     ) : null}
                   </div>

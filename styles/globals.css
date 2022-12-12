@@ -29,6 +29,8 @@ a {
   }
 }
 
-.error {
-  @apply text-red-700 text-xs
+.form-container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1.5em;
 }

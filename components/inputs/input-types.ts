@@ -1,13 +1,9 @@
-export enum Sizes {
-  w1 = 80,
-  w2 = 96,
-  wfull = 'full',
-}
+export const BASE_SIZE = '48px';
 
 export interface IInputProps {
   label?: string;
   pattern?: string;
-  size?: Sizes;
+  size?: number;
   options?: IOptionProps[];
 }
 
