@@ -1,7 +1,7 @@
 import React from 'react';
 
-import BasicInput from 'components/inputs/BasicInput';
-import { IFieldProps, useField } from '@/components/form-widgets/Field';
+import BasicInput from '@/src/components/ui/inputs/BasicInput/BasicInput';
+import { IFieldProps, useField } from '@/src/components/ui/form-widgets/Field/Field';
 
 export interface ITextProps extends Omit<IFieldProps, 'component'> {}
 

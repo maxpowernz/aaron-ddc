@@ -1,7 +1,7 @@
 import React from 'react';
 
-import RadioGroupInput from 'components/inputs/RadioGroup';
-import { IFieldProps, useField } from './Field';
+import RadioGroupInput from '@/src/components/ui/inputs/RadioGroup/RadioGroup';
+import { IFieldProps, useField } from '../Field/Field';
 
 export interface IRadioGroupProps extends Omit<IFieldProps, 'component'> {
   cols?: number;

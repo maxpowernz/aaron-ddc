@@ -1,9 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { BasicInput } from '@/components/inputs/BasicInput';
+import { BasicInput } from './BasicInput';
 
 export default {
-  title: 'CustomInputs/BasicInput',
+  title: 'Atoms/BasicInput',
   component: BasicInput,
   args: {},
   parameters: {},

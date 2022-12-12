@@ -1,9 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { RadioGroup } from '@/components/inputs/RadioGroup';
+import { RadioGroup } from './RadioGroup';
 
 export default {
-  title: 'CustomInputs/RadioGroup',
+  title: 'Atoms/RadioGroup',
   component: RadioGroup,
   args: {
     label: '',

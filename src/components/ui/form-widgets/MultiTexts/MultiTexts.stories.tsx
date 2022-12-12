@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
-import { IMultiTextsProps, MultiTexts } from '@/components/form-widgets/MultiTexts';
+import { IMultiTextsProps, MultiTexts } from './MultiTexts';
 
 export default {
-  title: 'FormWidgets/MultiTexts',
+  title: 'Components/Form Widgets/MultiTexts',
   component: MultiTexts,
   args: {
     label: '',

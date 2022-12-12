@@ -1,6 +1,6 @@
 import React from 'react';
 import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled';
-import { IInputProps } from './';
+import { IInputProps } from '../input-types';
 
 export type BasicInputProps = InputUnstyledProps & IInputProps;
 

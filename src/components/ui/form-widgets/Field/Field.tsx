@@ -1,7 +1,7 @@
 import React from 'react';
 import { Control, Controller } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
-import { IOptionProps } from 'components/inputs';
+import { IOptionProps } from '@/src/components/ui/inputs';
 
 export interface IFieldProps {
   control: Control<any>;

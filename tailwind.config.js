@@ -2,7 +2,7 @@ const baseWidth = '48px';
 const widths = Array.from(Array(13).keys()).map((num) => `calc(${num} * ${baseWidth})`);
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./pages/**/*.{js,ts,jsx,tsx}', './**/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {

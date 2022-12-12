@@ -1,24 +1,24 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
-import { IRadioGroupProps, RadioGroup } from '@/components/form-widgets/RadioGroup';
+import { ITextProps, Text } from './Text';
 
 export default {
-  title: 'FormWidgets/RadioGroup',
-  component: RadioGroup,
+  title: 'Components/Form Widgets/TextField',
+  component: Text,
   args: {
     label: '',
   },
   parameters: {},
-} as ComponentMeta<typeof RadioGroup>;
+} as ComponentMeta<typeof Text>;
 
 type FormValues = {
   firstName: '';
 };
-const Template: ComponentStory<typeof RadioGroup> = (args: Partial<IRadioGroupProps>) => {
+const Template: ComponentStory<typeof Text> = (args: Partial<ITextProps>) => {
   const { handleSubmit, control } = useForm<FormValues>({
     defaultValues: { firstName: '' },
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
   const onSubmit = (data: FormValues) => {
@@ -27,7 +27,9 @@ const Template: ComponentStory<typeof RadioGroup> = (args: Partial<IRadioGroupPr
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <RadioGroup name="user" control={control} {...args} />
+      <div className="hidden sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4 sm:grid-cols-5 sm:grid-cols-6 sm:grid-cols-7 sm:grid-cols-8 sm:grid-cols-9 sm:grid-cols-10" />
+      <div className="hidden w-1 w-2 w-3 w-4 w-5 w-6 w-7 w-8 w-9 w-10 w-11 w-12" />
+      <Text name="firstName" control={control} {...args} />
     </form>
   );
 };
@@ -36,15 +38,16 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'First name',
   name: 'firstName',
-  options: [
-    { id: '1', name: 'Tom', label: 'Tom', value: 'Tom' },
-    { id: '2', name: 'John', label: 'John', value: 'John' },
-    { id: '3', name: 'Jason', label: 'Jason', value: 'Jason' },
-  ],
 };
 
 export const Required = Template.bind({});
 Required.args = {
   ...Default.args,
   required: true,
+};
+
+export const AlphaOnly = Template.bind({});
+AlphaOnly.args = {
+  ...Default.args,
+  rules: { pattern: /^[A-Za-z]+$/i },
 };

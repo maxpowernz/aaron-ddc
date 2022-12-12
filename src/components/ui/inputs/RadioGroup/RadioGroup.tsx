@@ -2,7 +2,7 @@ import React from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroupMui, { RadioGroupProps } from '@mui/material/RadioGroup';
 
-import { IInputProps, IOptionProps } from './';
+import { IInputProps, IOptionProps } from '../input-types';
 import { FormControlLabel } from '@mui/material';
 import { styled } from '@mui/system';
 

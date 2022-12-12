@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
-import { Text } from '@/components/form-widgets/Text';
-import { RadioGroup } from '@/components/form-widgets/RadioGroup';
+import { Text } from '@/src/components/ui/form-widgets/Text/Text';
+import { RadioGroup } from '@/src/components/ui/form-widgets/RadioGroup/RadioGroup';
 
 type FormValues = {
   accountType: string;
