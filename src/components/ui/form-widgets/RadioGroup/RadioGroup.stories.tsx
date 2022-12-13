@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
+import { Form } from '@/src/components/context/form';
 import { IRadioGroupProps, RadioGroup } from './RadioGroup';
 
 export default {
@@ -16,7 +17,7 @@ type FormValues = {
   firstName: '';
 };
 const Template: ComponentStory<typeof RadioGroup> = (args: Partial<IRadioGroupProps>) => {
-  const { handleSubmit, control } = useForm<FormValues>({
+  const form = useForm<FormValues>({
     defaultValues: { firstName: '' },
     mode: 'onBlur',
   });
@@ -26,9 +27,9 @@ const Template: ComponentStory<typeof RadioGroup> = (args: Partial<IRadioGroupPr
   }; // your form submit function which will invoke after successful validation
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <RadioGroup name="user" control={control} {...args} />
-    </form>
+    <Form form={form} onSubmit={onSubmit}>
+      <RadioGroup name="user" {...args} />
+    </Form>
   );
 };
 

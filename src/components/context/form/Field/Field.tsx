@@ -1,17 +1,13 @@
 import React from 'react';
-import { Control, Controller } from 'react-hook-form';
+import { Control, Controller, useFormContext } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
-import { IOptionProps } from '@/src/components/ui/inputs';
+import { IInputProps } from '@/src/components/ui/inputs';
 
-export interface IFieldProps {
-  control: Control<any>;
+export interface IFieldProps extends IInputProps {
+  control?: Control<any>;
   component: React.ComponentType<any>;
-  label?: string;
-  name: string;
-  options?: IOptionProps[];
   required?: boolean;
   rules?: Omit<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
-  size?: number;
 }
 
 export interface ITargetFieldProps extends Omit<IFieldProps, 'control'> {}
@@ -23,22 +19,25 @@ export interface IFieldGroupProps extends Omit<IFieldProps, 'component'> {
 export function useFieldGroup({
   label,
   required,
-  control,
+  control: defaultControl,
   options,
   fields,
   size: totalSize = 4,
   ...props
 }: IFieldGroupProps) {
+  const { control: contextControl } = useFormContext();
+  const control = defaultControl ?? contextControl;
   const render = () => (
-    <>
-      <div className="flex gap-2">
-        <div
-          id={`question-${label}`}
-          className="text-sm p-1 flex gap-0.5 justify-end align-middle font-medium w-5"
-        >
-          <span>{label}</span>
-          <span className="w-[1em] p-0.5 text-amber text-center">{required ? '*' : ''}</span>
-        </div>
+    <div className="flex gap-3">
+      <div
+        id={`question-${name}`}
+        className="text-base text-default flex gap-0.5 justify-end items-center font-medium w-5 h-[42px]"
+      >
+        <span className="text-right">{label}</span>
+        <span className="w-[12px] text-amber text-center pt-1.5">{required ? '*' : ''}</span>
+      </div>
+
+      <div className="flex gap-1.5">
         {fields.map(
           ({ component: Comp, name: fieldName, label: subLabel, size = totalSize, rules }) => (
             <Controller
@@ -46,9 +45,10 @@ export function useFieldGroup({
               name={fieldName}
               control={control}
               rules={rules}
-              render={({ field: { ref, ...field }, fieldState: { isTouched, isDirty, error } }) => {
+              render={({ field: { ref, ...field }, fieldState, fieldState: { error } }) => {
+                console.log({ fieldState });
                 return (
-                  <div className="flex flex-col">
+                  <div className="flex flex-col gap-1.5">
                     <Comp
                       {...field}
                       {...props}
@@ -58,12 +58,14 @@ export function useFieldGroup({
                       label={subLabel}
                       options={options}
                     />
-                    {isTouched || isDirty || error ? (
-                      <>
-                        <div className="text-error">{'isTouched: ' + String(isTouched)}</div>
-                        <div className="text-error">{'isDirty: ' + String(isDirty)}</div>
-                        <div className="text-error">{'error: ' + error?.type}</div>
-                      </>
+                    {error || subLabel ? (
+                      <div
+                        className={`text-xs text-${
+                          error ? 'error' : 'default opacity-75'
+                        } font-normal px-1.5`}
+                      >
+                        {error?.type ?? subLabel}
+                      </div>
                     ) : null}
                   </div>
                 );
@@ -72,7 +74,7 @@ export function useFieldGroup({
           )
         )}
       </div>
-    </>
+    </div>
   );
 
   return {

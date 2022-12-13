@@ -2,23 +2,23 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
 import { Form } from '@/src/components/context/form';
-import { ITextProps, Text } from './Text';
+import { ITextareaProps, Textarea } from './Textarea';
 
 export default {
-  title: 'Components/Form Widgets/TextField',
-  component: Text,
+  title: 'Components/Form Widgets/Textarea',
+  component: Textarea,
   args: {
     label: '',
   },
   parameters: {},
-} as ComponentMeta<typeof Text>;
+} as ComponentMeta<typeof Textarea>;
 
 type FormValues = {
-  firstName: '';
+  otherActivities: '';
 };
-const Template: ComponentStory<typeof Text> = (args: Partial<ITextProps>) => {
+const Template: ComponentStory<typeof Textarea> = (args: Partial<ITextareaProps>) => {
   const form = useForm<FormValues>({
-    defaultValues: { firstName: '' },
+    defaultValues: { otherActivities: '' },
     mode: 'onBlur',
   });
 
@@ -28,23 +28,27 @@ const Template: ComponentStory<typeof Text> = (args: Partial<ITextProps>) => {
 
   return (
     <Form form={form} onSubmit={onSubmit}>
-      <div className="hidden sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4 sm:grid-cols-5 sm:grid-cols-6 sm:grid-cols-7 sm:grid-cols-8 sm:grid-cols-9 sm:grid-cols-10" />
-      <div className="hidden w-1 w-2 w-3 w-4 w-5 w-6 w-7 w-8 w-9 w-10 w-11 w-12" />
-      <Text name="firstName" {...args} />
+      <Textarea name="otherActivities" {...args} />
     </Form>
   );
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'First name',
-  name: 'firstName',
+  label: 'Other sctivities',
+  name: 'otherActivities',
 };
 
 export const Required = Template.bind({});
 Required.args = {
   ...Default.args,
   required: true,
+};
+
+export const Size12 = Template.bind({});
+Size12.args = {
+  ...Default.args,
+  size: 12,
 };
 
 export const AlphaOnly = Template.bind({});

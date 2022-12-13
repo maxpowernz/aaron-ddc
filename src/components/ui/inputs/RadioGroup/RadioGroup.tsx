@@ -52,14 +52,19 @@ type CustomRadioGroupProps = {
 } & IInputProps &
   RadioGroupProps;
 
+const defaultOptions = [
+  { id: 'yes', label: 'Yes', value: true },
+  { id: 'no', label: 'No', value: false },
+];
+
 export const RadioGroup = React.forwardRef(function CustomInput(
-  { options, cols, ...props }: CustomRadioGroupProps,
+  { options = defaultOptions, size = 12, cols, ...props }: CustomRadioGroupProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
-  const layout = cols ? `grid grid-cols-1 sm:grid-cols-${cols}` : 'flex';
+  const layout = cols ? `grid grid-cols-1 sm:grid-cols-${cols}` : 'flex flex-wrap';
   return (
     <RadioGroupMui {...props} ref={ref}>
-      <div className={`${layout} items-center gap-x-4 mx-2 pt-0.5`}>
+      <div className={`${layout} w-${size} items-center gap-x-4 mx-2`}>
         {options?.map(({ id, name, label, value }: IOptionProps) => {
           return (
             <FormControlLabel
@@ -76,7 +81,9 @@ export const RadioGroup = React.forwardRef(function CustomInput(
               }
               label={label}
               componentsProps={{
-                typography: { sx: { fontSize: 14, fontWeight: 400 } },
+                typography: {
+                  sx: { fontSize: 14, fontWeight: 400, height: 42, paddingTop: 1.5 },
+                },
               }}
             />
           );

@@ -1,5 +1,8 @@
 const baseWidth = '48px';
-const widths = Array.from(Array(13).keys()).map((num) => `calc(${num} * ${baseWidth})`);
+const basePixel = '6px';
+const widths = Array.from(Array(13).keys()).map(
+  (num) => `calc((${num} * ${baseWidth}) + (${basePixel} * ${num > 0 ? num - 1 : 0}))`
+);
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './**/components/**/*.{js,ts,jsx,tsx}'],
@@ -12,6 +15,13 @@ module.exports = {
         'base-2': '#0000001A',
         amber: '#EFAE41',
         error: '#A62F1F',
+      },
+      fontSize: {
+        sm: ['12px', '14px'],
+        base: ['14px', '18px'],
+        md: ['16px', '20px'],
+        lg: ['18px', '22px'],
+        xl: ['20px', '24px'],
       },
       width: Object.assign({}, widths),
       gridTemplateColumns: {

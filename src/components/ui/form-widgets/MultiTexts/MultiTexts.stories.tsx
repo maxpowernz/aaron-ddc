@@ -2,6 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
 import { IMultiTextsProps, MultiTexts } from './MultiTexts';
+import { Form } from '@/src/components/context/form';
 
 export default {
   title: 'Components/Form Widgets/MultiTexts',
@@ -18,7 +19,7 @@ type FormValues = {
 };
 
 const Template: ComponentStory<typeof MultiTexts> = (args: Partial<IMultiTextsProps>) => {
-  const { handleSubmit, control } = useForm<FormValues>({
+  const form = useForm<FormValues>({
     defaultValues: { firstName: '', lastName: '' },
     mode: 'onChange',
   });
@@ -33,9 +34,9 @@ const Template: ComponentStory<typeof MultiTexts> = (args: Partial<IMultiTextsPr
   ];
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <MultiTexts name="names" control={control} fields={fields} {...args} />
-    </form>
+    <Form form={form} onSubmit={onSubmit}>
+      <MultiTexts name="names" fields={fields} {...args} />
+    </Form>
   );
 };
 

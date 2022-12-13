@@ -5,9 +5,7 @@ import { ClientInformation } from './ClientInformation';
 export default {
   title: 'forms/ClientInformation',
   component: ClientInformation,
-  args: {
-    label: '',
-  },
+  args: {},
   parameters: {},
 } as ComponentMeta<typeof ClientInformation>;
 
