@@ -1,5 +1,5 @@
 import React from 'react';
-import { Control, Controller, useFormContext } from 'react-hook-form';
+import { Control, Controller, useFormContext, useFormState } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 import { IInputProps } from '@/src/components/ui/inputs';
 
@@ -26,6 +26,8 @@ export function useFieldGroup({
   ...props
 }: IFieldGroupProps) {
   const { control: contextControl } = useFormContext();
+  const state = useFormState();
+  console.log({ state });
   const control = defaultControl ?? contextControl;
   const render = () => (
     <div className="flex gap-3">
@@ -42,13 +44,13 @@ export function useFieldGroup({
             control={control}
             rules={rules}
             render={({ field: { ref, ...field }, fieldState, fieldState: { error } }) => {
-              console.log({ fieldState });
+              //console.log({ fieldState, field, rules });
               return (
                 <div className="flex flex-col gap-1.5">
                   <Comp {...field} {...props} ref={ref} size={size} error={error} label={subLabel} options={options} />
                   {error || subLabel ? (
                     <div className={`text-xs text-${error ? 'error' : 'default opacity-75'} font-normal px-1.5`}>
-                      {error?.type ?? subLabel}
+                      {error?.message ?? subLabel}
                     </div>
                   ) : null}
                 </div>
@@ -67,8 +69,8 @@ export function useFieldGroup({
   };
 }
 
-export function useField({ label, name, rules, component, required, ...props }: IFieldProps) {
-  const fields = [{ name, rules: { ...rules, required }, component }];
+export function useField({ label, name, component, required, ...props }: IFieldProps) {
+  const fields = [{ name, component }];
 
   return useFieldGroup({ label, name, required, fields, ...props });
 }

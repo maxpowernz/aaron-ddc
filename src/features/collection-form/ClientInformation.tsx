@@ -1,25 +1,33 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import { Form } from '@/src/components/context/form';
 import { Text } from '@/src/components/ui/form-widgets/Text/Text';
 import { RadioGroup } from '@/src/components/ui/form-widgets/RadioGroup/RadioGroup';
 import { Textarea } from '@/src/components/ui/form-widgets/Textarea/Textarea';
 
-type FormValues = {
-  accountType: string;
-  accountName: string;
-  mailName: string;
-  associatedEntities: string;
-  accountOwner: string;
-  ownerEmailAddress: string;
-  statementDelivery: string;
-  shouldRegister: boolean;
-  industryType: string;
-  otherActivities: string;
-};
+const schema = z.object({
+  accountType: z.string(),
+  accountName: z
+    .string()
+    .min(1, { message: 'Required' })
+    .regex(/^[A-Za-z]+$/i, { message: 'Incorrect pattern' }),
+  mailName: z.string().optional(),
+  associatedEntities: z.string().optional(),
+  accountOwner: z.string(),
+  ownerEmailAddress: z.array(z.object({ email1: z.string(), email2: z.string() })),
+  statementDelivery: z.string().min(1, { message: 'Required' }),
+  shouldRegister: z.boolean(),
+  industryType: z.string(),
+  otherActivities: z.string().optional(),
+});
+
+type FormValues = z.infer<typeof schema>;
 
 export function ClientInformation(props = {}) {
-  const form = useForm<FormValues>({
+  const form = useForm({
+    resolver: zodResolver(schema),
     mode: 'onBlur',
   });
 
