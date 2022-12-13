@@ -1,8 +1,6 @@
 const baseWidth = '48px';
 const basePixel = '6px';
-const widths = Array.from(Array(13).keys()).map(
-  (num) => `calc((${num} * ${baseWidth}) + (${basePixel} * ${num > 0 ? num - 1 : 0}))`
-);
+const widths = Array.from(Array(13).keys()).map((num) => `calc((${num} * ${baseWidth}) + (${basePixel} * ${num > 0 ? num - 1 : 0}))`);
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './**/components/**/*.{js,ts,jsx,tsx}'],

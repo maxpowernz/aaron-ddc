@@ -29,50 +29,33 @@ export function useFieldGroup({
   const control = defaultControl ?? contextControl;
   const render = () => (
     <div className="flex gap-3">
-      <div
-        id={`question-${name}`}
-        className="text-base text-default flex gap-0.5 justify-end items-center font-medium w-5 h-[42px]"
-      >
+      <div id={`question-${name}`} className="text-base text-default flex gap-0.5 justify-end items-center font-medium w-5 h-[42px]">
         <span className="text-right">{label}</span>
         <span className="w-[12px] text-amber text-center pt-1.5">{required ? '*' : ''}</span>
       </div>
 
       <div className="flex gap-1.5">
-        {fields.map(
-          ({ component: Comp, name: fieldName, label: subLabel, size = totalSize, rules }) => (
-            <Controller
-              key={fieldName}
-              name={fieldName}
-              control={control}
-              rules={rules}
-              render={({ field: { ref, ...field }, fieldState, fieldState: { error } }) => {
-                console.log({ fieldState });
-                return (
-                  <div className="flex flex-col gap-1.5">
-                    <Comp
-                      {...field}
-                      {...props}
-                      ref={ref}
-                      size={size}
-                      error={error}
-                      label={subLabel}
-                      options={options}
-                    />
-                    {error || subLabel ? (
-                      <div
-                        className={`text-xs text-${
-                          error ? 'error' : 'default opacity-75'
-                        } font-normal px-1.5`}
-                      >
-                        {error?.type ?? subLabel}
-                      </div>
-                    ) : null}
-                  </div>
-                );
-              }}
-            />
-          )
-        )}
+        {fields.map(({ component: Comp, name: fieldName, label: subLabel, size = totalSize, rules }) => (
+          <Controller
+            key={fieldName}
+            name={fieldName}
+            control={control}
+            rules={rules}
+            render={({ field: { ref, ...field }, fieldState, fieldState: { error } }) => {
+              console.log({ fieldState });
+              return (
+                <div className="flex flex-col gap-1.5">
+                  <Comp {...field} {...props} ref={ref} size={size} error={error} label={subLabel} options={options} />
+                  {error || subLabel ? (
+                    <div className={`text-xs text-${error ? 'error' : 'default opacity-75'} font-normal px-1.5`}>
+                      {error?.type ?? subLabel}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            }}
+          />
+        ))}
       </div>
     </div>
   );

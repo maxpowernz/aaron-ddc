@@ -27,15 +27,7 @@ export default defineConfig({
     environment: 'jsdom',
     coverage: {
       reporter: ['text', 'html'],
-      exclude: [
-        'node_modules/',
-        '__tests__/',
-        'coverage/',
-        'public/',
-        'test/',
-        'stories/',
-        '.storybook/',
-      ],
+      exclude: ['node_modules/', '__tests__/', 'coverage/', 'public/', 'test/', 'stories/', '.storybook/'],
     },
   },
 });

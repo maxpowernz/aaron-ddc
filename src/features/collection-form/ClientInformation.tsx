@@ -42,38 +42,15 @@ export function ClientInformation(props = {}) {
 
   return (
     <Form form={form} onSubmit={onSubmit}>
-      <RadioGroup
-        name="accountType"
-        label="Account type"
-        options={accountTypes}
-        cols={3}
-        size={10}
-        required
-      />
+      <RadioGroup name="accountType" label="Account type" options={accountTypes} cols={3} size={10} required />
       <Text name="accountName" label="Account name" size={12} required />
-      <Text
-        name="mailName"
-        label="Mail name"
-        size={9}
-        placeholder="Add Mail Name if different from Account Name"
-      />
+      <Text name="mailName" label="Mail name" size={9} placeholder="Add Mail Name if different from Account Name" />
       <Textarea name="associatedEntities" label="Associated entities" size={12} />
       <Text name="accountOwner" label="Account owner" size={6} required />
       <Text name="ownerEmailAddress" label="Owner email address" size={6} required />
-      <RadioGroup
-        name="statementDelivery"
-        label="Statement delivery"
-        options={stmtDeliveryMethods}
-        required
-      />
+      <RadioGroup name="statementDelivery" label="Statement delivery" options={stmtDeliveryMethods} required />
       <RadioGroup name="shouldRegister" label="Register for FMG Connect" required />
-      <Text
-        name="industryType"
-        label="Industry type"
-        size={12}
-        required
-        placeholder="Primary source of income"
-      />
+      <Text name="industryType" label="Industry type" size={12} required placeholder="Primary source of income" />
       <Textarea
         name="otherActivities"
         label="What other income generating activities are you involved in?"

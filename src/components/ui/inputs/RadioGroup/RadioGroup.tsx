@@ -11,9 +11,7 @@ const BpIcon = styled('span')(({ theme }) => ({
   width: 16,
   height: 16,
   boxShadow:
-    theme.palette.mode === 'dark'
-      ? '0 0 0 1px rgb(16 22 26 / 40%)'
-      : 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
+    theme.palette.mode === 'dark' ? '0 0 0 1px rgb(16 22 26 / 40%)' : 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
   backgroundColor: theme.palette.mode === 'dark' ? '#394b59' : '#f5f8fa',
   backgroundImage:
     theme.palette.mode === 'dark'
@@ -71,13 +69,7 @@ export const RadioGroup = React.forwardRef(function CustomInput(
               key={id}
               value={value}
               control={
-                <Radio
-                  name={name}
-                  focusRipple
-                  sx={{ padding: 0.6, color: 'green' }}
-                  checkedIcon={<BpCheckedIcon />}
-                  icon={<BpIcon />}
-                />
+                <Radio name={name} focusRipple sx={{ padding: 0.6, color: 'green' }} checkedIcon={<BpCheckedIcon />} icon={<BpIcon />} />
               }
               label={label}
               componentsProps={{
