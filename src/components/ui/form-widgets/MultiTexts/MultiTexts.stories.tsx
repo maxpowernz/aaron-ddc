@@ -2,7 +2,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
 import { IMultiTextsProps, MultiTexts } from './MultiTexts';
-import { Form } from '@/src/components/context/form';
+import { Form } from '@/src/components/util/form';
+import { z } from 'zod';
 
 export default {
   title: 'Components/Form Widgets/MultiTexts',
@@ -13,28 +14,25 @@ export default {
   parameters: {},
 } as ComponentMeta<typeof MultiTexts>;
 
-type FormValues = {
-  firstName: string;
-  lastName: string;
-};
+const schema = z.object({
+  firstName: z.string().regex(/^[A-Za-z]+$/i, { message: 'Incorrect pattern' }),
+  lastName: z.string().regex(/^[A-Za-z]+$/i, { message: 'Incorrect pattern' }),
+});
+
+type FormValues = z.infer<typeof schema>;
 
 const Template: ComponentStory<typeof MultiTexts> = (args: Partial<IMultiTextsProps>) => {
-  const form = useForm<FormValues>({
-    defaultValues: { firstName: '', lastName: '' },
-    mode: 'onChange',
-  });
-
   const onSubmit = (data: FormValues) => {
     alert(JSON.stringify(data));
   }; // your form submit function which will invoke after successful validation
 
   const fields = [
-    { name: 'firstName', label: 'First name', rules: { pattern: /^[A-Za-z]+$/i } },
-    { name: 'lastName', label: 'Last name', rules: { pattern: /^[A-Za-z]+$/i } },
+    { name: 'firstName', label: 'First name' },
+    { name: 'lastName', label: 'Last name' },
   ];
 
   return (
-    <Form form={form} onSubmit={onSubmit}>
+    <Form schema={schema} onSubmit={onSubmit}>
       <MultiTexts name="names" fields={fields} {...args} />
     </Form>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IFieldProps, useField } from '@/src/components/context/form/Field';
+import { IFieldProps, useField } from '@/src/components/util/form';
 import RadioGroupInput from '@/src/components/ui/inputs/RadioGroup/RadioGroup';
 
 export interface IRadioGroupProps extends Omit<IFieldProps, 'component'> {

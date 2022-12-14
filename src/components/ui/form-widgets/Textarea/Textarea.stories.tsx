@@ -1,8 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { useForm } from 'react-hook-form';
 
-import { Form } from '@/src/components/context/form';
+import { Form } from '@/src/components/util/form';
 import { ITextareaProps, Textarea } from './Textarea';
+import {z} from "zod";
 
 export default {
   title: 'Components/Form Widgets/Textarea',
@@ -13,21 +13,20 @@ export default {
   parameters: {},
 } as ComponentMeta<typeof Textarea>;
 
-type FormValues = {
-  otherActivities: '';
-};
+const schema = z.object({
+  otherActivities: z.string(),
+});
+
+type FormValues = z.infer<typeof schema>;
+
 const Template: ComponentStory<typeof Textarea> = (args: Partial<ITextareaProps>) => {
-  const form = useForm<FormValues>({
-    defaultValues: { otherActivities: '' },
-    mode: 'onBlur',
-  });
 
   const onSubmit = (data: FormValues) => {
     alert(JSON.stringify(data));
   }; // your form submit function which will invoke after successful validation
 
   return (
-    <Form form={form} onSubmit={onSubmit}>
+    <Form schema={schema} onSubmit={onSubmit}>
       <Textarea name="otherActivities" {...args} />
     </Form>
   );

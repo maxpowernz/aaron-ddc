@@ -1,33 +1,41 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { useForm } from 'react-hook-form';
 
-import { Form } from '@/src/components/context/form';
+import { Form } from '@/src/components/util/form';
 import { ITextProps, Text } from './Text';
+import { z } from 'zod';
 
 export default {
   title: 'Components/Form Widgets/TextField',
   component: Text,
   args: {
     label: '',
+    required: false,
   },
   parameters: {},
 } as ComponentMeta<typeof Text>;
 
-type FormValues = {
-  firstName: '';
-};
 const Template: ComponentStory<typeof Text> = (args: Partial<ITextProps>) => {
-  const form = useForm<FormValues>({
-    defaultValues: { firstName: '' },
-    mode: 'onBlur',
+  let schema = z.object({
+    firstName: z.string().regex(/^[A-Za-z]+$/i, { message: 'Incorrect pattern' }),
   });
+
+  if (args.required) {
+    schema = z.object({
+      firstName: z
+        .string()
+        .min(1, { message: 'Required' })
+        .regex(/^[A-Za-z]+$/i, { message: 'Incorrect pattern' }),
+    });
+  }
+
+  type FormValues = z.infer<typeof schema>;
 
   const onSubmit = (data: FormValues) => {
     alert(JSON.stringify(data));
   }; // your form submit function which will invoke after successful validation
 
   return (
-    <Form form={form} onSubmit={onSubmit}>
+    <Form schema={schema} onSubmit={onSubmit}>
       <div className="hidden sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4 sm:grid-cols-5 sm:grid-cols-6 sm:grid-cols-7 sm:grid-cols-8 sm:grid-cols-9 sm:grid-cols-10" />
       <div className="hidden w-1 w-2 w-3 w-4 w-5 w-6 w-7 w-8 w-9 w-10 w-11 w-12" />
       <Text name="firstName" {...args} />
@@ -50,5 +58,4 @@ Required.args = {
 export const AlphaOnly = Template.bind({});
 AlphaOnly.args = {
   ...Default.args,
-  rules: { pattern: /^[A-Za-z]+$/i },
 };

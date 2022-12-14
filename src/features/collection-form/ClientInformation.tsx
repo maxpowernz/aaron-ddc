@@ -1,11 +1,7 @@
 import * as React from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Form } from '@/src/components/context/form';
-import { Text } from '@/src/components/ui/form-widgets/Text/Text';
-import { RadioGroup } from '@/src/components/ui/form-widgets/RadioGroup/RadioGroup';
-import { Textarea } from '@/src/components/ui/form-widgets/Textarea/Textarea';
+import { Form } from '@/src/components/util/form';
+import { Text, RadioGroup, Textarea, MultiTexts } from '@/src/components/ui/form-widgets';
 
 const schema = z.object({
   accountType: z.string(),
@@ -16,7 +12,7 @@ const schema = z.object({
   mailName: z.string().optional(),
   associatedEntities: z.string().optional(),
   accountOwner: z.string(),
-  ownerEmailAddress: z.array(z.object({ email1: z.string(), email2: z.string() })),
+  ownerEmailAddresses: z.array(z.object({ email1: z.string().min(1, { message: 'Required' }).email(), email2: z.string().email() })),
   statementDelivery: z.string().min(1, { message: 'Required' }),
   shouldRegister: z.boolean(),
   industryType: z.string(),
@@ -26,11 +22,6 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 export function ClientInformation(props = {}) {
-  const form = useForm({
-    resolver: zodResolver(schema),
-    mode: 'onBlur',
-  });
-
   const onSubmit = (data: FormValues) => console.log('Submit:', data);
 
   const accountTypes = [
@@ -49,13 +40,21 @@ export function ClientInformation(props = {}) {
   ];
 
   return (
-    <Form form={form} onSubmit={onSubmit}>
+    <Form schema={schema} onSubmit={onSubmit}>
       <RadioGroup name="accountType" label="Account type" options={accountTypes} cols={3} size={10} required />
       <Text name="accountName" label="Account name" size={12} required />
       <Text name="mailName" label="Mail name" size={9} placeholder="Add Mail Name if different from Account Name" />
       <Textarea name="associatedEntities" label="Associated entities" size={12} />
       <Text name="accountOwner" label="Account owner" size={6} required />
-      <Text name="ownerEmailAddress" label="Owner email address" size={6} required />
+      <MultiTexts
+        name="ownerEmailAddresses"
+        label="Owner email addresses"
+        required
+        fields={[
+          { name: 'ownerEmailAddresses.email1', label: 'Primary' },
+          { name: 'ownerEmailAddresses.email2', label: 'Other' },
+        ]}
+      />
       <RadioGroup name="statementDelivery" label="Statement delivery" options={stmtDeliveryMethods} required />
       <RadioGroup name="shouldRegister" label="Register for FMG Connect" required />
       <Text name="industryType" label="Industry type" size={12} required placeholder="Primary source of income" />

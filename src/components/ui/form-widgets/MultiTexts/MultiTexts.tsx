@@ -1,7 +1,7 @@
 import React from 'react';
 
 import BasicInput from '@/src/components/ui/inputs/BasicInput/BasicInput';
-import { IFieldGroupProps, ITargetFieldProps, useFieldGroup } from '@/src/components/context/form/Field';
+import { IFieldGroupProps, ITargetFieldProps, useFieldGroup } from '@/src/components/util/form';
 
 export interface IMultiTextsProps extends Omit<IFieldGroupProps, 'fields'> {
   fields: Omit<ITargetFieldProps, 'component'>[];
