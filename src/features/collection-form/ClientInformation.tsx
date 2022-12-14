@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { z } from 'zod';
 import { Form } from '@/src/components/util/form';
-import { Text, RadioGroup, Textarea, MultiTexts } from '@/src/components/ui/form-widgets';
+import { MultiTexts, RadioGroup, Text, Textarea } from '@/src/components/ui/form-widgets';
 
 const schema = z.object({
   accountType: z.string(),
@@ -12,7 +12,7 @@ const schema = z.object({
   mailName: z.string().optional(),
   associatedEntities: z.string().optional(),
   accountOwner: z.string(),
-  ownerEmailAddresses: z.array(z.object({ email1: z.string().min(1, { message: 'Required' }).email(), email2: z.string().email() })),
+  emails: z.object({ email1: z.string().min(1, { message: 'Required' }).email(), email2: z.string().email() }),
   statementDelivery: z.string().min(1, { message: 'Required' }),
   shouldRegister: z.boolean(),
   industryType: z.string(),
@@ -47,12 +47,12 @@ export function ClientInformation(props = {}) {
       <Textarea name="associatedEntities" label="Associated entities" size={12} />
       <Text name="accountOwner" label="Account owner" size={6} required />
       <MultiTexts
-        name="ownerEmailAddresses"
+        name="emails"
         label="Owner email addresses"
         required
         fields={[
-          { name: 'ownerEmailAddresses.email1', label: 'Primary' },
-          { name: 'ownerEmailAddresses.email2', label: 'Other' },
+          { name: 'emails.email1', label: 'Primary' },
+          { name: 'emails.email2', label: 'Other' },
         ]}
       />
       <RadioGroup name="statementDelivery" label="Statement delivery" options={stmtDeliveryMethods} required />

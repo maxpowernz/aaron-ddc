@@ -1,9 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import { Form } from '@/src/components/util/form';
 import { IRadioGroupProps, RadioGroup } from './RadioGroup';
-import {z} from "zod";
 
 export default {
   title: 'Components/Form Widgets/RadioGroup',
@@ -21,18 +20,13 @@ let schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 const Template: ComponentStory<typeof RadioGroup> = (args: Partial<IRadioGroupProps>) => {
-  const form = useForm<FormValues>({
-    defaultValues: { firstName: '' },
-    mode: 'onBlur',
-  });
-
   const onSubmit = (data: FormValues) => {
     alert(JSON.stringify(data));
   }; // your form submit function which will invoke after successful validation
 
   return (
     <Form schema={schema} onSubmit={onSubmit}>
-      <RadioGroup name="user" {...args} />
+      <RadioGroup name="user" {...args} size={12} />
     </Form>
   );
 };

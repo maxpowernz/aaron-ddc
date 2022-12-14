@@ -1,9 +1,10 @@
 import React, { FormEventHandler } from 'react';
-import { Control, Controller, FieldValues, FormProvider, useForm, useFormContext, UseFormReturn, useFormState } from 'react-hook-form';
-import { IInputProps } from '@/src/components/ui/inputs';
+import { Control, Controller, FormProvider, useForm, useFormContext, useFormState } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { ZodType } from 'zod/lib/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { IInputProps } from '@/src/components/ui/inputs';
 
 export interface IFieldProps extends IInputProps {
   control?: Control<any>;
@@ -47,7 +48,7 @@ export function useFieldGroup({ label, name, required, control: defaultControl, 
                     name={fieldName}
                     ref={ref}
                     size={size}
-                    error={Boolean(error)}
+                    error={error}
                     label={subLabel}
                   />
                   {error || subLabel ? (
