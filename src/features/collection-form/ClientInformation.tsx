@@ -2,6 +2,7 @@ import * as React from 'react';
 import { z } from 'zod';
 import { Form } from '@/src/components/util/form';
 import { MultiTexts, RadioGroup, Text, Textarea } from '@/src/components/ui/form-widgets';
+import { AppendableList } from '@/src/components/util/form/AppendableList/AppendableList';
 
 const schema = z.object({
   accountType: z.string(),
@@ -17,6 +18,7 @@ const schema = z.object({
   shouldRegister: z.boolean(),
   industryType: z.string(),
   otherActivities: z.string().optional(),
+  friends: z.array(z.object({ friend: z.string().min(1, { message: 'Required' }) })),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -41,26 +43,29 @@ export function ClientInformation(props = {}) {
 
   return (
     <Form schema={schema} onSubmit={onSubmit}>
-      <RadioGroup name="accountType" label="Account type" options={accountTypes} cols={3} size={10} required />
-      <Text name="accountName" label="Account name" size={12} required />
-      <Text name="mailName" label="Mail name" size={9} placeholder="Add Mail Name if different from Account Name" />
-      <Textarea name="associatedEntities" label="Associated entities" size={12} />
-      <Text name="accountOwner" label="Account owner" size={6} required />
+      <RadioGroup name="accountType" question="Account type" options={accountTypes} cols={3} size={10} required />
+      <Text name="accountName" question="Account name" size={12} required />
+      <AppendableList question="Friends" rowElementName="Friend" name="friends" required>
+        <Text name="friend" size={12} />
+      </AppendableList>
+      <Text name="mailName" question="Mail name" size={9} placeholder="Add Mail Name if different from Account Name" />
+      <Textarea name="associatedEntities" question="Associated entities" size={12} />
+      <Text name="accountOwner" question="Account owner" size={6} required />
       <MultiTexts
         name="emails"
-        label="Owner email addresses"
+        question="Owner email addresses"
         required
         fields={[
           { name: 'emails.email1', label: 'Primary' },
           { name: 'emails.email2', label: 'Other' },
         ]}
       />
-      <RadioGroup name="statementDelivery" label="Statement delivery" options={stmtDeliveryMethods} required />
-      <RadioGroup name="shouldRegister" label="Register for FMG Connect" required />
-      <Text name="industryType" label="Industry type" size={12} required placeholder="Primary source of income" />
+      <RadioGroup name="statementDelivery" question="Statement delivery" options={stmtDeliveryMethods} required />
+      <RadioGroup name="shouldRegister" question="Register for FMG Connect" required />
+      <Text name="industryType" question="Industry type" size={12} required placeholder="Primary source of income" />
       <Textarea
         name="otherActivities"
-        label="What other income generating activities are you involved in?"
+        question="What other income generating activities are you involved in?"
         size={12}
         placeholder="For example: Beekeeping, Frestry, Orchard Fruit, etc..."
       />

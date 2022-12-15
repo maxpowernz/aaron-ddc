@@ -39,7 +39,7 @@ const Template: ComponentStory<typeof MultiTexts> = (args: Partial<IMultiTextsPr
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Name',
+  question: 'Name',
 };
 
 export const Required = Template.bind({});

@@ -33,7 +33,7 @@ const Template: ComponentStory<typeof RadioGroup> = (args: Partial<IRadioGroupPr
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'First name',
+  question: 'First name',
   name: 'firstName',
   options: [
     { id: '1', name: 'Tom', label: 'Tom', value: 'Tom' },

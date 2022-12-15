@@ -7,19 +7,28 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { IInputProps } from '@/src/components/ui/inputs';
 
 export interface IFieldProps extends IInputProps {
+  question?: string;
   control?: Control<any>;
   component: React.ComponentType<any>;
   required?: boolean;
   rules?: Omit<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
 }
 
-export interface ITargetFieldProps extends Omit<IFieldProps, 'control'> {}
+export interface ITargetFieldProps extends Omit<IFieldProps, 'control' | 'question'> {}
 
 export interface IFieldGroupProps extends Omit<IFieldProps, 'component'> {
   fields: ITargetFieldProps[];
 }
 
-export function useFieldGroup({ label, name, required, control: defaultControl, fields, size: totalSize = 4, ...props }: IFieldGroupProps) {
+export function useFieldGroup({
+  question,
+  name,
+  required,
+  control: defaultControl,
+  fields,
+  size: totalSize = 4,
+  ...props
+}: IFieldGroupProps) {
   const { control: contextControl } = useFormContext();
   const state = useFormState();
   console.log({ state });
@@ -27,12 +36,12 @@ export function useFieldGroup({ label, name, required, control: defaultControl, 
   const render = () => (
     <div className="flex gap-3">
       <div id={`question-${name}`} className="text-base text-default flex gap-0.5 justify-end items-center font-medium w-5 h-[42px]">
-        <span className="text-right">{label}</span>
+        <span className="text-right">{question}</span>
         <span className="w-[12px] text-amber text-center pt-1.5">{required ? '*' : ''}</span>
       </div>
 
       <div className="flex gap-1.5">
-        {fields.map(({ component: Comp, name: fieldName, label: subLabel, size = totalSize }) => (
+        {fields.map(({ component: Comp, name: fieldName, label, size = totalSize }) => (
           <Controller
             key={fieldName}
             name={fieldName}
@@ -49,11 +58,11 @@ export function useFieldGroup({ label, name, required, control: defaultControl, 
                     ref={ref}
                     size={size}
                     error={error}
-                    label={subLabel}
+                    label={label}
                   />
-                  {error || subLabel ? (
+                  {error || label ? (
                     <div className={`text-xs text-${error ? 'error' : 'default opacity-75'} font-normal px-1.5`}>
-                      {error?.message ?? subLabel}
+                      {error?.message ?? label}
                     </div>
                   ) : null}
                 </div>
@@ -66,16 +75,16 @@ export function useFieldGroup({ label, name, required, control: defaultControl, 
   );
 
   return {
-    label,
+    question,
     required,
     render,
   };
 }
 
-export function useField({ label, name, component, required, ...props }: IFieldProps) {
+export function useField({ name, component, ...props }: IFieldProps) {
   const fields = [{ name, component }];
 
-  return useFieldGroup({ label, name, required, fields, ...props });
+  return useFieldGroup({ name, fields, ...props });
 }
 
 type FormType = {

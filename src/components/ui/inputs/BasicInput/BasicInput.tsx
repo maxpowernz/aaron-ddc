@@ -13,7 +13,7 @@ export const BasicInput = React.forwardRef(function CustomInput(
     <InputUnstyled
       slotProps={{
         input: {
-          'aria-label': label ?? props.name,
+          'aria-label': props['aria-label'] ?? label ?? props.name,
           pattern,
           className: `text-base bg-base-1 hover:bg-base-2 rounded outline active:outline-1 focus:outline-1 p-3 ${
             error ? 'outline-1 outline-error' : 'outline-0 outline-fmg-green'

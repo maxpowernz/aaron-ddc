@@ -33,7 +33,7 @@ const Template: ComponentStory<typeof Textarea> = (args: Partial<ITextareaProps>
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Other sctivities',
+  question: 'Other sctivities',
   name: 'otherActivities',
 };
 

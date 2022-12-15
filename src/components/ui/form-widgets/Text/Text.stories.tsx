@@ -45,7 +45,7 @@ const Template: ComponentStory<typeof Text> = (args: Partial<ITextProps>) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'First name',
+  question: 'First name',
   name: 'firstName',
 };
 
