@@ -49,7 +49,7 @@ export function AppendableList({ question, name, required, rowElementName, min =
       })}
       <div className="flex gap-3">
         <div className="w-5" />
-        <Button variant="text" onClick={append}>
+        <Button variant="text" onClick={append} sx={{ textTransform: 'none' }}>
           + Add {rowElementName}
         </Button>
       </div>
