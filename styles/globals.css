@@ -30,10 +30,36 @@ a {
   }
 }
 
+:root {
+  --grid-col-width: 48px;
+  --grid-row-height: 42px;
+  --unit: 3px;
+  --gap: calc(var(--unit) * 6);
+}
+
 .form-container {
+  display: grid;
+  grid-template-columns: calc(var(--grid-col-width) * 5 + var(--unit) * 4) auto;
+  grid-template-rows: auto;
+  grid-auto-rows: minmax(var(--grid-row-height) auto);
+  gap: var(--gap);
+  --inner-gap: calc(var(--unit) * 2);
+}
+
+.form-question {
+  grid-column: 1;
+  align-self: start;
+  padding-block-start: calc(var(--unit) * 2.5);
   display: flex;
-  flex-flow: column nowrap;
-  gap: 18px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--unit);
+}
+
+.form-fields {
+  grid-column: 2;
+  display: flex;
+  gap: var(--inner-gap);
 }
 
 ::placeholder {

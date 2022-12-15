@@ -34,13 +34,13 @@ export function useFieldGroup({
   console.log({ state });
   const control = defaultControl ?? contextControl;
   const render = () => (
-    <div className="flex gap-3">
-      <div id={`question-${name}`} className="text-base text-default flex gap-0.5 justify-end items-center font-medium w-5 h-[42px]">
+    <>
+      <div id={`question-${name}`} className="form-question text-base text-default font-medium">
         <span className="text-right">{question}</span>
         <span className="w-[12px] text-amber text-center pt-1.5">{required ? '*' : ''}</span>
       </div>
 
-      <div className="flex gap-1.5">
+      <div className="form-fields">
         {fields.map(({ component: Comp, name: fieldName, label, size = totalSize }) => (
           <Controller
             key={fieldName}
@@ -71,7 +71,7 @@ export function useFieldGroup({
           />
         ))}
       </div>
-    </div>
+    </>
   );
 
   return {
