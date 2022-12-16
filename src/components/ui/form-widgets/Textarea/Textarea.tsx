@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IFieldProps, useField } from '@/src/components/util/form';
+import { IFieldProps, useFormField } from '@/src/components/util/form';
 import TextareaInput from '@/src/components/ui/inputs/Textarea/Textarea';
 
 export interface ITextareaProps extends Omit<IFieldProps, 'component'> {
@@ -9,6 +9,6 @@ export interface ITextareaProps extends Omit<IFieldProps, 'component'> {
 }
 
 export function Textarea(props: ITextareaProps): JSX.Element {
-  const { render } = useField({ ...props, component: TextareaInput });
+  const { render } = useFormField({ ...props, component: TextareaInput });
   return render();
 }

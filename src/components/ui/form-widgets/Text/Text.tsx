@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IFieldProps, useField } from '@/src/components/util/form';
+import { IFieldProps, useFormField } from '@/src/components/util/form';
 import BasicInput from '@/src/components/ui/inputs/BasicInput/BasicInput';
 
 export interface ITextProps extends Omit<IFieldProps, 'component'> {
@@ -11,6 +11,6 @@ export interface ITextProps extends Omit<IFieldProps, 'component'> {
 }
 
 export function Text(props: ITextProps): JSX.Element {
-  const { render } = useField({ ...props, component: BasicInput });
+  const { render } = useFormField({ ...props, component: BasicInput });
   return render();
 }

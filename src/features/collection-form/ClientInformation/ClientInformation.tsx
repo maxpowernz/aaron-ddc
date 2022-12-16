@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import * as model from '@/src/model/client-information.d';
+import * as model from '@/src/model/client-information';
 import { Form } from '@/src/components/util/form';
 import { MultiTexts, RadioGroup, Text, Textarea } from '@/src/components/ui/form-widgets';
 import { AppendableList } from '@/src/components/util/form/AppendableList/AppendableList';

@@ -25,7 +25,7 @@ const Template: ComponentStory<typeof RadioGroup> = (args: Partial<IRadioGroupPr
   }; // your form submit function which will invoke after successful validation
 
   return (
-    <Form schema={schema} onSubmit={onSubmit}>
+    <Form model={{ schema }} uid={1} onSubmit={onSubmit}>
       <RadioGroup name="user" {...args} size={12} />
     </Form>
   );

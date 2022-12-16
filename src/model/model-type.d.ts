@@ -6,4 +6,5 @@ export interface IModel {
   schema: ZodType;
   db?: Dexie;
   table?: Table<TypeOf<ZodType>>;
+  defaultValues?: any;
 }

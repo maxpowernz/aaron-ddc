@@ -25,7 +25,7 @@ const Template: ComponentStory<typeof Textarea> = (args: Partial<ITextareaProps>
   }; // your form submit function which will invoke after successful validation
 
   return (
-    <Form schema={schema} onSubmit={onSubmit}>
+    <Form model={{ schema }} uid={1} onSubmit={onSubmit}>
       <Textarea name="otherActivities" {...args} />
     </Form>
   );

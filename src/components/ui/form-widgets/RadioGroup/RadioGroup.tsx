@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IFieldProps, useField } from '@/src/components/util/form';
+import { IFieldProps, useFormField } from '@/src/components/util/form';
 import RadioGroupInput from '@/src/components/ui/inputs/RadioGroup/RadioGroup';
 
 export interface IRadioGroupProps extends Omit<IFieldProps, 'component'> {
@@ -8,6 +8,6 @@ export interface IRadioGroupProps extends Omit<IFieldProps, 'component'> {
 }
 
 export function RadioGroup(props: IRadioGroupProps): JSX.Element {
-  const { render } = useField({ ...props, component: RadioGroupInput });
+  const { render } = useFormField({ ...props, component: RadioGroupInput });
   return render();
 }

@@ -10,7 +10,7 @@ export interface IInputProps {
 }
 
 export interface IOptionProps {
-  value: any;
+  value: string | boolean;
   name?: string;
   label: string;
   id: string;

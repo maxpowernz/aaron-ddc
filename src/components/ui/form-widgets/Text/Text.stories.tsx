@@ -35,7 +35,7 @@ const Template: ComponentStory<typeof Text> = (args: Partial<ITextProps>) => {
   }; // your form submit function which will invoke after successful validation
 
   return (
-    <Form schema={schema} onSubmit={onSubmit}>
+    <Form model={{ schema }} uid={1} onSubmit={onSubmit}>
       <div className="hidden sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4 sm:grid-cols-5 sm:grid-cols-6 sm:grid-cols-7 sm:grid-cols-8 sm:grid-cols-9 sm:grid-cols-10" />
       <div className="hidden w-1 w-2 w-3 w-4 w-5 w-6 w-7 w-8 w-9 w-10 w-11 w-12" />
       <Text name="firstName" {...args} />

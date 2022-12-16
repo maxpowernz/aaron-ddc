@@ -36,9 +36,9 @@ export function AppendableList({ question, name, required, rowElementName, min =
     <>
       {controlledFields.map((field, fieldIdx) => {
         return (
-          <>
-            {Children.map(children, (child, childIdx) => {
-              console.log({ child, childIdx, fieldIdx });
+          <React.Fragment key={fieldIdx}>
+            {Children.map(children, (child) => {
+              // console.log({ child, childIdx, fieldIdx });
               return cloneElement(child as JSX.Element, {
                 name: `${name}.${fieldIdx}.${child.props.name}`,
                 question: fieldIdx === 0 ? question : '',
@@ -46,7 +46,7 @@ export function AppendableList({ question, name, required, rowElementName, min =
                 'aria-label': `${rowElementName} ${fieldIdx + 1}`,
               });
             })}
-          </>
+          </React.Fragment>
         );
       })}
       <div className="form-fields">

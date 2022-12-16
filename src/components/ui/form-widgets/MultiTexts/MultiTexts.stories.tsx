@@ -31,7 +31,7 @@ const Template: ComponentStory<typeof MultiTexts> = (args: Partial<IMultiTextsPr
   ];
 
   return (
-    <Form schema={schema} onSubmit={onSubmit}>
+    <Form model={{ schema }} uid={1} onSubmit={onSubmit}>
       <MultiTexts name="names" fields={fields} {...args} />
     </Form>
   );
