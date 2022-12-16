@@ -1,6 +1,8 @@
 import React, { Children, cloneElement, useEffect } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+
+import AddIcon from '@/src/assets/icons/18x18/plus.svg';
 
 type AppendableListType = {
   question: string;
@@ -48,9 +50,10 @@ export function AppendableList({ question, name, required, rowElementName, min =
         );
       })}
       <div className="form-fields">
-        <Button variant="text" onClick={append} sx={{ textTransform: 'none' }}>
-          + Add {rowElementName}
-        </Button>
+        {/* TODO: apply mui theme */}
+        <IconButton disableRipple onClick={append} sx={{ textTransform: 'none', color: '#00A8CB', fontSize: 14 }}>
+          <AddIcon className="fill-blue" /> Add {rowElementName}
+        </IconButton>
       </div>
     </>
   );

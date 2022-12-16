@@ -13,6 +13,7 @@ module.exports = {
         'base-2': '#0000001A',
         amber: '#EFAE41',
         error: '#A62F1F',
+        blue: '#00A8CB',
       },
       fontSize: {
         sm: ['12px', '14px'],

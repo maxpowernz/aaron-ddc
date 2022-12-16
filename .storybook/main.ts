@@ -1,8 +1,4 @@
 // @ts-ignore
-// const path = require('path');
-// const tailwindConfigPath = path.join(__dirname, '../tailwind.config.js'); // or your own config file
-// require('storybook-tailwind-foundations/initialize.js').default(tailwindConfigPath);
-
 module.exports = {
   stories: ['../**/**/*.stories.mdx', '../**/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -24,5 +20,18 @@ module.exports = {
   framework: '@storybook/react',
   core: {
     builder: '@storybook/builder-webpack5',
+  },
+  // @ts-ignore
+  webpackFinal: async (config) => {
+    // @ts-ignore
+    const imageRule = config.module.rules.find((rule) => rule?.test?.test('.svg'));
+    imageRule.exclude = /\.svg$/;
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+
+    return config;
   },
 };
