@@ -1,10 +1,13 @@
 import React, { FormEventHandler } from 'react';
-import { Control, Controller, FormProvider, useForm, useFormContext, useFormState } from 'react-hook-form';
+import { Control, Controller, FormProvider, useForm, useFormContext } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
-import { ZodType } from 'zod/lib/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { IModel } from '@/src/model/model-type';
+import { ModelConext, useModelContext } from '@/src/model/ModelContext';
 import { IInputProps } from '@/src/components/ui/inputs';
+import { IndexableType } from 'dexie';
+import { ControllerRenderProps } from 'react-hook-form/dist/types/controller';
 
 export interface IFieldProps extends IInputProps {
   question?: string;
@@ -20,6 +23,22 @@ export interface IFieldGroupProps extends Omit<IFieldProps, 'component'> {
   fields: ITargetFieldProps[];
 }
 
+export function useSaveField() {
+  const { table, uid } = useModelContext();
+
+  return (field: ControllerRenderProps) => {
+    const { name, value } = field;
+    console.log({ value, uid });
+    table?.update(uid, { [name]: value }).then(function (updated: number) {
+      if (updated) {
+        console.log(`${name} updated with ${value}`);
+      } else {
+        table.add({ [name]: value }, uid);
+      }
+    });
+  };
+}
+
 export function useFieldGroup({
   question,
   name,
@@ -30,9 +49,8 @@ export function useFieldGroup({
   ...props
 }: IFieldGroupProps) {
   const { control: contextControl } = useFormContext();
-  const state = useFormState();
-  console.log({ state });
   const control = defaultControl ?? contextControl;
+  const saveField = useSaveField();
   const render = () => (
     <>
       <div id={`question-${name}`} className="form-question text-base text-default font-medium">
@@ -46,8 +64,7 @@ export function useFieldGroup({
             key={fieldName}
             name={fieldName}
             control={control}
-            render={({ field: { ref, ...field }, fieldState: { error } }) => {
-              //console.log({ fieldState, field, rules });
+            render={({ field, fieldState: { error } }) => {
               return (
                 <div className="flex flex-col gap-1.5">
                   <Comp
@@ -55,10 +72,13 @@ export function useFieldGroup({
                     {...props}
                     value={field.value ?? ''}
                     name={fieldName}
-                    ref={ref}
                     size={size}
                     error={error}
                     label={label}
+                    onBlur={() => {
+                      field.onBlur();
+                      saveField(field);
+                    }}
                   />
                   {error || label ? (
                     <div className={`text-xs text-${error ? 'error' : 'default opacity-75'} font-normal px-1.5`}>
@@ -74,11 +94,7 @@ export function useFieldGroup({
     </>
   );
 
-  return {
-    question,
-    required,
-    render,
-  };
+  return { question, required, render };
 }
 
 export function useField({ name, component, ...props }: IFieldProps) {
@@ -89,18 +105,21 @@ export function useField({ name, component, ...props }: IFieldProps) {
 
 type FormType = {
   mode?: 'onBlur' | 'onChange' | 'onSubmit';
-  schema: ZodType;
+  model: IModel;
+  uid?: IndexableType;
   onSubmit: (value?: any) => void | FormEventHandler;
   children: React.ReactElement | React.ReactElement[];
 };
 
-export function Form({ schema, onSubmit, children, mode = 'onBlur' }: FormType) {
-  const form = useForm({ resolver: zodResolver(schema), mode });
+export function Form({ model, uid, onSubmit, children, mode = 'onBlur' }: FormType) {
+  const form = useForm({ resolver: zodResolver(model.schema), mode });
   return (
     <FormProvider {...form}>
-      <form className="form-container" onSubmit={form.handleSubmit(onSubmit)}>
-        {children}
-      </form>
+      <ModelConext.Provider value={{ ...model, uid }}>
+        <form className="form-container" onSubmit={form.handleSubmit(onSubmit)}>
+          {children}
+        </form>
+      </ModelConext.Provider>
     </FormProvider>
   );
 }
