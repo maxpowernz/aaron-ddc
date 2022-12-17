@@ -39,6 +39,12 @@ Error.args = {
   error: true,
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
+};
+
 export const Date = Template.bind({});
 Date.args = {
   id: 'date',

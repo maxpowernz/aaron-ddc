@@ -23,6 +23,7 @@ export const BasicInput = React.forwardRef(function CustomInput(
       ref={ref}
       error={error}
       // TODO: theme with mui config
+      // TODO: style disabled
       className={`flex text-base bg-base-1 hover:bg-base-2 rounded outline active:outline-1 focus-within:outline-1 ${
         error ? 'outline-1 outline-error' : 'outline-0 outline-fmg-green'
       } ${width} ${className}`}

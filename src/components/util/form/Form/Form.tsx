@@ -1,6 +1,7 @@
 import React, { FormEventHandler } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ZodInvalidTypeIssue } from 'zod/lib/ZodError';
 import { IndexableType } from 'dexie';
 import { useLiveQuery } from 'dexie-react-hooks';
 
@@ -15,15 +16,6 @@ type FormType = {
   children: React.ReactElement | React.ReactElement[];
 };
 
-// TODO: hacky... write test and move location
-function determineArrayType(val: Exclude<object, string | boolean | number>) {
-  if (['object'].includes(typeof val)) {
-    const keys = Object.keys(val);
-    return Boolean(keys.join('').match(/^01*2*3*\d/));
-  }
-  return false;
-}
-
 export function Form({ model, uid, onSubmit, children, mode = 'onBlur' }: FormType) {
   const form = useForm({ resolver: zodResolver(model.schema), mode });
 
@@ -33,9 +25,18 @@ export function Form({ model, uid, onSubmit, children, mode = 'onBlur' }: FormTy
       const defaultValues = await model.table?.get(uid);
 
       if (count) {
-        Object.keys(defaultValues).forEach((key) => {
-          const resolvedValue = determineArrayType(defaultValues[key]) ? Object.values(defaultValues[key]) : defaultValues[key];
-          form.setValue(key, resolvedValue);
+        Object.entries<object>(defaultValues).forEach(([key, val]) => {
+          const safeParse = (): object => {
+            const { success, error: { issues = [] } = {} } = model.schema.shape[key].safeParse(val);
+            // TODO: confirm it only throws ZodInvalidTypeIssue
+            const hasArrayParseError = issues.find((issue: ZodInvalidTypeIssue) => issue.expected === 'array');
+            if (!success && hasArrayParseError) {
+              return Object.values(val);
+            }
+            return val;
+          };
+
+          form.setValue(key, safeParse(), { shouldDirty: true, shouldValidate: true, shouldTouch: true });
         });
       }
       return { defaultValues, count };

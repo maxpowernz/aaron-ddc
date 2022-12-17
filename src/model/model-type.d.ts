@@ -1,10 +1,10 @@
-import { ZodType } from 'zod';
+import { ZodObject } from 'zod';
 import Dexie, { Table } from 'dexie';
 import { TypeOf } from 'zod/lib/types';
 
 export interface IModel {
-  schema: ZodType;
+  schema: ZodObject;
   db?: Dexie;
-  table?: Table<TypeOf<ZodType>>;
+  table?: Table<TypeOf<ZodObject>>;
   defaultValues?: any;
 }
