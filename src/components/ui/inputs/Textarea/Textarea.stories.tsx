@@ -32,8 +32,14 @@ Size2.args = {
 
 export const Placeholder = Template.bind({});
 Placeholder.args = {
-  ...Default.args,
+  ...Placeholder.args,
   placeholder: 'This is a placeholder',
+};
+
+export const PlaceholderDisabled = Template.bind({});
+PlaceholderDisabled.args = {
+  ...Placeholder.args,
+  disabled: true,
 };
 
 export const Error = Template.bind({});

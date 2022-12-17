@@ -49,11 +49,11 @@ a {
 .form-question {
   grid-column: 1;
   align-self: start;
-  padding-block-start: calc(var(--unit) * 2.5);
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: var(--unit);
+  height: var(--grid-row-height);
 }
 
 .form-fields {

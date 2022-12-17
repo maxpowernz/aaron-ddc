@@ -25,6 +25,7 @@ Default.args = {
   id: 'firstName',
   name: 'firstName',
   pattern: String(/[a-zA-Z]/),
+  placeholder: 'First Name',
 };
 
 export const Size2 = Template.bind({});
