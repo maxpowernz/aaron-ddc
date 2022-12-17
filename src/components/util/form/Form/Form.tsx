@@ -2,10 +2,10 @@ import React, { FormEventHandler } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { IndexableType } from 'dexie';
+import { useLiveQuery } from 'dexie-react-hooks';
 
 import { IModel } from '@/src/model/model-type';
 import { ModelConext } from '@/src/model/ModelContext';
-import { useLiveQuery } from 'dexie-react-hooks';
 
 type FormType = {
   mode?: 'onBlur' | 'onChange' | 'onSubmit';
@@ -15,14 +15,31 @@ type FormType = {
   children: React.ReactElement | React.ReactElement[];
 };
 
+// TODO: hacky... write test and move location
+function determineArrayType(val: Exclude<object, string | boolean | number>) {
+  if (['object'].includes(typeof val)) {
+    const keys = Object.keys(val);
+    return Boolean(keys.join('').match(/^01*2*3*\d/));
+  }
+  return false;
+}
+
 export function Form({ model, uid, onSubmit, children, mode = 'onBlur' }: FormType) {
+  const form = useForm({ resolver: zodResolver(model.schema), mode });
+
   const { defaultValues, count } =
     useLiveQuery(async () => {
       const count = await model.table?.count();
-      return { defaultValues: await model.table?.get(uid), count };
-    }) ?? {};
+      const defaultValues = await model.table?.get(uid);
 
-  const form = useForm({ resolver: zodResolver(model.schema), mode });
+      if (count) {
+        Object.keys(defaultValues).forEach((key) => {
+          const resolvedValue = determineArrayType(defaultValues[key]) ? Object.values(defaultValues[key]) : defaultValues[key];
+          form.setValue(key, resolvedValue);
+        });
+      }
+      return { defaultValues, count };
+    }) ?? {};
 
   if (model.table && count == null) return null;
 

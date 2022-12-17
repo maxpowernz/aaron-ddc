@@ -4,7 +4,6 @@ import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 
 import { IInputProps } from '@/src/components/ui/inputs';
 import { useSaveField } from './useSaveField';
-import { useModelContext } from '@/src/model/ModelContext';
 
 export interface IFieldProps extends IInputProps {
   question?: string;
@@ -20,19 +19,6 @@ export interface IFieldGroupProps extends Omit<IFieldProps, 'component'> {
   fields: ITargetFieldProps[];
 }
 
-// TODO: write test & move to another location
-function resolveFieldValue<T extends Record<string, any>>(values: T, name: string): string {
-  if (values == null) return '';
-
-  const [first, ...rest] = name.split('.');
-  const value = values[first];
-
-  if (rest.length) {
-    return resolveFieldValue(values[first], rest.join('.'));
-  }
-  return value;
-}
-
 export function useFormFieldGroup({
   question,
   name,
@@ -43,7 +29,6 @@ export function useFormFieldGroup({
   ...props
 }: IFieldGroupProps) {
   const { control: contextControl } = useFormContext();
-  const { defaultValues } = useModelContext();
   const saveField = useSaveField();
   const control = defaultControl ?? contextControl;
   const render = () => (
@@ -65,7 +50,7 @@ export function useFormFieldGroup({
                   <Comp
                     {...field}
                     {...props}
-                    value={field.value ?? resolveFieldValue(defaultValues, fieldName)}
+                    value={field.value ?? ''}
                     name={fieldName}
                     size={size}
                     error={error}
