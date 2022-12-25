@@ -2,7 +2,7 @@ import React from 'react';
 import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled';
 
 import InvalidIcon from '@/src/assets/icons/18x18/invalid.svg';
-import { StyledInputBaseRoot } from '@/src/components/ui/inputs/StyledInputRoot/StyeldInputRoot';
+import { StyledInputBaseRoot } from '@/src/components/ui/inputs/StyledInputRoot/StyledInputRoot';
 import { IInputProps } from '../input-types';
 
 export type BasicInputProps = InputUnstyledProps & IInputProps;

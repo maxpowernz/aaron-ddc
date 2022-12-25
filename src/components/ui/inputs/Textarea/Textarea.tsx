@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import TextareaAutosize, { TextareaAutosizeProps } from '@mui/base/TextareaAutosize';
-import { StyledInputBaseRoot } from '@/src/components/ui/inputs/StyledInputRoot/StyeldInputRoot';
+import { StyledInputBaseRoot } from '@/src/components/ui/inputs/StyledInputRoot/StyledInputRoot';
 import { IInputProps } from '../input-types';
 
 export type TextareaProps = {
