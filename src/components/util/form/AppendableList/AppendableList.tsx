@@ -50,7 +50,6 @@ export function AppendableList({ question, name, required, rowElementName, min =
         );
       })}
       <div className="form-fields">
-        {/* TODO: apply mui theme */}
         <IconButton onClick={append} color="secondary">
           <AddIcon className="fill-blue" /> Add {rowElementName}
         </IconButton>
