@@ -34,20 +34,32 @@ Size2.args = {
   size: 2,
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  ...Default.args,
-  error: true,
-};
-
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...Default.args,
   disabled: true,
 };
 
-export const Date = Template.bind({});
-Date.args = {
+export const Placeholder = Template.bind({});
+Placeholder.args = {
+  ...Default.args,
+  placeholder: 'First Name',
+};
+
+export const PlaceholderDisabled = Template.bind({});
+PlaceholderDisabled.args = {
+  ...Placeholder.args,
+  disabled: true,
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  ...Default.args,
+  error: true,
+};
+
+export const DateType = Template.bind({});
+DateType.args = {
   id: 'date',
   name: 'date',
   type: 'date',

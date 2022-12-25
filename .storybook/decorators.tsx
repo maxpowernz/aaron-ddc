@@ -1,6 +1,8 @@
 import { withDesign } from 'storybook-addon-designs';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 import { DecoratorFn } from '@storybook/react';
+import { ThemeProvider } from '@mui/system';
+import { theme } from '@/src/theme/mui-theme';
 
 // import { DecoratorFn } from '@storybook/react'
 // import { ThemeProvider } from 'styled-components'
@@ -100,14 +102,14 @@ export const withStore: DecoratorFn = (StoryFn, { parameters }) => {
 }
 */
 
-export const withTailwindPreloads: DecoratorFn = (StoryFn) => {
+export const withMuiTheme: DecoratorFn = (StoryFn) => {
   return (
     <>
-      <div className="hidden sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4 sm:grid-cols-5 sm:grid-cols-6 sm:grid-cols-7 sm:grid-cols-8 sm:grid-cols-9 sm:grid-cols-10" />
-      <div className="hidden w-1 w-2 w-3 w-4 w-5 w-6 w-7 w-8 w-9 w-10 w-11 w-12" />
-      <StoryFn />
+      <ThemeProvider theme={theme}>
+        <StoryFn />
+      </ThemeProvider>
     </>
   );
 };
 
-export const globalDecorators = [mswDecorator, withDesign, withTailwindPreloads];
+export const globalDecorators = [mswDecorator, withDesign, withMuiTheme];

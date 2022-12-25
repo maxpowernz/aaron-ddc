@@ -30,6 +30,12 @@ Size2.args = {
   size: 2,
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
+};
+
 export const Placeholder = Template.bind({});
 Placeholder.args = {
   ...Placeholder.args,

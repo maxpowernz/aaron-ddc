@@ -14,6 +14,9 @@ module.exports = {
         amber: '#EFAE41',
         error: '#A62F1F',
         blue: '#00A8CB',
+        primary: '#209400',
+        secondary: '#00A8CB',
+        text: '#191E26',
       },
       fontSize: {
         sm: ['12px', '14px'],

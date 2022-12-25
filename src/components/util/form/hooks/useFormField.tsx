@@ -1,4 +1,5 @@
-import { IFieldProps, useFormFieldGroup } from './useFormFieldGroup';
+import { IFieldProps } from '../form-types';
+import { useFormFieldGroup } from './useFormFieldGroup';
 
 export function useFormField({ name, component, ...props }: IFieldProps) {
   const fields = [{ name, component }];
