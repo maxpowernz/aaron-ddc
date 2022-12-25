@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/system';
+import { createTheme } from '@mui/material';
 import { content, theme as tailwindTheme } from 'tailwind.config'; // just an alias for the tailwind.config.js
 import resolveConfig from 'tailwindcss/resolveConfig';
 import { RecursiveKeyValuePair } from 'tailwindcss/types/config';
