@@ -1,52 +1,55 @@
 import React from 'react';
+import { styled } from '@mui/system';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroupMui, { RadioGroupProps } from '@mui/material/RadioGroup';
 
 import { IInputProps, IOptionProps } from '../input-types';
-import { FormControlLabel } from '@mui/material';
-import { styled } from '@mui/system';
 
 const BpIcon = styled('span')(({ theme }) => ({
   borderRadius: '50%',
   width: 16,
   height: 16,
-  boxShadow:
-    theme.palette.mode === 'dark' ? '0 0 0 1px rgb(16 22 26 / 40%)' : 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
+  boxShadow: 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
   backgroundColor: theme.palette.mode === 'dark' ? '#394b59' : '#f5f8fa',
-  backgroundImage:
-    theme.palette.mode === 'dark'
-      ? 'linear-gradient(180deg,hsla(0,0%,100%,.05),hsla(0,0%,100%,0))'
-      : 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
+  backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
   '.Mui-focusVisible &': {
     outline: '2px auto rgba(19,124,189,.6)',
     outlineOffset: 2,
   },
   'input:hover ~ &': {
-    backgroundColor: theme.palette.mode === 'dark' ? '#30404d' : '#20940033',
+    backgroundColor: theme.palette.primary.light,
   },
   'input:disabled ~ &': {
     boxShadow: 'none',
-    background: theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
+    background: 'rgba(206,217,224,.5)',
   },
 }));
 
-const BpCheckedIcon = styled(BpIcon)({
-  backgroundColor: '#209400',
+const BpCheckedIcon = styled(BpIcon)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
   backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
   '&:before': {
     display: 'block',
     width: 16,
     height: 16,
-    backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
+    backgroundImage: `radial-gradient(${theme.palette.primary.contrastText},${theme.palette.primary.contrastText} 12%,transparent 22%)`,
     content: '""',
   },
   'input:hover ~ &': {
-    backgroundColor: '#209400',
+    backgroundColor: theme.palette.primary.main,
+    '.Mui-error &': {
+      backgroundColor: theme.palette.error.main,
+    },
   },
-});
+  '.Mui-error &': {
+    backgroundColor: theme.palette.error.main,
+  },
+}));
 
 type CustomRadioGroupProps = {
   cols?: number;
+  error?: string | boolean | object;
 } & IInputProps &
   RadioGroupProps;
 
@@ -68,15 +71,8 @@ export const RadioGroup = React.forwardRef(function CustomInput(
             <FormControlLabel
               key={id}
               value={value}
-              control={
-                <Radio name={name} focusRipple sx={{ padding: 0.6, color: 'green' }} checkedIcon={<BpCheckedIcon />} icon={<BpIcon />} />
-              }
+              control={<Radio name={name} checkedIcon={<BpCheckedIcon />} icon={<BpIcon />} />}
               label={label}
-              componentsProps={{
-                typography: {
-                  sx: { fontSize: 14, fontWeight: 400, height: 42, paddingTop: 1.5 },
-                },
-              }}
             />
           );
         })}

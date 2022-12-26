@@ -51,7 +51,7 @@ export function AppendableList({ question, name, required, rowElementName, min =
       })}
       <div className="form-fields">
         <IconButton onClick={append} color="secondary">
-          <AddIcon className="fill-blue" /> Add {rowElementName}
+          <AddIcon className="fill-secondary" /> Add {rowElementName}
         </IconButton>
       </div>
     </>

@@ -24,7 +24,7 @@ export const BasicInput = React.forwardRef(function CustomInput(
       slots={{ root: StyledInputBaseRoot }}
       {...props}
       ref={ref}
-      error={error}
+      error={Boolean(error)}
       disabled={disabled}
       className={width}
       // TODO: fill color not working

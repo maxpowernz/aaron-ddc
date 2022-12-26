@@ -24,3 +24,14 @@ Default.args = {
     { id: '2', name: 'John', label: 'John', value: 'John' },
   ],
 };
+
+export const Error = Template.bind({});
+Error.args = {
+  label: 'First name',
+  name: 'firstName',
+  options: [
+    { id: '1', name: 'Tom', label: 'Tom', value: 'Tom' },
+    { id: '2', name: 'John', label: 'John', value: 'John' },
+  ],
+  error: true,
+};
