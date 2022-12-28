@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IFieldProps, useFormField } from '@/src/components/util/form';
+import { IFieldProps, useFormField, useScope } from '@/src/components/util/form';
 import BasicInput from '@/src/components/ui/inputs/BasicInput/BasicInput';
 
 export interface ITextProps extends Omit<IFieldProps, 'component'> {
@@ -10,7 +10,9 @@ export interface ITextProps extends Omit<IFieldProps, 'component'> {
   rows?: number;
 }
 
-export function Text(props: ITextProps): JSX.Element {
+export function Text({ scope = {}, ...props }: ITextProps): JSX.Element {
   const { render } = useFormField({ ...props, component: BasicInput });
-  return render();
+  const { isVisible } = useScope(scope);
+
+  return isVisible ? render() : <></>;
 }

@@ -4,6 +4,7 @@ import { z } from 'zod';
 export const schema = z.object({
   contactId: z.string(),
   accountType: z.string(),
+  accountTypeOther: z.string(),
   accountName: z.string().min(1, { message: 'Required' }),
   mailName: z.string().optional(),
   associatedEntities: z.string().optional(),

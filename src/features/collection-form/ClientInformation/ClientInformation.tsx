@@ -26,6 +26,13 @@ export function ClientInformation(props = {}) {
   return (
     <Form model={model} uid={1} onSubmit={onSubmit}>
       <RadioGroup name="accountType" question="Account type" options={accountTypes} cols={3} size={10} required />
+      <Text
+        name="accountTypeOther"
+        question="Please specify account type"
+        size={12}
+        required
+        scope={{ source: 'accountType', condition: 'other' }}
+      />
       <Text name="accountName" question="Account name" size={12} required />
       <AppendableList question="Friends" rowElementName="Friend" name="friends" required>
         <Text name="friend" size={12} />

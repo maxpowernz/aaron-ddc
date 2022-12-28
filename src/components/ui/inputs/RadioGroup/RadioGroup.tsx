@@ -2,9 +2,9 @@ import React from 'react';
 import { styled } from '@mui/system';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
-import RadioGroupMui, { RadioGroupProps } from '@mui/material/RadioGroup';
+import RadioGroupMui from '@mui/material/RadioGroup';
 
-import { IInputProps, IOptionProps } from '../input-types';
+import { ICustomRadioGroupProps, IOptionProps } from '../input-types';
 
 const BpIcon = styled('span')(({ theme }) => ({
   borderRadius: '50%',
@@ -47,19 +47,13 @@ const BpCheckedIcon = styled(BpIcon)(({ theme }) => ({
   },
 }));
 
-type CustomRadioGroupProps = {
-  cols?: number;
-  error?: string | boolean | object;
-} & IInputProps &
-  RadioGroupProps;
-
 const defaultOptions = [
   { id: 'yes', label: 'Yes', value: true },
   { id: 'no', label: 'No', value: false },
 ];
 
 export const RadioGroup = React.forwardRef(function CustomInput(
-  { options = defaultOptions, size = 12, cols, ...props }: CustomRadioGroupProps,
+  { options = defaultOptions, size = 12, cols, ...props }: ICustomRadioGroupProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
   const layout = cols ? `grid grid-cols-1 sm:grid-cols-${cols}` : 'flex flex-wrap';

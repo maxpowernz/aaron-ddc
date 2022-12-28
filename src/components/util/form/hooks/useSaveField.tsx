@@ -5,7 +5,7 @@ import { useModelContext } from '@/src/model/ModelContext';
 export function useSaveField() {
   const { table, uid } = useModelContext();
 
-  return (field: ControllerRenderProps) => {
+  return (field: Pick<ControllerRenderProps, 'name' | 'value'>) => {
     const { name, value } = field;
 
     table?.update(uid, { [name]: value }).then(function (updated: number) {
