@@ -10,6 +10,13 @@ type TestData = {
 };
 
 describe('useScope', () => {
+  it('should return default when undefined', () => {
+    const { result } = renderHook(() => useScope({}), {
+      wrapper: withFormWrapper<TestData>({ defaultValues: { hasSharedArea: false } }),
+    });
+    expect(result.current.isVisible).toBe(true);
+  });
+
   it.each`
     hasSharedArea
     ${true}

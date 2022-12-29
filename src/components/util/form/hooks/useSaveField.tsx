@@ -12,7 +12,7 @@ export function useSaveField() {
       if (updated) {
         console.log(`${name} updated with ${value}`);
       } else {
-        table.add({ [name]: value }, uid);
+        table.add({ [name]: value }, uid).then((data) => console.log(`${data}: ${name} added with ${value}`));
       }
     });
   };

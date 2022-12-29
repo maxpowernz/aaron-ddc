@@ -23,14 +23,12 @@ export const theme = createTheme({
   components: {
     MuiButtonBase: {
       defaultProps: {
-        disableRipple: true, // No more ripple, on the whole application 💣!
         sx: { textTransform: 'none', fontSize: 14 },
       },
     },
-    MuiIconButton: {
+    MuiButton: {
       defaultProps: {
-        disableRipple: true,
-        sx: { textTransform: 'none', fontSize: 14, gap: '0.75em' },
+        sx: { textTransform: 'none', fontSize: 14, paddingX: '0.75em' },
       },
     },
     MuiFormControlLabel: {

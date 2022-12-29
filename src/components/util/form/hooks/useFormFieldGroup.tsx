@@ -13,7 +13,7 @@ export function useFormFieldGroup({
   size: totalSize = 4,
   ...props
 }: IFieldGroupProps) {
-  const { control: contextControl } = useFormContext();
+  const { control: contextControl, ...formMethods } = useFormContext();
   const saveField = useSaveField();
   const control = defaultControl ?? contextControl;
   const render = () => (
@@ -45,11 +45,11 @@ export function useFormFieldGroup({
                       saveField(field);
                     }}
                   />
-                  {error || label ? (
+                  {!(error || label) ? null : (
                     <div className={`text-xs text-${error ? 'error' : 'default opacity-75'} font-normal px-1.5`}>
                       {error?.message ?? label}
                     </div>
-                  ) : null}
+                  )}
                 </div>
               );
             }}
@@ -59,5 +59,5 @@ export function useFormFieldGroup({
     </>
   );
 
-  return { question, required, render };
+  return { question, required, render, control, ...formMethods };
 }
