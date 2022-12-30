@@ -1,4 +1,6 @@
 import React, { FormEventHandler } from 'react';
+import { TypeOf } from 'zod/lib/types';
+import { ZodObject } from 'zod';
 import { Control } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 import { UseFormReturn } from 'react-hook-form/dist/types';
@@ -9,7 +11,7 @@ import { IModel, KeyType } from '@/src/model/model-type';
 export type FieldProps = {
   question?: string;
   control?: Control;
-  component: React.ComponentType<any>;
+  component: React.JSXElementConstructor;
   required?: boolean;
   rules?: Omit<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
   scope?: UseScopeProps;
@@ -33,11 +35,11 @@ export type LoadTableReturn<T> = {
   isLoaded?: boolean;
 };
 
-type ConditionType = number | boolean | string | {};
+type CommonType = number | boolean | string | {};
 
 type UseScopeProps = {
   source?: string;
-  condition?: ((controlValue: ConditionType) => boolean) | ConditionType;
+  condition?: ((controlValue: CommonType) => boolean) | CommonType;
   values?: Record<string, OptionProps[]>;
 };
 
@@ -50,6 +52,6 @@ export type FormProps = {
   mode?: 'onBlur' | 'onChange' | 'onSubmit';
   model: IModel;
   uid: KeyType;
-  onSubmit: (value?: any) => void | FormEventHandler;
+  onSubmit: (value?: TypeOf<ZodObject> | unknown) => void | FormEventHandler;
   children?: React.ReactElement | React.ReactElement[];
 };
