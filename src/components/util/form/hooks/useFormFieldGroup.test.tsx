@@ -69,8 +69,8 @@ describe('useFormFieldGroup', () => {
   });
 
   it('should invoke function(s) correctly', async () => {
-    const saveSpy = vi.fn();
-    vi.spyOn(formUtil, 'useSaveField').mockReturnValue(saveSpy);
+    const saveField = vi.fn();
+    vi.spyOn(formUtil, 'useSaveField').mockReturnValue(saveField);
 
     const { result } = renderHook(() => useFormFieldGroup(props), {
       wrapper: withFormWrapper<TestData>({ defaultValues: {} }),
@@ -87,6 +87,6 @@ describe('useFormFieldGroup', () => {
     expect(textbox).toHaveValue(textContent);
 
     await userEvent.tab();
-    await expect(saveSpy).toHaveBeenCalledWith(expect.objectContaining({ name: 'firstName', value: textContent }));
+    await expect(saveField).toHaveBeenCalledWith(expect.objectContaining({ name: 'firstName', value: textContent }));
   });
 });

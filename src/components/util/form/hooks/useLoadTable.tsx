@@ -1,29 +1,33 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { ILoadTableProps, ILoadTableReturnProps } from '../form-types';
 import { ZodInvalidTypeIssue } from 'zod/lib/ZodError';
+import { ZodType } from 'zod/lib/types';
 
-export function useLoadTable<T>({ form, uid, model }: ILoadTableProps): ILoadTableReturnProps<T> {
-  return (
-    useLiveQuery(async () => {
-      const count = await model.table?.count();
-      const result = await model.table?.get(uid);
+import { ILoadTableProps, ILoadTableReturnProps } from '../form-types';
 
-      if (count) {
-        Object.entries<object>(result).forEach(([key, val]) => {
-          const safeParse = () => {
-            const { success, error: { issues = [] } = {} } = model.schema.shape[key].safeParse(val);
-            // TODO: confirm it only throws ZodInvalidTypeIssue
-            const hasArrayParseError = issues.find((issue: ZodInvalidTypeIssue) => issue.expected === 'array');
-            if (!success && hasArrayParseError) {
-              return Object.values(val);
-            }
-            return val;
-          };
+export function safeResolve(type: ZodType, value: object | string | number | boolean) {
+  const result = type.safeParse(value);
 
-          form.setValue(key, safeParse(), { shouldDirty: true, shouldValidate: true, shouldTouch: true });
-        });
-      }
-      return { result, count, isLoaded: count != null };
-    }) ?? {}
-  );
+  if (result.success) return value;
+
+  const { error: { issues = [] } = {} } = result;
+  const hasArrayParseError = issues.find((issue) => (issue as ZodInvalidTypeIssue)?.expected === 'array');
+  return hasArrayParseError ? Object.values(value) : value;
+}
+
+export async function initFormValues<T>({ form, uid, model }: ILoadTableProps): Promise<ILoadTableReturnProps<T>> {
+  const count = await model.table?.count();
+  const result = await model.table?.get(uid);
+
+  if (count) {
+    Object.entries<object>(result).forEach(([key, val]) => {
+      const resolved = safeResolve(model.schema.shape[key], val);
+
+      form.setValue(key, resolved, { shouldDirty: true, shouldValidate: true, shouldTouch: true });
+    });
+  }
+  return { result, count, isLoaded: count != null };
+}
+
+export function useLoadTable<T>(props: ILoadTableProps): ILoadTableReturnProps<T> {
+  return useLiveQuery(async () => await initFormValues(props)) ?? {};
 }

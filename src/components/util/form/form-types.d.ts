@@ -23,7 +23,7 @@ export interface IFieldGroupProps extends Omit<IFieldProps, 'component'> {
 }
 
 export interface ILoadTableProps {
-  form: UseFormReturn;
+  form: Pick<UseFormReturn, 'setValue'>;
   uid: IndexableType;
   model: IModel;
 }

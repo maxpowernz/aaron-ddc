@@ -1,5 +1,5 @@
 /* eslint-disable import/export */
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { cleanup, render } from '@testing-library/react';
 import { afterEach } from 'vitest';
 import { ThemeProvider } from '@mui/system';
@@ -9,16 +9,20 @@ afterEach(() => {
   cleanup();
 });
 
-const AllProviders = ({ children }: { children: React.ReactElement }) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-};
+type WrapperType = React.JSXElementConstructor<{ children: React.ReactElement }>;
 
-const customRender = (ui: React.ReactElement, options = {}) =>
-  render(ui, {
-    // wrap provider(s) here if needed
-    wrapper: AllProviders,
+export function withProviders(Wrapper: WrapperType = React.Fragment) {
+  return function CreatedWrapper({ children }: { children: ReactElement }) {
+    return <ThemeProvider theme={theme}>{<Wrapper>{children}</Wrapper>}</ThemeProvider>;
+  };
+}
+function customRender(ui: React.ReactElement, options: { wrapper?: WrapperType } = {}) {
+  return render(ui, {
     ...options,
+    // wrap provider(s) here if needed
+    wrapper: withProviders(options.wrapper),
   });
+}
 
 export * from './withFormWrapper';
 export * from '@testing-library/react';

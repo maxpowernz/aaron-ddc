@@ -1,11 +1,7 @@
 import { styled } from '@mui/system';
 import { inputUnstyledClasses } from '@mui/base/InputUnstyled';
 
-export const StyledInputBaseRoot = styled('div', {
-  slot: 'Root',
-  name: 'StyledInputBase',
-  overridesResolver: (prop, styles) => [styles.root],
-})(
+export const StyledInputBaseRoot = styled('div')(
   ({ theme }) => `
   font: 14px IBM Plex Sans, sans-serif;
   border-radius: 4px;

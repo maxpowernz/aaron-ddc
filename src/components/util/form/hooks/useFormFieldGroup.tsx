@@ -31,7 +31,7 @@ export function useFormFieldGroup({
             control={control}
             render={({ field, fieldState: { error } }) => {
               return (
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col justify-center gap-1.5">
                   <Comp
                     {...field}
                     {...props}

@@ -1,19 +1,10 @@
-import Dexie, { Table } from 'dexie';
 import { z } from 'zod';
 import { renderHook } from 'test-utils';
 
+import { MockDB } from '@/src/components/util/form/test/mock-model';
 import * as ModelCtx from '@/src/model/ModelContext';
 
 import { useSaveField } from './useSaveField';
-
-class MockDB extends Dexie {
-  friends!: Table;
-
-  constructor(name: string, schema: {}) {
-    super(name);
-    this.version(1).stores(schema);
-  }
-}
 
 describe('useSaveField', () => {
   const db = new MockDB('TestDB', { friends: '++id, name, age, isCloseFriend' });
@@ -25,7 +16,6 @@ describe('useSaveField', () => {
   });
 
   afterAll(() => {
-    Dexie.delete('TestDB');
     vi.clearAllMocks();
   });
 

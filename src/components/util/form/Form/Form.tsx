@@ -7,12 +7,12 @@ import { IModel } from '@/src/model/model-type';
 import { ModelConext } from '@/src/model/ModelContext';
 import { useLoadTable } from '@/src/components/util/form/hooks/useLoadTable';
 
-type FormType = {
+export type FormType = {
   mode?: 'onBlur' | 'onChange' | 'onSubmit';
   model: IModel;
   uid: IndexableType;
   onSubmit: (value?: any) => void | FormEventHandler;
-  children: React.ReactElement | React.ReactElement[];
+  children?: React.ReactElement | React.ReactElement[];
 };
 
 export function Form({ model, uid, onSubmit, children, mode = 'onBlur' }: FormType) {
