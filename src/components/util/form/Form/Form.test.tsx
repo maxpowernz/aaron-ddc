@@ -3,9 +3,10 @@ import { render, screen } from 'test-utils';
 import * as model from '@/src/components/util/form/test/mock-model';
 import * as formUtil from '@/src/components/util/form/hooks/useLoadTable';
 
-import { Form, FormType } from './Form';
+import { Form } from './Form';
+import { FormProps } from '@/src/components/util/form/form-types';
 
-const FormContent = (props: FormType) => (
+const FormContent = (props: FormProps) => (
   <Form {...props}>
     <div>Form Content</div>
   </Form>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { IFieldGroupProps } from '../form-types';
+import { FieldGroupProps } from '../form-types';
 import { useSaveField } from './useSaveField';
 
 export function useFormFieldGroup({
@@ -12,7 +12,7 @@ export function useFormFieldGroup({
   fields,
   size: totalSize = 4,
   ...props
-}: IFieldGroupProps) {
+}: FieldGroupProps) {
   const { control: contextControl, ...formMethods } = useFormContext();
   const saveField = useSaveField();
   const control = defaultControl ?? contextControl;

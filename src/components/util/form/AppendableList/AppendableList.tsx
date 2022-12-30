@@ -4,9 +4,9 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 import AddIcon from '@/src/assets/icons/18x18/plus.svg';
 import { Button } from '@mui/material';
 
-type AppendableListType = {
+type AppendableListProps = {
   question: string;
-  rowElementName: string;
+  addButtonLabel: string;
   required?: boolean;
   name: string;
   min?: number;
@@ -14,7 +14,7 @@ type AppendableListType = {
   children: React.ReactElement | React.ReactElement[];
 };
 
-export function AppendableList({ question, name, required, rowElementName, min = 1, children }: AppendableListType) {
+export function AppendableList({ question, name, required, addButtonLabel, min = 1, children }: AppendableListProps) {
   const { control, watch } = useFormContext();
   const { fields, append } = useFieldArray({ control, name });
   const watchFieldArray = watch(name);
@@ -43,7 +43,7 @@ export function AppendableList({ question, name, required, rowElementName, min =
                 name: `${name}.${fieldIdx}.${child.props.name}`,
                 question: fieldIdx === 0 ? question : '',
                 required: fieldIdx === 0 ? required : false,
-                'aria-label': `${rowElementName} ${fieldIdx + 1}`,
+                'aria-label': `${addButtonLabel} ${fieldIdx + 1}`,
               });
             })}
           </React.Fragment>
@@ -51,7 +51,7 @@ export function AppendableList({ question, name, required, rowElementName, min =
       })}
       <div className="form-fields">
         <Button onClick={append} color="secondary" startIcon={<AddIcon className="fill-secondary" />}>
-          Add {rowElementName}
+          {addButtonLabel}
         </Button>
       </div>
     </>

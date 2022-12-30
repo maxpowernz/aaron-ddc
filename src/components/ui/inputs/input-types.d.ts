@@ -1,22 +1,23 @@
 import { RadioGroupProps } from '@mui/material/RadioGroup';
 
-export interface IInputProps {
+export type InputProps = {
   label?: string;
   name: string;
   pattern?: string;
   size?: number;
-  options?: IOptionProps[];
+  options?: OptionProps[];
   placeholder?: string;
-}
+};
 
-export interface IOptionProps {
+export type OptionProps = {
   value: string | boolean;
   name?: string;
   label: string;
   id?: string;
-}
+};
 
-export interface ICustomRadioGroupProps extends IInputProps, RadioGroupProps {
+export type CustomRadioGroupProps = {
   cols?: number;
   error?: string | boolean | object;
-}
+} & InputProps &
+  RadioGroupProps;

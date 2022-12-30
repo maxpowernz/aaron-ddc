@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { IFieldProps, useFormField, useSaveField } from '@/src/components/util/form';
+import { FieldProps, useFormField, useSaveField } from '@/src/components/util/form';
 import RadioGroupInput from '@/src/components/ui/inputs/RadioGroup/RadioGroup';
 
-export interface IRadioGroupProps extends Omit<IFieldProps, 'component'> {
+export type RadioGroupProps = Omit<FieldProps, 'component'> & {
   cols?: number;
-}
+};
 
-export function RadioGroup(props: IRadioGroupProps): JSX.Element {
+export function RadioGroup(props: RadioGroupProps): JSX.Element {
   const saveField = useSaveField();
   const { render } = useFormField({
     ...props,

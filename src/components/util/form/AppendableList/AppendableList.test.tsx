@@ -17,10 +17,10 @@ describe('useFormField', () => {
 
   it('should render correctly when no table', async () => {
     const question = 'Please enter your names';
-    const rowElementName = 'Name';
+    const addButtonLabel = 'Name';
     const name = 'names';
 
-    const props = { question, rowElementName, name };
+    const props = { question, addButtonLabel, name };
 
     render(
       <AppendableList {...props}>

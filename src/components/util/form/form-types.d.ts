@@ -1,48 +1,55 @@
-import React from 'react';
+import React, { FormEventHandler } from 'react';
 import { Control } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 import { UseFormReturn } from 'react-hook-form/dist/types';
-import { IndexableType } from 'dexie';
 
-import { IInputProps, IOptionProps } from '@/src/components/ui/inputs';
-import { IModel } from '@/src/model/model-type';
+import { InputProps, OptionProps } from '@/src/components/ui/inputs';
+import { IModel, KeyType } from '@/src/model/model-type';
 
-export interface IFieldProps extends IInputProps {
+export type FieldProps = {
   question?: string;
   control?: Control;
   component: React.ComponentType<any>;
   required?: boolean;
   rules?: Omit<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
-  scope?: IUseScopeProps;
-}
+  scope?: UseScopeProps;
+} & InputProps;
 
-export interface ITargetFieldProps extends Omit<IFieldProps, 'control' | 'question'> {}
+export type TargetFieldProps = Omit<FieldProps, 'control' | 'question'>;
 
-export interface IFieldGroupProps extends Omit<IFieldProps, 'component'> {
-  fields: ITargetFieldProps[];
-}
+export type FieldGroupProps = Omit<FieldProps, 'component'> & {
+  fields: TargetFieldProps[];
+};
 
-export interface ILoadTableProps {
+export type LoadTableProps = {
   form: Pick<UseFormReturn, 'setValue'>;
-  uid: IndexableType;
+  uid: KeyType;
   model: IModel;
-}
+};
 
-export interface ILoadTableReturnProps<T> {
+export type LoadTableReturn<T> = {
   result?: T;
   count?: number;
   isLoaded?: boolean;
-}
+};
 
-type ConditionProps = number | boolean | string | {};
+type ConditionType = number | boolean | string | {};
 
-interface IUseScopeProps {
+type UseScopeProps = {
   source?: string;
-  condition?: ((controlValue: ConditionProps) => boolean) | ConditionProps;
-  values?: Record<string, IOptionProps[]>;
-}
+  condition?: ((controlValue: ConditionType) => boolean) | ConditionType;
+  values?: Record<string, OptionProps[]>;
+};
 
-interface IUseScopeReturn {
+type UseScopeReturn = {
   isVisible: boolean;
-  options: IOptionProps[];
-}
+  options: OptionProps[];
+};
+
+export type FormProps = {
+  mode?: 'onBlur' | 'onChange' | 'onSubmit';
+  model: IModel;
+  uid: KeyType;
+  onSubmit: (value?: any) => void | FormEventHandler;
+  children?: React.ReactElement | React.ReactElement[];
+};

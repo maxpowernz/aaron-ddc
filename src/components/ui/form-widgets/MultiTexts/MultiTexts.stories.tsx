@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { z } from 'zod';
 
 import { Form } from '@/src/components/util/form';
-import { IMultiTextsProps, MultiTexts } from './MultiTexts';
+import { MultiTexts, MultiTextsProps } from './MultiTexts';
 
 export default {
   title: 'Components/Form Widgets/MultiTexts',
@@ -20,7 +20,7 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-const Template: ComponentStory<typeof MultiTexts> = (args: Partial<IMultiTextsProps>) => {
+const Template: ComponentStory<typeof MultiTexts> = (args: Partial<MultiTextsProps>) => {
   const onSubmit = (data: FormValues) => {
     alert(JSON.stringify(data));
   }; // your form submit function which will invoke after successful validation

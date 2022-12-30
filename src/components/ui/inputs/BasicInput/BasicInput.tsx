@@ -3,9 +3,9 @@ import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled';
 
 import InvalidIcon from '@/src/assets/icons/18x18/invalid.svg';
 import { StyledInputBaseRoot } from '@/src/components/ui/inputs/StyledInputBaseRoot/StyledInputBaseRoot';
-import { IInputProps } from '../input-types';
+import { InputProps } from '../input-types';
 
-export type BasicInputProps = InputUnstyledProps & IInputProps;
+export type BasicInputProps = InputUnstyledProps & InputProps;
 
 export const BasicInput = React.forwardRef(function CustomInput(
   { className, error, disabled, label, pattern, size = 4, ...props }: BasicInputProps,

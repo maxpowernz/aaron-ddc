@@ -4,7 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroupMui from '@mui/material/RadioGroup';
 
-import { ICustomRadioGroupProps, IOptionProps } from '../input-types';
+import { CustomRadioGroupProps, OptionProps } from '../input-types';
 
 const BpIcon = styled('span')(({ theme }) => ({
   borderRadius: '50%',
@@ -53,14 +53,14 @@ const defaultOptions = [
 ];
 
 export const RadioGroup = React.forwardRef(function CustomInput(
-  { options = defaultOptions, size = 12, cols, ...props }: ICustomRadioGroupProps,
+  { options = defaultOptions, size = 12, cols, ...props }: CustomRadioGroupProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
   const layout = cols ? `grid grid-cols-1 sm:grid-cols-${cols}` : 'flex flex-wrap';
   return (
     <RadioGroupMui {...props} ref={ref}>
       <div className={`${layout} w-${size} items-center gap-x-4 mx-2`}>
-        {options?.map(({ id, name, label, value }: IOptionProps) => {
+        {options?.map(({ id, name, label, value }: OptionProps) => {
           return (
             <FormControlLabel
               key={id}

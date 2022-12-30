@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { z } from 'zod';
 
 import { Form } from '@/src/components/util/form';
-import { ITextProps, Text } from './Text';
+import { Text, TextProps } from './Text';
 
 export default {
   title: 'Components/Form Widgets/TextField',
@@ -14,7 +14,7 @@ export default {
   parameters: {},
 } as ComponentMeta<typeof Text>;
 
-const Template: ComponentStory<typeof Text> = (args: Partial<ITextProps>) => {
+const Template: ComponentStory<typeof Text> = (args: Partial<TextProps>) => {
   let schema = z.object({
     firstName: z.string().regex(/^[A-Za-z]+$/i, { message: 'Incorrect pattern' }),
   });

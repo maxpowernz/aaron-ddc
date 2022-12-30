@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
-import { IUseScopeProps, IUseScopeReturn } from '@/src/components/util/form/form-types';
+import { UseScopeProps, UseScopeReturn } from '@/src/components/util/form/form-types';
 
-export function useScope({ source, condition = true, values = {} }: IUseScopeProps): IUseScopeReturn {
+export function useScope({ source, condition = true, values = {} }: UseScopeProps): UseScopeReturn {
   const { getValues } = useFormContext();
 
   if (source == null) return { isVisible: true, options: [] };

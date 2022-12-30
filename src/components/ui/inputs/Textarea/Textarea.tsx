@@ -2,12 +2,12 @@ import React from 'react';
 import classnames from 'classnames';
 import TextareaAutosize, { TextareaAutosizeProps } from '@mui/base/TextareaAutosize';
 import { StyledInputBaseRoot } from '@/src/components/ui/inputs/StyledInputBaseRoot/StyledInputBaseRoot';
-import { IInputProps } from '../input-types';
+import { InputProps } from '../input-types';
 
 export type TextareaProps = {
   error?: boolean;
 } & TextareaAutosizeProps &
-  IInputProps;
+  InputProps;
 
 export const Textarea = React.forwardRef(function CustomInput(
   { className, error, disabled, label, size = 4, ...props }: TextareaProps,

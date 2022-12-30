@@ -34,7 +34,7 @@ export function ClientInformation(props = {}) {
         scope={{ source: 'accountType', condition: 'other' }}
       />
       <Text name="accountName" question="Account name" size={12} required />
-      <AppendableList question="Friends" rowElementName="Friend" name="friends" required>
+      <AppendableList question="Friends" addButtonLabel="Add Friend" name="friends" required>
         <Text name="friend" size={12} />
       </AppendableList>
       <Text name="mailName" question="Mail name" size={9} placeholder="Add Mail Name if different from Account Name" />

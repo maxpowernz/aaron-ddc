@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { z } from 'zod';
 
 import { Form } from '@/src/components/util/form';
-import { IRadioGroupProps, RadioGroup } from './RadioGroup';
+import { RadioGroup, RadioGroupProps } from './RadioGroup';
 
 export default {
   title: 'Components/Form Widgets/RadioGroup',
@@ -19,7 +19,7 @@ let schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-const Template: ComponentStory<typeof RadioGroup> = (args: Partial<IRadioGroupProps>) => {
+const Template: ComponentStory<typeof RadioGroup> = (args: Partial<RadioGroupProps>) => {
   const onSubmit = (data: FormValues) => {
     alert(JSON.stringify(data));
   }; // your form submit function which will invoke after successful validation

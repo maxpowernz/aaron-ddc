@@ -2,7 +2,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { ZodInvalidTypeIssue } from 'zod/lib/ZodError';
 import { ZodType } from 'zod/lib/types';
 
-import { ILoadTableProps, ILoadTableReturnProps } from '../form-types';
+import { LoadTableProps, LoadTableReturn } from '../form-types';
 
 export function safeResolve(type: ZodType, value: object | string | number | boolean) {
   const result = type.safeParse(value);
@@ -14,7 +14,7 @@ export function safeResolve(type: ZodType, value: object | string | number | boo
   return hasArrayParseError ? Object.values(value) : value;
 }
 
-export async function initFormValues<T>({ form, uid, model }: ILoadTableProps): Promise<ILoadTableReturnProps<T>> {
+export async function initFormValues<T>({ form, uid, model }: LoadTableProps): Promise<LoadTableReturn<T>> {
   const count = await model.table?.count();
   const result = await model.table?.get(uid);
 
@@ -28,6 +28,6 @@ export async function initFormValues<T>({ form, uid, model }: ILoadTableProps): 
   return { result, count, isLoaded: count != null };
 }
 
-export function useLoadTable<T>(props: ILoadTableProps): ILoadTableReturnProps<T> {
+export function useLoadTable<T>(props: LoadTableProps): LoadTableReturn<T> {
   return useLiveQuery(async () => await initFormValues(props)) ?? {};
 }

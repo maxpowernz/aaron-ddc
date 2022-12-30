@@ -1,21 +1,11 @@
-import React, { FormEventHandler } from 'react';
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { IndexableType } from 'dexie';
-
-import { IModel } from '@/src/model/model-type';
 import { ModelConext } from '@/src/model/ModelContext';
 import { useLoadTable } from '@/src/components/util/form/hooks/useLoadTable';
+import { FormProps } from '@/src/components/util/form/form-types';
 
-export type FormType = {
-  mode?: 'onBlur' | 'onChange' | 'onSubmit';
-  model: IModel;
-  uid: IndexableType;
-  onSubmit: (value?: any) => void | FormEventHandler;
-  children?: React.ReactElement | React.ReactElement[];
-};
-
-export function Form({ model, uid, onSubmit, children, mode = 'onBlur' }: FormType) {
+export function Form({ model, uid, onSubmit, children, mode = 'onBlur' }: FormProps) {
   const form = useForm({ resolver: zodResolver(model.schema), mode });
 
   const { result, isLoaded } = useLoadTable({ form, model, uid });
