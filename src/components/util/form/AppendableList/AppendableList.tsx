@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, useEffect } from 'react';
+import React, { Children, cloneElement, useEffect, useRef } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import AddIcon from '@/src/assets/icons/18x18/plus.svg';
@@ -26,11 +26,13 @@ export function AppendableList({ question, name, required, addButtonLabel, min =
     };
   });
 
+  const rows = useRef(controlledFields.length ? 0 : min);
+
   useEffect(() => {
-    for (let i = 0; i < min; i++) {
+    for (let i = 0; i < rows.current; i++) {
       append({});
     }
-  }, [min, append]);
+  }, [append]);
 
   return (
     <>
@@ -38,12 +40,13 @@ export function AppendableList({ question, name, required, addButtonLabel, min =
         return (
           <React.Fragment key={fieldIdx}>
             {Children.map(children, (child) => {
+              // TODO: Can this be replaced with form group field??
               // console.log({ child, childIdx, fieldIdx });
               return cloneElement(child as JSX.Element, {
                 name: `${name}.${fieldIdx}.${child.props.name}`,
                 question: fieldIdx === 0 ? question : '',
                 required: fieldIdx === 0 ? required : false,
-                'aria-label': `${addButtonLabel} ${fieldIdx + 1}`,
+                'aria-label': `${child.props.name} ${fieldIdx + 1}`,
               });
             })}
           </React.Fragment>

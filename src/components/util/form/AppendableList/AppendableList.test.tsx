@@ -10,12 +10,12 @@ type TestData = {
   lastName: string;
 };
 
-describe('useFormField', () => {
+describe('AppendableList', () => {
   afterAll(() => {
     vi.clearAllMocks();
   });
 
-  it('should render correctly when no table', async () => {
+  it('should render correctly', async () => {
     const question = 'Please enter your names';
     const addButtonLabel = 'Name';
     const name = 'names';

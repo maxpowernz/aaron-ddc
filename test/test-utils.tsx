@@ -1,4 +1,3 @@
-/* eslint-disable import/export */
 import React, { ReactElement } from 'react';
 import { cleanup, render } from '@testing-library/react';
 import { afterEach } from 'vitest';
@@ -16,6 +15,7 @@ export function withProviders(Wrapper: WrapperType = React.Fragment) {
     return <ThemeProvider theme={theme}>{<Wrapper>{children}</Wrapper>}</ThemeProvider>;
   };
 }
+
 function customRender(ui: React.ReactElement, options: { wrapper?: WrapperType } = {}) {
   return render(ui, {
     ...options,
