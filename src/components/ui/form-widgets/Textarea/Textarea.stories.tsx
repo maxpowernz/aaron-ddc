@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { z } from 'zod';
+import { z, ZodTypeAny } from 'zod';
 
 import { Form } from '@/src/components/util/form';
 import { Textarea, TextareaProps } from './Textarea';
@@ -13,19 +13,13 @@ export default {
   parameters: {},
 } as ComponentMeta<typeof Textarea>;
 
-const schema = z.object({
-  otherActivities: z.string(),
-});
-
-type FormValues = z.infer<typeof schema>;
-
-const Template: ComponentStory<typeof Textarea> = (args: Partial<TextareaProps>) => {
-  const onSubmit = (data: FormValues) => {
+const Template: ComponentStory<typeof Textarea & z.infer<ZodTypeAny>> = (args: Partial<TextareaProps> & { schema: ZodTypeAny }) => {
+  const onSubmit = (data: z.infer<typeof args.schema>) => {
     alert(JSON.stringify(data));
   }; // your form submit function which will invoke after successful validation
 
   return (
-    <Form model={{ schema }} uid={1} onSubmit={onSubmit}>
+    <Form model={{ schema: args.schema }} uid={1} onSubmit={onSubmit}>
       <Textarea name="otherActivities" {...args} />
     </Form>
   );
@@ -35,12 +29,18 @@ export const Default = Template.bind({});
 Default.args = {
   question: 'Other sctivities',
   name: 'otherActivities',
+  schema: z.object({
+    otherActivities: z.string(),
+  }),
 };
 
 export const Required = Template.bind({});
 Required.args = {
   ...Default.args,
   required: true,
+  schema: z.object({
+    otherActivities: z.string().min(1, { message: 'Required' }),
+  }),
 };
 
 export const Size12 = Template.bind({});
@@ -52,5 +52,7 @@ Size12.args = {
 export const AlphaOnly = Template.bind({});
 AlphaOnly.args = {
   ...Default.args,
-  rules: { pattern: /^[A-Za-z]+$/i },
+  schema: z.object({
+    otherActivities: z.string().regex(/^[A-Za-z]+$/i, { message: 'Incorrect pattern' }),
+  }),
 };

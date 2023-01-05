@@ -1,4 +1,4 @@
-import React, { FormEventHandler } from 'react';
+import React, { FormEventHandler, ReactElement } from 'react';
 import { TypeOf } from 'zod/lib/types';
 import { ZodObject } from 'zod';
 import { Control } from 'react-hook-form';
@@ -22,6 +22,11 @@ export type TargetFieldProps = Omit<FieldProps, 'control' | 'question'>;
 export type FieldGroupProps = Omit<FieldProps, 'component'> & {
   fields: TargetFieldProps[];
 };
+
+export type FieldGroupReturn = Partial<UseFormReturn> &
+  Partial<FieldProps> & {
+    render: () => ReactElement;
+  };
 
 export type LoadTableProps = {
   form: Pick<UseFormReturn, 'setValue'>;

@@ -5,8 +5,6 @@ import * as formUtil from '@/src/components/util/form/hooks/useSaveField';
 
 import { useFormFieldGroup } from './useFormFieldGroup';
 
-vi.mock('@/src/assets/icons/18x18/invalid.svg', () => ({ default: 'svg' }));
-
 type TestData = {
   firstName: string;
   lastName: string;
@@ -43,13 +41,13 @@ describe('useFormFieldGroup', () => {
 
     const textboxes = screen.getAllByRole('textbox');
     expect(screen.getByText(question)).toBeInTheDocument();
-    expect(screen.getByText('*')).toBeInTheDocument();
+    expect(screen.getByLabelText('required')).toBeInTheDocument();
     expect(textboxes.length).toBe(fields.length);
     expect(screen.getByText(fields[0].label)).toBeInTheDocument();
     expect(screen.getByText(fields[1].label)).toBeInTheDocument();
 
-    act(() => {
-      result.current.setError('firstName', { type: 'custom', message: 'Custom message' });
+    await act(() => {
+      result.current.setError?.('firstName', { type: 'custom', message: 'Custom message' });
     });
     expect(screen.getByText('Custom message')).toBeInTheDocument();
   });
@@ -63,7 +61,7 @@ describe('useFormFieldGroup', () => {
     );
     render(<>{result.current.render()}</>);
 
-    expect(screen.queryByText('*')).toBeNull();
+    expect(screen.queryByLabelText('required')).toBeNull();
     expect(screen.queryByText(fields[0].label)).toBeNull();
     expect(screen.queryByText(fields[1].label)).toBeNull();
   });

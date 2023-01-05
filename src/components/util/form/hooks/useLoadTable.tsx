@@ -29,5 +29,6 @@ export async function initFormValues<T>({ form, uid, model }: LoadTableProps): P
 }
 
 export function useLoadTable<T>(props: LoadTableProps): LoadTableReturn<T> {
+  // TODO: Fix double rendering from useLiveQuery
   return useLiveQuery(async () => await initFormValues(props)) ?? {};
 }

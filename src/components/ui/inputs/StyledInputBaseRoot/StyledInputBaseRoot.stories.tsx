@@ -59,8 +59,8 @@ Disabled.args = {
   className: 'w-4 p-3 Mui-disabled',
 };
 
-export const Error = Template.bind({});
-Error.parameters = { pseudo: { error: true } };
-Error.args = {
+export const Invalid = Template.bind({});
+Invalid.parameters = { pseudo: { error: true } };
+Invalid.args = {
   className: 'w-4 p-3 Mui-error',
 };

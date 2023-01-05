@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { FieldProps, useFormField, useSaveField } from '@/src/components/util/form';
+import { FieldProps, useFormField, useSaveField, useScope } from '@/src/components/util/form';
 import RadioGroupInput from '@/src/components/ui/inputs/RadioGroup/RadioGroup';
 
 export type RadioGroupProps = Omit<FieldProps, 'component'> & {
   cols?: number;
 };
 
-export function RadioGroup(props: RadioGroupProps): JSX.Element {
+export function RadioGroup({ scope = {}, ...props }: RadioGroupProps): JSX.Element {
   const saveField = useSaveField();
   const { render } = useFormField({
     ...props,
@@ -18,5 +18,7 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
         value: (e.target as HTMLInputElement)?.value,
       }),
   });
-  return render();
+  const { isVisible } = useScope(scope);
+
+  return isVisible ? render() : <></>;
 }

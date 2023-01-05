@@ -23,15 +23,11 @@ Default.args = {
     { id: '1', name: 'Tom', label: 'Tom', value: 'Tom' },
     { id: '2', name: 'John', label: 'John', value: 'John' },
   ],
+  value: 'Tom',
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  label: 'First name',
-  name: 'firstName',
-  options: [
-    { id: '1', name: 'Tom', label: 'Tom', value: 'Tom' },
-    { id: '2', name: 'John', label: 'John', value: 'John' },
-  ],
-  error: true,
+export const Invalid = Template.bind({});
+Invalid.args = {
+  ...Default.args,
+  error: 'true',
 };

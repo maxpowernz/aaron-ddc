@@ -4,6 +4,8 @@ import { afterEach } from 'vitest';
 import { ThemeProvider } from '@mui/system';
 import { theme } from '@/src/theme/mui-theme';
 
+vi.mock('@/src/assets/icons/18x18/invalid.svg', () => ({ default: 'svg' }));
+
 afterEach(() => {
   cleanup();
 });
@@ -27,5 +29,6 @@ function customRender(ui: React.ReactElement, options: { wrapper?: WrapperType }
 export * from './withFormWrapper';
 export * from '@testing-library/react';
 export { default as userEvent } from '@testing-library/user-event';
+export * from '@storybook/testing-react';
 // override render export
 export { customRender as render };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { FieldGroupProps } from '../form-types';
+import { FieldGroupProps, FieldGroupReturn } from '../form-types';
 import { useSaveField } from './useSaveField';
 
 export function useFormFieldGroup({
@@ -12,7 +12,7 @@ export function useFormFieldGroup({
   fields,
   size: totalSize = 4,
   ...props
-}: FieldGroupProps) {
+}: FieldGroupProps): FieldGroupReturn {
   const { control: contextControl, ...formMethods } = useFormContext();
   const saveField = useSaveField();
   const control = defaultControl ?? contextControl;
@@ -20,7 +20,13 @@ export function useFormFieldGroup({
     <>
       <div id={`question-${name}`} className="form-question text-base text-default font-medium">
         <span className="text-right">{question}</span>
-        <span className="w-[0.75rem] text-amber text-center pt-1.5">{required ? '*' : ''}</span>
+        <span className="w-[0.75rem] text-amber text-center pt-1.5">
+          {required ? (
+            <span aria-label="required" role="img">
+              *
+            </span>
+          ) : null}
+        </span>
       </div>
 
       <div className="form-fields">
@@ -31,7 +37,7 @@ export function useFormFieldGroup({
             control={control}
             render={({ field, fieldState: { error } }) => {
               return (
-                <div className="flex flex-col justify-center gap-1.5">
+                <div className="flex flex-col p-0.5 gap-1">
                   <Comp
                     {...field}
                     {...props}

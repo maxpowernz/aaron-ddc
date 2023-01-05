@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { BasicInput } from './BasicInput';
+import { userEvent, within } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 
 export default {
   title: 'Atoms/BasicInput',
@@ -27,6 +29,14 @@ Default.args = {
   pattern: String(/[a-zA-Z]/),
   placeholder: 'First Name',
 };
+Default.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const elem = await canvas.getByRole('textbox');
+  await userEvent.click(elem);
+  await expect(elem.closest('div')).toHaveClass('Mui-focused');
+  await userEvent.tab();
+  await expect(elem.closest('div')).not.toHaveClass('Mui-focused');
+};
 
 export const Size2 = Template.bind({});
 Size2.args = {
@@ -52,10 +62,15 @@ PlaceholderDisabled.args = {
   disabled: true,
 };
 
-export const Error = Template.bind({});
-Error.args = {
+export const Invalid = Template.bind({});
+Invalid.args = {
   ...Default.args,
   error: true,
+};
+Invalid.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const elem = await canvas.getByRole('textbox');
+  await expect(elem.closest('div')).toHaveClass('Mui-error');
 };
 
 export const DateType = Template.bind({});
