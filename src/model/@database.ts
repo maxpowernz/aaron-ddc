@@ -1,6 +1,6 @@
 import Dexie, { Table } from 'dexie';
 
-export class DB extends Dexie {
+export class Database extends Dexie {
   clientInfos!: Table;
   farmInfos!: Table;
 
@@ -13,4 +13,4 @@ export class DB extends Dexie {
   }
 }
 
-export const db = new DB();
+export const db = new Database();

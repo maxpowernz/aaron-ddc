@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { db } from '@/src/model/_db';
+import { db } from './@database';
 
 export const schema = z.object({
   contactId: z.string(),

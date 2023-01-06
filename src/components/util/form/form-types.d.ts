@@ -6,7 +6,7 @@ import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 import { UseFormReturn } from 'react-hook-form/dist/types';
 
 import { InputProps, OptionProps } from '@/src/components/ui/inputs';
-import { IModel, KeyType } from '@/src/model/model-type';
+import { IModel, KeyType } from '@/src/context/model-type';
 
 export type FieldProps = {
   question?: string;

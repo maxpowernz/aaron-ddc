@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 import { z } from 'zod';
-import { IModel, KeyType } from '@/src/model/model-type';
+import { IModel, KeyType } from '@/src/context/model-type';
 
 export const ModelConext = createContext<IModel & { uid: KeyType }>({
   // TODO: default uid set to a random value

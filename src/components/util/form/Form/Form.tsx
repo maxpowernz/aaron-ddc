@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ModelConext } from '@/src/model/ModelContext';
+import { ModelConext } from '@/src/context/ModelContext';
 import { useLoadTable } from '@/src/components/util/form/hooks/useLoadTable';
 import { FormProps } from '@/src/components/util/form/form-types';
 
@@ -15,8 +15,6 @@ export function Form({ model: inModel, uid, onSubmit, children, mode = 'onBlur' 
   const { result, isLoaded } = useLoadTable({ form, model, uid });
 
   if (table && !isLoaded) return null;
-
-  console.trace('form');
 
   return (
     <FormProvider {...form}>
