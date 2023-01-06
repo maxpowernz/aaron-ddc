@@ -1,18 +1,18 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { ClientInformation } from './ClientInformation';
+import { ClientInfo } from './ClientInfo';
 
 export default {
   title: 'forms/ClientInformation',
-  component: ClientInformation,
+  component: ClientInfo,
   args: {},
   parameters: {},
-} as ComponentMeta<typeof ClientInformation>;
+} as ComponentMeta<typeof ClientInfo>;
 
-const Template: ComponentStory<typeof ClientInformation> = (args) => {
+const Template: ComponentStory<typeof ClientInfo> = (args) => {
   return (
     <>
-      <ClientInformation {...args} />
+      <ClientInfo {...args} />
     </>
   );
 };

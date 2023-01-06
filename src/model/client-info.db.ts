@@ -1,5 +1,5 @@
-import Dexie, { Table } from 'dexie';
 import { z } from 'zod';
+import { db } from '@/src/model/_db';
 
 export const schema = z.object({
   contactId: z.string(),
@@ -19,18 +19,4 @@ export const schema = z.object({
 
 export type FormValues = z.infer<typeof schema>;
 
-export class Records extends Dexie {
-  // 'clientInfos' is added by dexie when declaring the stores()
-  // We just tell the typing system this is the case
-  clientInfos!: Table<FormValues>;
-
-  constructor() {
-    super('ClientInformation');
-    this.version(1).stores({
-      clientInfos: '++, [contactId]', // Primary key and unique indexed props
-    });
-  }
-}
-
-export const db = new Records();
 export const table = db.clientInfos;

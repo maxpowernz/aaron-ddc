@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import * as model from '@/src/model/client-information.db';
+import * as model from '@/src/model/client-info.db';
 import { Form } from '@/src/components/util/form';
 import { MultiTexts, RadioGroup, Text, Textarea } from '@/src/components/ui/form-widgets';
 import { AppendableList } from '@/src/components/util/form/AppendableList/AppendableList';
 
-export function ClientInformation(props = {}) {
+export function ClientInfo(props = {}) {
   const onSubmit = (data: model.FormValues) => console.log('Submit:', data);
 
   const accountTypes = [

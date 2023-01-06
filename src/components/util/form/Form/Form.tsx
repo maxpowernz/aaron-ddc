@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ModelConext } from '@/src/model/ModelContext';
 import { useLoadTable } from '@/src/components/util/form/hooks/useLoadTable';
 import { FormProps } from '@/src/components/util/form/form-types';
 
-export function Form({ model, uid, onSubmit, children, mode = 'onBlur' }: FormProps) {
-  const form = useForm({ resolver: zodResolver(model.schema), mode });
+export function Form({ model: inModel, uid, onSubmit, children, mode = 'onBlur' }: FormProps) {
+  const { current: model } = useRef(inModel);
+  const { current: table } = useRef(model.table);
+  const { current: schema } = useRef(model.schema);
+
+  const form = useForm({ resolver: zodResolver(schema), mode });
 
   const { result, isLoaded } = useLoadTable({ form, model, uid });
 
-  if (model.table && !isLoaded) return null;
+  if (table && !isLoaded) return null;
+
+  console.trace('form');
 
   return (
     <FormProvider {...form}>

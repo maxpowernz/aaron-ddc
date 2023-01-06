@@ -8,9 +8,8 @@ export function useScope({ source, condition = true, values = {} }: UseScopeProp
 
   // assuming the incoming scope is always a signle field and value
   const controlValue = getValues(source);
-  const allValues = getValues();
-
-  console.log({ controlValue, allValues, condition });
+  // const allValues = getValues();
+  // console.log({ controlValue, allValues, condition });
 
   const availableOptions = Object.entries(values).flatMap(([key, val]) => (key === controlValue ? val : []));
 
