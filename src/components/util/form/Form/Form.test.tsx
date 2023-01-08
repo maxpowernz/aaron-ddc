@@ -1,4 +1,4 @@
-import { render, screen } from 'test-utils';
+import { render, screen } from '@/test/test-utils';
 
 import * as model from '@/src/components/util/form/test/mock-model';
 import * as formUtil from '@/src/components/util/form/hooks/useLoadTable';

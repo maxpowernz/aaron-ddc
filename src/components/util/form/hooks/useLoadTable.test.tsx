@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import * as dexieQuery from 'dexie-react-hooks';
 
-import { renderHook } from 'test-utils';
+import { renderHook } from '@/test/test-utils';
 import { MockDB, schema } from '@/src/components/util/form/test/mock-model';
 
 import { initFormValues, safeResolve, useLoadTable } from './useLoadTable';

@@ -1,4 +1,4 @@
-import { renderHook, withFormWrapper } from 'test-utils';
+import { renderHook, withFormWrapper } from '@/test/test-utils';
 
 import { useScope } from './useScope';
 

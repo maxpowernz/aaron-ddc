@@ -1,4 +1,4 @@
-import { render, screen, userEvent, withFormWrapper } from 'test-utils';
+import { render, screen, userEvent, withFormWrapper } from '@/test/test-utils';
 
 import { AppendableList } from './AppendableList';
 import { Text } from '@/src/components/ui/form-widgets';

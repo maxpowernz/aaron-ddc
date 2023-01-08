@@ -1,4 +1,4 @@
-import { composeStories, render, screen } from 'test-utils';
+import { composeStories, render, screen } from '@/test/test-utils';
 
 import * as stories from './RadioGroup.stories';
 

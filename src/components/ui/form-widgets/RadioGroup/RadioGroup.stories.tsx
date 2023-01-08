@@ -13,7 +13,7 @@ export default {
   parameters: {},
 } as ComponentMeta<typeof RadioGroup>;
 
-let schema = z.object({
+const schema = z.object({
   firstName: z.string().regex(/^[A-Za-z]+$/i, { message: 'Incorrect pattern' }),
 });
 
