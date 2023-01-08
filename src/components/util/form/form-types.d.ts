@@ -3,7 +3,7 @@ import { TypeOf } from 'zod/lib/types';
 import { ZodObject } from 'zod';
 import { Control } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
-import { UseFormReturn } from 'react-hook-form/dist/types';
+import { UseFormReturn } from 'react-hook-form/dist/types/form';
 
 import { InputProps, OptionProps } from '@/src/components/ui/inputs';
 import { IModel, KeyType } from '@/src/context/model-type';

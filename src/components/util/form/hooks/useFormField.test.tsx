@@ -1,4 +1,4 @@
-import { renderHook, withFormWrapper } from 'test-utils';
+import { renderHook, withFormWrapper } from '@/test/test-utils';
 
 import { BasicInput } from '@/src/components/ui/inputs';
 import * as formUtil from '@/src/components/util/form/hooks/useFormFieldGroup';

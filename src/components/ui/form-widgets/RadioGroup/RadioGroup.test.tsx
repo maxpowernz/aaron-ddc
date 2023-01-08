@@ -1,4 +1,4 @@
-import { composeStories, render, screen, userEvent } from 'test-utils';
+import { composeStories, render, screen, userEvent } from '@/test/test-utils';
 
 import * as scope from '@/src/components/util/form/hooks/useScope';
 import * as saveField from '@/src/components/util/form/hooks/useSaveField';

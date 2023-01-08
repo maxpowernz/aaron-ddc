@@ -1,6 +1,6 @@
 import { ComponentMeta } from '@storybook/react';
 
-import Home from '@/pages/index.page';
+import Home from './index.page';
 
 export default {
   title: 'Pages',
