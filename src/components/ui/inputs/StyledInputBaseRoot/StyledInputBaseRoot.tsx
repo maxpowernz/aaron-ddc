@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { inputUnstyledClasses } from '@mui/base/InputUnstyled';
+import { inputBaseClasses } from '@mui/material/InputBase';
 
 export const StyledInputBaseRoot = styled('div')(
   ({ theme }) => `
@@ -16,24 +16,32 @@ export const StyledInputBaseRoot = styled('div')(
     padding: 0.75em;
     width: 100%;
   }
-
+  
   &:hover {
     background: ${theme.palette.text.disabled};
   }
   
-  &.${inputUnstyledClasses.focused},
+  &.${inputBaseClasses.focused},
+  .${inputBaseClasses.focused},
   &:focus-within {
+    border-radius: 4px;
     outline: 1px solid ${theme.palette.primary.main};
   }  
   
-  &.${inputUnstyledClasses.disabled} {
+  &.${inputBaseClasses.disabled} {
     outline: 1px solid ${theme.palette.text.disabled};
     color: ${theme.palette.text.primary};
     background: none;
   }
   
-  &.${inputUnstyledClasses.error} {
+  &.${inputBaseClasses.error} {
     outline: 1px solid ${theme.palette.error.main};
+  }
+    
+  > * {
+    &::before, &::after {
+      border: 0 !important;
+    }
   }
 `
 );
