@@ -33,7 +33,7 @@ describe('useLoadTable', () => {
     const model = { table: db.friends, schema };
 
     it('should return 0 table records', async () => {
-      let actual = await initFormValues({ form, uid, model });
+      const actual = await initFormValues({ form, uid, model });
       expect(actual).toEqual({ result: undefined, count: 0, isLoaded: true });
       expect(setValue).not.toHaveBeenCalled();
     });

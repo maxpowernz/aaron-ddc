@@ -28,6 +28,7 @@ export const StyledInputBaseRoot = styled('div')(
   
   &.${inputUnstyledClasses.disabled} {
     outline: 1px solid ${theme.palette.text.disabled};
+    color: ${theme.palette.text.primary};
     background: none;
   }
   

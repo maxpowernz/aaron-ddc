@@ -10,7 +10,7 @@ export type TextareaProps = {
   InputProps;
 
 export const Textarea = React.forwardRef(function CustomInput(
-  { className, error, disabled, label, size = 4, ...props }: TextareaProps,
+  { error, disabled, label, size = 4, ...props }: TextareaProps,
   ref: React.ForwardedRef<HTMLTextAreaElement>
 ) {
   const width = `w-${size}`;

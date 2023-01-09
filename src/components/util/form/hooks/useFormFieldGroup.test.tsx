@@ -11,8 +11,6 @@ type TestData = {
 };
 
 describe('useFormFieldGroup', () => {
-  beforeAll(() => {});
-
   afterAll(() => {
     vi.clearAllMocks();
   });

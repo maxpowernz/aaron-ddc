@@ -17,7 +17,7 @@ describe('form-widgets/Text', () => {
 
       await user.click(input);
       await user.tab();
-      await expect(input).not.toHaveAttribute('aria-invalid');
+      await expect(input).not.toBeInvalid();
     });
 
     it('should fucntion Required correctly', async () => {
@@ -31,7 +31,7 @@ describe('form-widgets/Text', () => {
 
       await user.click(input);
       await user.tab();
-      await expect(input).toHaveAttribute('aria-invalid');
+      await expect(input).toBeInvalid();
     });
 
     it('should fucntion AlphaOnly correctly', async () => {
@@ -42,11 +42,11 @@ describe('form-widgets/Text', () => {
 
       await user.keyboard('test');
       await user.tab();
-      await expect(input).not.toHaveAttribute('aria-invalid');
+      await expect(input).not.toBeInvalid();
 
       await user.keyboard('123');
       await user.tab();
-      await expect(input).toHaveAttribute('aria-invalid');
+      await expect(input).toBeInvalid();
     });
   });
 

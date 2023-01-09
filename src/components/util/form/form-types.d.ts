@@ -40,7 +40,7 @@ export type LoadTableReturn<T> = {
   isLoaded?: boolean;
 };
 
-type CommonType = number | boolean | string | {};
+type CommonType = number | boolean | string | Record<string, unknown>;
 
 type UseScopeProps = {
   source?: string;

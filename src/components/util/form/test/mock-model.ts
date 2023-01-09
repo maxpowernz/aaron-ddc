@@ -11,7 +11,7 @@ export type FormValues = z.infer<typeof schema>;
 export class MockDB extends Dexie {
   friends!: Table<FormValues>;
 
-  constructor(name: string, schema: {}) {
+  constructor(name: string, schema: Record<string, string>) {
     super(name);
     this.version(1).stores(schema);
   }

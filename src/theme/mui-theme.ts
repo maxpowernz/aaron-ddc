@@ -8,7 +8,7 @@ const tailwindConfig = resolveConfig({
   theme: tailwindTheme,
 });
 
-const { theme: { colors: tailwindColors = {} } = {} }: RecursiveKeyValuePair<string, any> = tailwindConfig ?? {};
+const { theme: { colors: tailwindColors = {} } = {} }: RecursiveKeyValuePair<string, never> = tailwindConfig ?? {};
 
 export const theme = createTheme({
   typography: {
