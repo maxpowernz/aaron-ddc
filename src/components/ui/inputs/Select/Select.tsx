@@ -1,75 +1,75 @@
 import React from 'react';
-import MuiSelect, { SelectProps } from '@mui/material/Select';
+import { MUIStyledCommonProps, styled } from '@mui/system';
+import { inputBaseClasses } from '@mui/material/InputBase';
+import MuiSelect, { selectClasses, SelectProps } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-import { StyledInputBaseRoot } from '@/src/components/ui/inputs/StyledInputBaseRoot/StyledInputBaseRoot';
-import { InputProps, OptionProps } from '../input-types';
-import classnames from 'classnames';
+import { InputProps } from '../input-types';
 
-export type CustomSelectProps = Omit<SelectProps, 'size'> & InputProps & OptionProps;
-/*
-import { withStyles } from '@material-ui/core/styles';
+export type CustomSelectProps = Omit<SelectProps, 'size'> & InputProps & MUIStyledCommonProps;
 
-const styles = (theme) => ({
-  paper: {
-    backgroundColor: '#fff',
-    color: '#000',
-    boxShadow: 'none',
-    border: '1px solid #ddd',
-  },
-});
+export const StyledSelect = styled(MuiSelect)<CustomSelectProps>(
+  ({ theme }) => `  
+  
+  .${selectClasses.standard} {
+    padding: 0.75em;
+  
+    border-radius: 4px;
+    color: ${theme.palette.text.primary};
+    background: ${theme.palette.text.secondary};
+  }
 
-function MyComponent(props) {
-  const { classes } = props;
-  return (
-    <Select
-      MenuProps={{
-        PaperProps: {
-          className: classes.paper,
-        },
-      }}
-    >
-      {/!* Select options *!/}
-    </Select>
-  );
-}
+  &:hover {
+    background: ${theme.palette.text.disabled};
+  }
 
-export default withStyles(styles)(MyComponent);
-*/
+  &.${inputBaseClasses.focused} {
+    border-radius: 4px;
+    border: 1px solid ${theme.palette.primary.main};
+  }    
+  
+  &::before, &::after {
+    border: 0 !important;
+  }
+  `
+);
 
 export const Select = React.forwardRef(function CustomInput(
-  { error, disabled, label, size = 4, ...props }: CustomSelectProps,
+  { error, disabled, label, options, placeholder, size = 4, ...props }: CustomSelectProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
   const width = `w-${size}`;
 
-  const baseStyle = classnames(`${width}`, {
-    'Mui-disabled': disabled,
-    'Mui-error': error,
-  });
-
   return (
-    <StyledInputBaseRoot className={baseStyle}>
-      <MuiSelect
-        variant="standard"
-        className={width}
-        {...props}
-        ref={ref}
-        error={Boolean(error)}
-        disabled={disabled}
-        inputProps={{
-          ...props.inputProps,
-          'aria-label': props['aria-label'] ?? label ?? props.name,
-        }}
-      >
-        <MenuItem value="">
-          <em>None</em>
+    <StyledSelect
+      variant="standard"
+      className={width}
+      {...props}
+      ref={ref}
+      error={Boolean(error)}
+      disabled={disabled}
+      inputProps={{
+        ...props.inputProps,
+        'aria-label': props['aria-label'] ?? label ?? props.name,
+      }}
+      renderValue={(selected) => {
+        if (selected.length === 0) {
+          return <span className="opacity-50">{placeholder}</span>;
+        }
+
+        return options?.map(({ label }) => label);
+      }}
+      displayEmpty
+    >
+      <MenuItem disabled value="">
+        {placeholder}
+      </MenuItem>
+      {options?.map((option) => (
+        <MenuItem key={option.label} value={option.value}>
+          {option.label}
         </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
-      </MuiSelect>
-    </StyledInputBaseRoot>
+      ))}
+    </StyledSelect>
   );
 });
 

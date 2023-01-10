@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme, Menu } from '@mui/material';
 import { content, theme as tailwindTheme } from 'tailwind.config'; // just an alias for the tailwind.config.js
 import resolveConfig from 'tailwindcss/resolveConfig';
 import { RecursiveKeyValuePair } from 'tailwindcss/types/config';
@@ -38,6 +38,23 @@ export const theme = createTheme({
             sx: { fontSize: 14, fontWeight: 400, height: 42, paddingTop: 1.4 },
           },
         },
+      },
+    },
+    MuiSelect: {
+      defaultProps: {
+        MenuProps: {
+          PaperProps: {
+            style: {
+              marginTop: 8,
+              maxHeight: 42 * 7,
+            },
+          },
+        },
+      },
+    },
+    MuiMenuItem: {
+      defaultProps: {
+        disableRipple: true,
       },
     },
   },

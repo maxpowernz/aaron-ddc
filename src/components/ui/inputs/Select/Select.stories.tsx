@@ -17,6 +17,9 @@ const Template: ComponentStory<typeof Select> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'First name',
-  name: 'firstName',
+  label: 'Metric',
+  name: 'metric',
+  placeholder: 'Select',
+  options: [{ value: 10, label: 'Kg' }],
+  defaultValue: '',
 };
