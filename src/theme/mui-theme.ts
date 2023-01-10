@@ -1,7 +1,10 @@
-import { createTheme, Menu } from '@mui/material';
+import { createTheme } from '@mui/material';
 import { content, theme as tailwindTheme } from 'tailwind.config'; // just an alias for the tailwind.config.js
 import resolveConfig from 'tailwindcss/resolveConfig';
 import { RecursiveKeyValuePair } from 'tailwindcss/types/config';
+
+const BASE_HEIGHT = 42;
+const BASE_FONT = 14;
 
 const tailwindConfig = resolveConfig({
   content,
@@ -12,7 +15,7 @@ const { theme: { colors: tailwindColors = {} } = {} }: RecursiveKeyValuePair<str
 
 export const theme = createTheme({
   typography: {
-    fontSize: 14,
+    fontSize: BASE_FONT,
   },
   palette: {
     primary: tailwindColors['primary'],
@@ -23,19 +26,19 @@ export const theme = createTheme({
   components: {
     MuiButtonBase: {
       defaultProps: {
-        sx: { textTransform: 'none', fontSize: 14 },
+        sx: { textTransform: 'none', fontSize: BASE_FONT },
       },
     },
     MuiButton: {
       defaultProps: {
-        sx: { textTransform: 'none', fontSize: 14, paddingX: '0.75em' },
+        sx: { textTransform: 'none', fontSize: BASE_FONT, paddingX: '0.75em' },
       },
     },
     MuiFormControlLabel: {
       defaultProps: {
         componentsProps: {
           typography: {
-            sx: { fontSize: 14, fontWeight: 400, height: 42, paddingTop: 1.4 },
+            sx: { fontSize: BASE_FONT, fontWeight: 400, height: BASE_HEIGHT, paddingTop: 1.4 },
           },
         },
       },
@@ -46,7 +49,12 @@ export const theme = createTheme({
           PaperProps: {
             style: {
               marginTop: 8,
-              maxHeight: 42 * 7,
+              maxHeight: BASE_HEIGHT * 7,
+            },
+          },
+          MenuListProps: {
+            style: {
+              padding: 0,
             },
           },
         },
@@ -55,6 +63,11 @@ export const theme = createTheme({
     MuiMenuItem: {
       defaultProps: {
         disableRipple: true,
+      },
+      styleOverrides: {
+        root: {
+          minHeight: BASE_HEIGHT,
+        },
       },
     },
   },

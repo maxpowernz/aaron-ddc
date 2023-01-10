@@ -12,7 +12,7 @@ export const StyledSelect = styled(MuiSelect)<CustomSelectProps>(
   ({ theme }) => `  
   
   .${selectClasses.standard} {
-    padding: 0.75em;
+    padding: 9px;
   
     border-radius: 4px;
     color: ${theme.palette.text.primary};
@@ -65,7 +65,7 @@ export const Select = React.forwardRef(function CustomInput(
         {placeholder}
       </MenuItem>
       {options?.map((option) => (
-        <MenuItem key={option.label} value={option.value}>
+        <MenuItem key={option.value} value={option.value}>
           {option.label}
         </MenuItem>
       ))}
