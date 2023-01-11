@@ -23,7 +23,7 @@ Default.args = {
     { id: '1', name: 'Tom', label: 'Tom', value: 'Tom' },
     { id: '2', name: 'John', label: 'John', value: 'John' },
   ],
-  value: 'Tom',
+  defaultValue: 'Tom',
 };
 
 export const Invalid = Template.bind({});
