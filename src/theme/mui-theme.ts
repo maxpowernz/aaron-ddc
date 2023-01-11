@@ -48,7 +48,7 @@ export const theme = createTheme({
         MenuProps: {
           PaperProps: {
             style: {
-              marginTop: 8,
+              marginTop: 4,
               maxHeight: BASE_HEIGHT * 7,
             },
           },

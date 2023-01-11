@@ -20,6 +20,9 @@ Default.args = {
   label: 'Metric',
   name: 'metric',
   placeholder: 'Select',
-  options: [{ value: 10, label: 'Kg' }],
+  options: [
+    { value: '10', label: 'Kg' },
+    { value: '20', label: 'g' },
+  ],
   defaultValue: '',
 };

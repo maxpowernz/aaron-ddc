@@ -57,13 +57,11 @@ export const Select = React.forwardRef(function CustomInput(
           return <span className="opacity-50">{placeholder}</span>;
         }
 
-        return options?.map(({ label }) => label);
+        return options?.find(({ value }) => value === selected)?.label;
       }}
       displayEmpty
     >
-      <MenuItem disabled value="">
-        {placeholder}
-      </MenuItem>
+      <MenuItem value="">{placeholder}</MenuItem>
       {options?.map((option) => (
         <MenuItem key={option.value} value={option.value}>
           {option.label}
