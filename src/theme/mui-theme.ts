@@ -63,6 +63,7 @@ export const theme = createTheme({
     MuiMenuItem: {
       defaultProps: {
         disableRipple: true,
+        autoFocus: false,
       },
       styleOverrides: {
         root: {

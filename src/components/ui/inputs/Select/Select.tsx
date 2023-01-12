@@ -11,7 +11,9 @@ export type CustomSelectProps = Omit<SelectProps, 'size'> & InputProps & MUIStyl
 export const StyledSelect = styled(MuiSelect)<CustomSelectProps>(
   ({ theme }) => `  
   
-  .${selectClasses.standard} {
+  background: transparent;
+  
+  .${selectClasses.filled} {
     padding: 9px;
   
     border-radius: 4px;
@@ -40,9 +42,14 @@ export const Select = React.forwardRef(function CustomInput(
 ) {
   const width = `w-${size}`;
 
+  // TODO: To find a better way
+  const MenuProps = {
+    PaperProps: { sx: { width: size * 48, maxHeight: 42 * 7 } },
+  };
+
   return (
     <StyledSelect
-      variant="standard"
+      variant="filled"
       className={width}
       {...props}
       ref={ref}
@@ -59,6 +66,7 @@ export const Select = React.forwardRef(function CustomInput(
 
         return options?.find(({ value }) => value === selected)?.label;
       }}
+      MenuProps={MenuProps}
       displayEmpty
     >
       <MenuItem value="">{placeholder}</MenuItem>
