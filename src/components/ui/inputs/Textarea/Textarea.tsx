@@ -13,7 +13,7 @@ export const Textarea = React.forwardRef(function CustomInput(
   { error, disabled, label, size = 4, ...props }: TextareaProps,
   ref: React.ForwardedRef<HTMLTextAreaElement>
 ) {
-  const width = `w-${size}`;
+  const width = `w-grid-${size}`;
 
   const baseStyle = classnames(`${width}`, {
     'Mui-disabled': disabled,

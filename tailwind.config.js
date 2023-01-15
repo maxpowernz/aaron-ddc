@@ -44,7 +44,7 @@ module.exports = {
         lg: ['18px', '22px'],
         xl: ['20px', '24px'],
       },
-      width: Object.assign({}, widths),
+      width: widths.map((val, idx) => ({ [`grid-${idx}`]: val })).reduce((acc, val) => ({ ...acc, ...val }), {}),
       gridTemplateColumns: {
         // Simple 16 column grid
         //3: 'repeat(3, minmax(0, 1fr))',

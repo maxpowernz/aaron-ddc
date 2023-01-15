@@ -1,5 +1,5 @@
 import React from 'react';
-import { MUIStyledCommonProps, styled } from '@mui/system';
+import { MUIStyledCommonProps, styled, useTheme } from '@mui/system';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MuiSelect, { selectClasses, SelectProps } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -40,17 +40,17 @@ export const Select = React.forwardRef(function CustomInput(
   { error, disabled, label, options, placeholder, size = 4, ...props }: CustomSelectProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
-  const width = `w-${size}`;
+  const theme = useTheme();
 
-  // TODO: To find a better way
+  // TODO: To find a better way rather than sx?
   const MenuProps = {
-    PaperProps: { sx: { width: size * 48, maxHeight: 42 * 7 } },
+    PaperProps: { sx: { width: size * theme.gridW, maxHeight: theme.gridH * 7, marginTop: -5.3 } },
   };
 
   return (
     <StyledSelect
       variant="filled"
-      className={width}
+      className={`w-grid-${size}`}
       {...props}
       ref={ref}
       error={Boolean(error)}

@@ -12,7 +12,7 @@ export const BasicInput = React.forwardRef(function CustomInput(
   { error, disabled, label, endAdornment, size = 4, ...props }: BasicInputProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
-  const width = `w-${size}`;
+  const width = `w-grid-${size}`;
 
   return (
     <InputBase

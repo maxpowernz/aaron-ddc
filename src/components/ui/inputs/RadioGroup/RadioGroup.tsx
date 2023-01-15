@@ -59,7 +59,7 @@ export const RadioGroup = React.forwardRef(function CustomInput(
   const layout = cols ? `grid grid-cols-1 sm:grid-cols-${cols}` : 'flex flex-wrap';
   return (
     <RadioGroupMui {...props} ref={ref}>
-      <div className={`${layout} w-${size} items-center gap-x-4 mx-2`}>
+      <div className={`${layout} w-gird-${size} items-center gap-x-4 mx-2`}>
         {options?.map(({ id, name, label, value }: OptionProps) => {
           return (
             <FormControlLabel
