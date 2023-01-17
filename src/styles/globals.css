@@ -8,8 +8,14 @@
 }
 
 @layer components {
-  .input-focus {
-    @apply focus:outline-none focus:ring-1 focus:ring-inset focus:ring-primary;
+  .text-input-focus {
+    @apply focus:outline-none focus:ring-1 focus:ring-inset focus:ring-primary focus:bg-gray-10;
+  }
+  .text-input-error {
+    @apply outline-none ring-1 ring-inset ring-error;
+  }
+  .text-input-disabled {
+    @apply outline-none ring-1 ring-inset ring-gray-10 hover:bg-white disabled:bg-white;
   }
 }
 
