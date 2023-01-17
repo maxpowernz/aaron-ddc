@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof BasicInput> = (args) => {
   return (
     <>
       <div className="hidden sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4 sm:grid-cols-5 sm:grid-cols-6 sm:grid-cols-7 sm:grid-cols-8 sm:grid-cols-9 sm:grid-cols-10" />
-      <div className="hidden w-1 w-2 w-3 w-4 w-5 w-6 w-7 w-8 w-9 w-10 w-11 w-12" />
+      <div className="hidden w-grid-1 w-grid-2 w-grid-3 w-grid-4 w-grid-5 w-grid-6 w-grid-7 w-grid-8 w-grid-9 w-grid-10 w-grid-11 w-grid-12" />
       <div className="hidden text-error" />
       <BasicInput {...args} />
     </>
