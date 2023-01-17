@@ -6,4 +6,4 @@ export * from './hooks/useLoadTable';
 export * from './hooks/useScope';
 
 export type { FieldProps, TargetFieldProps, FieldGroupProps, LoadTableProps, LoadTableReturn } from './form-types';
-export type { FormProps } from '@/src/components/util/form/form-types';
+export type { FormProps } from '@/components/util/form/form-types';

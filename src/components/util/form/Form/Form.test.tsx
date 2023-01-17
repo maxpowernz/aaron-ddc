@@ -1,10 +1,10 @@
-import { render, screen } from '@/test/test-utils';
+import { render, screen } from '@/test-utils';
 
-import * as model from '@/src/components/util/form/test/mock-model';
-import * as formUtil from '@/src/components/util/form/hooks/useLoadTable';
+import * as model from '@/components/util/form/test/mock-model';
+import * as formUtil from '@/components/util/form/hooks/useLoadTable';
 
 import { Form } from './Form';
-import { FormProps } from '@/src/components/util/form/form-types';
+import { FormProps } from '@/components/util/form/form-types';
 
 const FormContent = (props: FormProps) => (
   <Form {...props}>

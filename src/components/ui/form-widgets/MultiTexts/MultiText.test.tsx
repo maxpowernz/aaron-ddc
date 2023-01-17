@@ -1,7 +1,7 @@
-import { composeStories, render } from '@/test/test-utils';
+import { composeStories, render } from '@/test-utils';
 
-import * as scope from '@/src/components/util/form/hooks/useScope';
-import * as formField from '@/src/components/util/form/hooks/useFormFieldGroup';
+import * as scope from '@/components/util/form/hooks/useScope';
+import * as formField from '@/components/util/form/hooks/useFormFieldGroup';
 import * as stories from './MultiTexts.stories';
 
 const { Default } = composeStories(stories);

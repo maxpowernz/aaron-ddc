@@ -1,7 +1,7 @@
-import { composeStories, render } from '@/test/test-utils';
+import { composeStories, render } from '@/test-utils';
 
-import * as scope from '@/src/components/util/form/hooks/useScope';
-import * as formField from '@/src/components/util/form/hooks/useFormField';
+import * as scope from '@/components/util/form/hooks/useScope';
+import * as formField from '@/components/util/form/hooks/useFormField';
 import * as stories from './Textarea.stories';
 
 const { Default } = composeStories(stories);

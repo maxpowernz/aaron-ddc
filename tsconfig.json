@@ -18,8 +18,8 @@
     "types": ["vitest/globals"],
     "baseUrl": ".",
     "paths": {
-      "test-utils": ["test/test-utils"],
-      "@/*": ["./*"]
+      "@/test-utils": ["./test/test-utils"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".storybook"],

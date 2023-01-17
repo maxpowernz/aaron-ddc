@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { useModelContext } from '@/src/context/ModelContext';
-import { FieldProps, useFormField, useSaveField, useScope } from '@/src/components/util/form';
-import RadioGroupInput from '@/src/components/ui/inputs/RadioGroup/RadioGroup';
+import { useModelContext } from '@/context/ModelContext';
+import { FieldProps, useFormField, useSaveField, useScope } from '@/components/util/form';
+import RadioGroupInput from '@/components/ui/inputs/RadioGroup/RadioGroup';
 
 export type RadioGroupProps = Omit<FieldProps, 'component'> & {
   cols?: number;

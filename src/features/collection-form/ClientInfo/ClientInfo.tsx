@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import * as model from '@/src/model/client-info.db';
-import { Form } from '@/src/components/util/form';
-import { MultiTexts, RadioGroup, Text, Textarea } from '@/src/components/ui/form-widgets';
-import { AppendableList } from '@/src/components/util/form/AppendableList/AppendableList';
+import * as model from '@/model/client-info.db';
+import { Form } from '@/components/util/form';
+import { MultiTexts, RadioGroup, Text, Textarea } from '@/components/ui/form-widgets';
+import { AppendableList } from '@/components/util/form/AppendableList/AppendableList';
 
 export function ClientInfo(props = {}) {
   const onSubmit = (data: model.FormValues) => console.log('Submit:', data);
@@ -25,16 +25,16 @@ export function ClientInfo(props = {}) {
 
   return (
     <Form model={model} uid={1} onSubmit={onSubmit}>
-      <RadioGroup name="accountType" question="Account type" options={accountTypes} cols={3} size={10} required />
+      {/* <RadioGroup name="accountType" question="Account type" options={accountTypes} cols={3} size={10} required />
       <Text
         name="accountTypeOther"
         question="Please specify account type"
-        size={12}
+        size={2}
         required
         scope={{ source: 'accountType', condition: 'other' }}
-      />
-      <Text name="accountName" question="Account name" size={12} required />
-      <AppendableList question="Friends" addButtonLabel="Add Friend" name="friends" required>
+      /> */}
+      <Text name="accountName" question="Account name" size={10} required />
+      {/* <AppendableList question="Friends" addButtonLabel="Add Friend" name="friends" required>
         <Text name="friend" size={12} />
       </AppendableList>
       <Text name="mailName" question="Mail name" size={9} placeholder="Add Mail Name if different from Account Name" />
@@ -57,7 +57,7 @@ export function ClientInfo(props = {}) {
         question="What other income generating activities are you involved in?"
         size={12}
         placeholder="For example: Beekeeping, Frestry, Orchard Fruit, etc..."
-      />
+      /> */}
     </Form>
   );
 }

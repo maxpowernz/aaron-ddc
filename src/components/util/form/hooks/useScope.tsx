@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { UseScopeProps, UseScopeReturn } from '@/src/components/util/form/form-types';
+import { UseScopeProps, UseScopeReturn } from '@/components/util/form/form-types';
 
 export function useScope({ source, condition = true, values = {} }: UseScopeProps): UseScopeReturn {
   const { getValues } = useFormContext();

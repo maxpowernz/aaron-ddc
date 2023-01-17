@@ -1,40 +1,24 @@
+/** @type {import('tailwindcss').Config} */
 const baseWidth = '48px';
 const basePixel = '6px';
 const widths = Array.from(Array(13).keys()).map((num) => `calc((${num} * ${baseWidth}) + (${basePixel} * ${num > 0 ? num - 1 : 0}))`);
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './**/components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './src/**/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
         'fmg-green': '#209400',
-        default: '#191E26',
-        'base-1': '#0000000D',
-        'base-2': '#0000001A',
-        amber: '#EFAE41',
-        primary: {
-          light: '#20940033',
-          main: '#209400',
-          DEFAULT: '#209400',
-          dark: '#1B7E00',
-          contrastText: '#fff',
-        },
-        secondary: {
-          light: '#ff7961',
-          main: '#00A8CB',
-          DEFAULT: '#00A8CB',
-          dark: '#ba000d',
-          contrastText: '#000',
-        },
-        error: {
-          main: '#A62F1F',
-          DEFAULT: '#A62F1F',
-          dark: '#8D281A',
-        },
         text: {
           primary: '#191E26',
-          secondary: '#0000000D',
-          disabled: '#0000001A',
+          secondary: 'rgba(0, 0, 0, 0.05)',
+          disabled: 'rgba(0, 0, 0, 0.05)',
+        },
+        // named by percent of gray
+        gray: {
+          5: 'rgba(0, 0, 0, 0.05)',
+          10: 'rgba(0, 0, 0, 0.10)',
+          15: 'rgba(0, 0, 0, 0.15)',
+          20: 'rgba(0, 0, 0, 0.20)',
         },
       },
       fontSize: {
@@ -44,7 +28,12 @@ module.exports = {
         lg: ['18px', '22px'],
         xl: ['20px', '24px'],
       },
-      width: Object.assign({}, widths),
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        mono: ['Inter', 'sans-serif'],
+        serif: ['Inter', 'sans-serif'],
+      },
+      width: widths.map((val, idx) => ({ [`grid-${idx}`]: val })).reduce((acc, val) => ({ ...acc, ...val }), {}),
       gridTemplateColumns: {
         // Simple 16 column grid
         //3: 'repeat(3, minmax(0, 1fr))',
@@ -54,5 +43,36 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  daisyui: {
+    themes: [
+      {
+        light: {
+          // eslint-disable-next-line @typescript-eslint/no-var-requires
+          ...require('daisyui/src/colors/themes')['[data-theme=light]'],
+          primary: '#209400',
+          error: '#A62F1F',
+          warning: '#EFAE41',
+          secondary: '#00A8CB',
+
+          '.input[type=text]': {
+            height: 42,
+            borderRadius: 4,
+          },
+
+          '.checkbox-primary': {
+            width: 18,
+            height: 18,
+            borderRadius: 4,
+          },
+
+          '.input[type=text]:focus': {
+            outline: '2px solid fmg-green',
+            outlineOffset: 0,
+            border: '1px solid transparent',
+          },
+        },
+      },
+    ],
+  },
+  plugins: [require('daisyui')],
 };

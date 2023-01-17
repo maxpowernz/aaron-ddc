@@ -1,6 +1,6 @@
 import { ControllerRenderProps } from 'react-hook-form/dist/types/controller';
 
-import { useModelContext } from '@/src/context/ModelContext';
+import { useModelContext } from '@/context/ModelContext';
 
 export function useSaveField() {
   const { table, uid } = useModelContext();

@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { z, ZodTypeAny } from 'zod';
 
-import { Form } from '@/src/components/util/form';
+import { Form } from '@/components/util/form';
 import { Textarea, TextareaProps } from './Textarea';
 
 export default {

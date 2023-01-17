@@ -1,7 +1,7 @@
 import React from 'react';
 
-import BasicInput from '@/src/components/ui/inputs/BasicInput/BasicInput';
-import { FieldGroupProps, TargetFieldProps, useFormFieldGroup, useScope } from '@/src/components/util/form';
+import BasicInput from '@/components/ui/inputs/BasicInput/BasicInput';
+import { FieldGroupProps, TargetFieldProps, useFormFieldGroup, useScope } from '@/components/util/form';
 
 export type MultiTextsProps = Omit<FieldGroupProps, 'fields'> & {
   fields: Omit<TargetFieldProps, 'component'>[];

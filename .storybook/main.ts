@@ -1,13 +1,14 @@
-// @ts-ignore
+// @ts-nocheck
 module.exports = {
-  stories: ['../**/**/*.stories.mdx', '../**/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    'storybook-addon-next',
     'storybook-addon-designs',
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
+    'storybook-addon-next',
+    'storybook-addon-pseudo-states',
     {
       name: '@storybook/addon-postcss',
       options: {
@@ -16,7 +17,6 @@ module.exports = {
         },
       },
     },
-    'storybook-addon-pseudo-states',
   ],
   framework: '@storybook/react',
   core: {

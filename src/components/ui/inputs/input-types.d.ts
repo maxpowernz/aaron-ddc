@@ -1,5 +1,3 @@
-import { RadioGroupProps } from '@mui/material/RadioGroup';
-
 export type InputProps = {
   label?: string;
   name: string;
@@ -7,6 +5,9 @@ export type InputProps = {
   size?: number;
   options?: OptionProps[];
   placeholder?: string;
+  error?: string | boolean;
+  disabled?: boolean;
+  EndAdornment?: any;
 };
 
 export type OptionProps = {
@@ -19,5 +20,4 @@ export type OptionProps = {
 export type CustomRadioGroupProps = {
   cols?: number;
   error?: string | boolean | object;
-} & InputProps &
-  RadioGroupProps;
+} & InputProps;

@@ -1,8 +1,8 @@
 import React, { Children, cloneElement, useEffect, useRef } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import AddIcon from '@/src/assets/icons/18x18/plus.svg';
-import { Button } from '@mui/material';
+import AddIcon from '@/assets/icons/18x18/plus.svg';
+// import { Button } from '@mui/material';
 
 type AppendableListProps = {
   question: string;
@@ -53,9 +53,9 @@ export function AppendableList({ question, name, required, addButtonLabel, min =
         );
       })}
       <div className="form-fields">
-        <Button onClick={append} color="secondary" startIcon={<AddIcon className="fill-secondary" />}>
+        {/* <button onClick={append} color="secondary" startIcon={<AddIcon className="fill-secondary" />}>
           {addButtonLabel}
-        </Button>
+        </button> */}
       </div>
     </>
   );

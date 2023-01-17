@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import * as model from '@/src/model/farm-info.db';
-import { Form } from '@/src/components/util/form';
-import { MultiTexts, RadioGroup, Text, Textarea } from '@/src/components/ui/form-widgets';
+import * as model from '@/model/farm-info.db';
+import { Form } from '@/components/util/form';
+import { MultiTexts, RadioGroup, Text, Textarea } from '@/components/ui/form-widgets';
 
 export function FarmInfo(props = {}) {
   const onSubmit = (data: model.FormValues) => console.log('Submit:', data);

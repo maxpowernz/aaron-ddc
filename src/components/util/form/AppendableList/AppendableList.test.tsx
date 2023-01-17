@@ -1,9 +1,9 @@
-import { render, screen, userEvent, withFormWrapper } from '@/test/test-utils';
+import { render, screen, userEvent, withFormWrapper } from '@/test-utils';
 
 import { AppendableList } from './AppendableList';
-import { Text } from '@/src/components/ui/form-widgets';
+import { Text } from '@/components/ui/form-widgets';
 
-vi.mock('@/src/assets/icons/18x18/plus.svg', () => ({ default: 'svg' }));
+vi.mock('@/assets/icons/18x18/plus.svg', () => ({ default: 'svg' }));
 
 type TestData = {
   firstName: string;

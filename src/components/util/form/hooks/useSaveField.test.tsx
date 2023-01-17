@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { renderHook } from '@/test/test-utils';
+import { renderHook } from '@/test-utils';
 
-import { MockDB } from '@/src/components/util/form/test/mock-model';
-import * as ModelCtx from '@/src/context/ModelContext';
+import { MockDB } from '@/components/util/form/test/mock-model';
+import * as ModelCtx from '@/context/ModelContext';
 
 import { useSaveField } from './useSaveField';
 

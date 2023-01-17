@@ -2,33 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-    sans-serif;
-  color: #191e26;
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter.ttf");
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}
 
 :root {
   --grid-col-width: 48px;
@@ -67,3 +45,4 @@ a {
   opacity: 50%;
   font-weight: 300;
 }
+
