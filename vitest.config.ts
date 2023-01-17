@@ -16,8 +16,8 @@ export default defineConfig({
        *   to resolve to vitest which, critically, exports { expect } as well.
        */
       '@storybook/jest': 'vitest',
-      'test-utils': path.resolve(__dirname, 'test/test-utils'),
-      '@': path.resolve(__dirname, './'),
+      '@/test-utils': path.resolve(__dirname, 'test/test-utils'),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   test: {

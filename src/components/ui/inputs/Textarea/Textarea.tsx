@@ -1,39 +1,73 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import classnames from 'classnames';
-// import TextareaAutosize, { TextareaAutosizeProps } from '@mui/base/TextareaAutosize';
-// import { StyledInputBaseRoot } from '@/src/components/ui/inputs/StyledInputBaseRoot/StyledInputBaseRoot';
 import { InputProps } from '../input-types';
 
-// export type TextareaProps = {
-//   error?: boolean;
-// } & TextareaAutosizeProps &
-//   InputProps;
+export type TextareaProps = {
+  rows?: number;
+} & InputProps;
 
-// export const Textarea = React.forwardRef(function CustomInput(
-//   { error, disabled, label, size = 4, ...props }: TextareaProps,
-//   ref: React.ForwardedRef<HTMLTextAreaElement>
-// ) {
-//   const width = `w-${size}`;
+// Updates the height of a <textarea> when the value changes.
+// TODO: Write test
+const useAutosizeTextArea = () => {
+  const ref = useRef<HTMLTextAreaElement>();
 
-//   const baseStyle = classnames(`${width}`, {
-//     'Mui-disabled': disabled,
-//     'Mui-error': error,
-//   });
+  useEffect(() => {
+    let currElement: HTMLTextAreaElement;
 
-//   return (
-//     <StyledInputBaseRoot className={baseStyle}>
-//       <TextareaAutosize
-//         minRows={2}
-//         aria-invalid={Boolean(error)}
-//         aria-label={props['aria-label'] ?? label ?? props.name}
-//         ref={ref}
-//         disabled={disabled}
-//         {...props}
-//       />
-//     </StyledInputBaseRoot>
-//   );
-// });
+    if (ref.current) {
+      currElement = ref.current;
 
-export const Textarea = () => <div>textarea</div>;
+      const initialHeight = currElement.scrollHeight;
+
+      const resize = (): void => {
+        if (ref?.current) {
+          currElement.style.height = `${initialHeight}px`;
+          const scrollHeight = currElement.scrollHeight;
+          console.log(scrollHeight);
+          currElement.style.height = scrollHeight + 'px';
+        }
+      };
+
+      currElement?.addEventListener('input', resize);
+      return () => {
+        return currElement?.removeEventListener('input', resize);
+      };
+    }
+  }, []);
+
+  return { ref };
+};
+
+HTMLInputElement;
+
+// TODO: Combine refs
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(function CustomInput(
+  { error, className, disabled, label, size = 4, rows = 2, ...props },
+  ref
+) {
+  const width = `w-grid-${size}`;
+  const { ref: autoSizeRef } = useAutosizeTextArea();
+
+  const baseStyle = classnames(`${width} flex text-base rounded outline bg-gray-5 hover:bg-gray-10 p-3`, {
+    'outline-1 outline-gray-10 bg-transparent hover:bg-transparent': disabled,
+    'outline-0 outline-fmg-green active:outline-1 focus-within:outline-1': !disabled && !error,
+    'outline-1 outline-error': error,
+    className,
+  });
+
+  return (
+    <textarea
+      className={baseStyle}
+      rows={rows}
+      aria-invalid={Boolean(error)}
+      aria-label={props['aria-label'] ?? label ?? props.name}
+      ref={(node: HTMLTextAreaElement) => {
+        autoSizeRef.current = node;
+      }}
+      disabled={disabled}
+      {...props}
+    />
+  );
+});
 
 export default Textarea;

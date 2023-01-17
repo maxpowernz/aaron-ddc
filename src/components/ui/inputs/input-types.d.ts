@@ -8,6 +8,8 @@ export type InputProps = {
   error?: string | boolean;
   disabled?: boolean;
   EndAdornment?: any;
+  'aria-label'?: string;
+  className?: string;
 };
 
 export type OptionProps = {

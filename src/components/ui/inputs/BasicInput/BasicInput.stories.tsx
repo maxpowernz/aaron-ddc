@@ -24,7 +24,6 @@ const Template: ComponentStory<typeof BasicInput> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  id: 'firstName',
   name: 'firstName',
   pattern: String(/[a-zA-Z]/),
   placeholder: 'First Name',
