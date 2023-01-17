@@ -7,12 +7,20 @@
   src: url("../assets/fonts/Inter.ttf");
 }
 
+@layer components {
+  .input-focus {
+    @apply focus:outline-none focus:ring-1 focus:ring-inset focus:ring-primary;
+  }
+}
 
 :root {
   --grid-col-width: 48px;
   --grid-row-height: 42px;
   --unit: 3px;
   --gap: calc(var(--unit) * 6);
+  --primary: #209400;
+  --error: #A62F1F;
+  --warning: #EFAE41;
 }
 
 .form-container {
@@ -45,4 +53,3 @@
   opacity: 50%;
   font-weight: 300;
 }
-
