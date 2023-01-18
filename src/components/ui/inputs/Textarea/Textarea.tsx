@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import classnames from 'classnames';
+import { useCombinedRefs } from '@/components/util/hooks/useCombinedRefs';
 import { InputProps } from '../input-types';
 
 export type TextareaProps = {
+  autosize?: boolean;
   rows?: number;
 } & InputProps;
 
-// Updates the height of a <textarea> when the value changes.
 // TODO: Write test
-const useAutosizeTextArea = () => {
+export const useAutosizeTextArea = () => {
   const ref = useRef<HTMLTextAreaElement>();
 
   useEffect(() => {
@@ -20,12 +21,9 @@ const useAutosizeTextArea = () => {
       const initialHeight = currElement.scrollHeight;
 
       const resize = (): void => {
-        if (ref?.current) {
-          currElement.style.height = `${initialHeight}px`;
-          const scrollHeight = currElement.scrollHeight;
-          console.log(scrollHeight);
-          currElement.style.height = scrollHeight + 'px';
-        }
+        currElement.style.height = `${initialHeight}px`;
+        const scrollHeight = currElement.scrollHeight;
+        currElement.style.height = `${scrollHeight}px`;
       };
 
       currElement?.addEventListener('input', resize);
@@ -38,15 +36,14 @@ const useAutosizeTextArea = () => {
   return { ref };
 };
 
-HTMLInputElement;
-
-// TODO: Combine refs
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(function CustomInput(
-  { error, className, disabled, label, size = 4, rows = 2, ...props },
+  { autosize = true, error, className, disabled, label, size = 4, rows = 2, ...props },
   ref
 ) {
   const width = `w-grid-${size}`;
-  const { ref: autoSizeRef } = useAutosizeTextArea();
+  const { ref: autosizeRef } = useAutosizeTextArea();
+
+  const [, setRef] = useCombinedRefs([ref, autosize ? autosizeRef : null]);
 
   const baseStyle = classnames(`${width} flex text-base rounded outline bg-gray-5 hover:bg-gray-10 p-3`, {
     'outline-1 outline-gray-10 bg-transparent hover:bg-transparent': disabled,
@@ -61,9 +58,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(fun
       rows={rows}
       aria-invalid={Boolean(error)}
       aria-label={props['aria-label'] ?? label ?? props.name}
-      ref={(node: HTMLTextAreaElement) => {
-        autoSizeRef.current = node;
-      }}
+      ref={setRef}
       disabled={disabled}
       {...props}
     />

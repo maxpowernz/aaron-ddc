@@ -12,24 +12,19 @@ export default {
 } as ComponentMeta<typeof Textarea>;
 
 const Template: ComponentStory<typeof Textarea> = (args) => {
-  return (
-    <>
-      <Textarea {...args} />
-    </>
-  );
+  return <Textarea {...args} />;
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  id: 'firstName',
   name: 'firstName',
   pattern: String(/[a-zA-Z]/),
 };
 
-export const Size2 = Template.bind({});
-Size2.args = {
+export const FixedSized = Template.bind({});
+FixedSized.args = {
   ...Default.args,
-  size: 2,
+  autosize: false,
 };
 
 export const Disabled = Template.bind({});
