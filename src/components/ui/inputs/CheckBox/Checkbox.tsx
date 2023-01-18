@@ -1,1 +1,5 @@
-export const Checkbox = () => <div>placeholder</div>;
+export const Checkbox = () => (
+  <div>
+    <input type="checkbox" className="checkbox" />
+  </div>
+);

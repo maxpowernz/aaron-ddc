@@ -15,7 +15,7 @@
     @apply outline-none ring-1 ring-inset ring-error;
   }
   .text-input-disabled {
-    @apply outline-none ring-1 ring-inset ring-gray-10 hover:bg-white disabled:bg-white;
+    @apply outline-none ring-1 ring-inset ring-gray-10 disabled:hover:bg-white disabled:bg-white disabled:placeholder:text-text-placeholder;
   }
 }
 
@@ -58,4 +58,10 @@
   color: #191e26;
   opacity: 50%;
   font-weight: 300;
+}
+
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
 }

@@ -2,7 +2,7 @@ import { composeStories, render, screen, userEvent } from '@/test-utils';
 
 import * as scope from '@/components/util/form/hooks/useScope';
 import * as formField from '@/components/util/form/hooks/useFormField';
-import * as stories from './Text.stories';
+import * as stories from './TextInputWidget.stories';
 
 const { Default, Required, AlphaOnly } = composeStories(stories);
 

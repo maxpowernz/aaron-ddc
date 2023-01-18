@@ -2,17 +2,17 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { z, ZodTypeAny } from 'zod';
 
 import { Form } from '@/components/util/form';
-import { Text, TextProps } from './Text';
+import { TextInputWidget, TextProps } from './TextInputWidget';
 
 export default {
-  title: 'Components/Form Widgets/TextField',
-  component: Text,
+  title: 'Components/Form Widgets/TextInput',
+  component: TextInputWidget,
   args: {
     label: '',
     required: false,
   },
   parameters: {},
-} as ComponentMeta<typeof Text>;
+} as ComponentMeta<typeof TextInputWidget>;
 
 const Template: ComponentStory<typeof Text & z.infer<ZodTypeAny>> = (args: Partial<TextProps> & { schema: ZodTypeAny }) => {
   const onSubmit = (data: z.infer<typeof args.schema>) => {
@@ -21,7 +21,7 @@ const Template: ComponentStory<typeof Text & z.infer<ZodTypeAny>> = (args: Parti
 
   return (
     <Form model={{ schema: args.schema }} uid={1} onSubmit={onSubmit}>
-      <Text name="otherActivities" {...args} />
+      <TextInputWidget name="otherActivities" {...args} />
     </Form>
   );
 };

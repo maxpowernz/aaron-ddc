@@ -1,22 +1,23 @@
 export type InputProps = {
+  'aria-label'?: string | undefined;
+  className?: string;
+  defaultValue?: string | undefined;
+  disabled?: boolean;
+  error?: string | boolean;
+  id?: string | undefined;
   label?: string;
   name: string;
-  pattern?: string;
-  size?: number;
   options?: OptionProps[];
+  pattern?: string;
   placeholder?: string;
-  error?: string | boolean;
-  disabled?: boolean;
-  EndAdornment?: any;
-  'aria-label'?: string;
-  className?: string;
+  size?: number;
 };
 
 export type OptionProps = {
-  value: string | boolean;
-  name?: string;
-  label: string;
   id?: string;
+  label: string;
+  name?: string;
+  value: string | boolean;
 };
 
 export type CustomRadioGroupProps = {

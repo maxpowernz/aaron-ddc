@@ -20,7 +20,7 @@ export function useFormFieldGroup({
     <>
       <div id={`question-${name}`} className="form-question text-base text-default font-medium">
         <span className="text-right">{question}</span>
-        <span className="w-[0.75rem] text-amber text-center pt-1.5">
+        <span className="w-[0.75rem] text-warning text-center pt-1.5">
           {required ? (
             <span aria-label="required" role="img">
               *

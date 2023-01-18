@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BasicInput from '@/components/ui/inputs/BasicInput/BasicInput';
+import { TextInput } from '@/components/ui/inputs';
 import { FieldGroupProps, TargetFieldProps, useFormFieldGroup, useScope } from '@/components/util/form';
 
 export type MultiTextsProps = Omit<FieldGroupProps, 'fields'> & {
@@ -9,7 +9,7 @@ export type MultiTextsProps = Omit<FieldGroupProps, 'fields'> & {
 
 export function MultiTexts({ scope = {}, ...props }: MultiTextsProps): JSX.Element {
   const { fields: origFields } = props;
-  const fields = origFields.map((field) => ({ ...field, component: BasicInput }));
+  const fields = origFields.map((field) => ({ ...field, component: TextInput }));
   const { render } = useFormFieldGroup({ ...props, fields });
 
   const { isVisible } = useScope(scope);

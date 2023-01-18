@@ -33,7 +33,7 @@ export function ClientInfo(props = {}) {
         required
         scope={{ source: 'accountType', condition: 'other' }}
       /> */}
-      <Text name="accountName" question="Account name" size={10} required />
+      <Text name="accountName" question="Account name" aria-label="this is the aria label" label="this is the label" size={10} required />
       {/* <AppendableList question="Friends" addButtonLabel="Add Friend" name="friends" required>
         <Text name="friend" size={12} />
       </AppendableList>

@@ -9,7 +9,8 @@ module.exports = {
       colors: {
         'fmg-green': '#209400',
         text: {
-          primary: '#191E26',
+          primary: 'rgba(25, 30, 38, 1)',
+          placeholder: 'rgba(25, 30, 38, .5)',
           secondary: 'rgba(0, 0, 0, 0.05)',
           disabled: 'rgba(0, 0, 0, 0.05)',
         },
@@ -33,7 +34,11 @@ module.exports = {
         mono: ['Inter', 'sans-serif'],
         serif: ['Inter', 'sans-serif'],
       },
+
       width: widths.map((val, idx) => ({ [`grid-${idx}`]: val })).reduce((acc, val) => ({ ...acc, ...val }), {}),
+      height: {
+        42: 42,
+      },
       gridTemplateColumns: {
         // Simple 16 column grid
         //3: 'repeat(3, minmax(0, 1fr))',
@@ -54,22 +59,7 @@ module.exports = {
           warning: '#EFAE41',
           secondary: '#00A8CB',
 
-          '.input[type=text]': {
-            height: 42,
-            borderRadius: 4,
-          },
-
-          '.checkbox-primary': {
-            width: 18,
-            height: 18,
-            borderRadius: 4,
-          },
-
-          '.input[type=text]:focus': {
-            outline: '2px solid fmg-green',
-            outlineOffset: 0,
-            border: '1px solid transparent',
-          },
+          fontSize: 14,
         },
       },
     ],

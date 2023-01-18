@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FieldProps, useFormField, useScope } from '@/components/util/form';
-import BasicInput from '@/components/ui/inputs/BasicInput/BasicInput';
+import { TextInput } from '@/components/ui/inputs';
 
 export type TextProps = Omit<FieldProps, 'component'> & {
   multiline?: boolean;
@@ -10,8 +10,8 @@ export type TextProps = Omit<FieldProps, 'component'> & {
   rows?: number;
 };
 
-export function Text({ scope = {}, ...props }: TextProps): JSX.Element {
-  const { render } = useFormField({ ...props, component: BasicInput });
+export function TextInputWidget({ scope = {}, ...props }: TextProps): JSX.Element {
+  const { render } = useFormField({ ...props, component: TextInput });
   const { isVisible } = useScope(scope);
 
   return isVisible ? render() : <></>;
