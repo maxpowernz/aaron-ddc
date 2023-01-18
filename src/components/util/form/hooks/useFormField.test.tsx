@@ -1,6 +1,6 @@
 import { renderHook, withFormWrapper } from '@/test-utils';
 
-import { BasicInput } from '@/components/ui/inputs';
+import { TextInput } from '@/components/ui/inputs';
 import * as formUtil from '@/components/util/form/hooks/useFormFieldGroup';
 
 import { useFormField } from './useFormField';
@@ -16,7 +16,7 @@ describe('useFormField', () => {
   });
 
   const name = 'firstName';
-  const component = BasicInput;
+  const component = TextInput;
   const props = { question: 'Please enter your name', size: 4, name, component };
 
   it('should render correctly', async () => {

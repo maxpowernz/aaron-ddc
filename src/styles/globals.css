@@ -60,6 +60,10 @@
   font-weight: 300;
 }
 
+:disabled {
+  cursor: not-allowed;
+}
+
 :-webkit-autofill,
 :-webkit-autofill:hover,
 :-webkit-autofill:focus {

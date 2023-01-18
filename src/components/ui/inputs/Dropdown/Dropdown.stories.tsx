@@ -1,21 +1,25 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Select } from './Select';
+import { Dropdown } from './Dropdown';
 
 export default {
-  title: 'Atoms/Select',
-  component: Select,
+  title: 'Atoms/Dropdown',
+  component: Dropdown,
   args: {
     label: '',
   },
   parameters: {},
-} as ComponentMeta<typeof Select>;
+} as ComponentMeta<typeof Dropdown>;
 
-const Template: ComponentStory<typeof Select> = (args) => {
+const Template: ComponentStory<typeof Dropdown> = (args) => {
+  const classes = Array.from(Array(13).keys())
+    .map((key) => `w-grid-${key}`)
+    .join(' ');
   return (
-    <div className="">
-      <Select {...args} />
-    </div>
+    <>
+      <div className="w-grid-0 w-grid-1 w-grid-2 w-grid-3 w-grid-4 w-grid-5 w-grid-6 w-grid-7 w-grid-8 w-grid-9 w-grid-10 w-grid-11 w-grid-12"></div>
+      <Dropdown {...args} />
+    </>
   );
 };
 
@@ -41,4 +45,16 @@ Default.args = {
     { value: '140', label: 'g' },
   ],
   defaultValue: '',
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
+};
+
+export const Invalid = Template.bind({});
+Invalid.args = {
+  ...Default.args,
+  error: true,
 };

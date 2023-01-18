@@ -1,6 +1,6 @@
 import { act, render, renderHook, screen, userEvent, withFormWrapper } from '@/test-utils';
 
-import { BasicInput } from '@/components/ui/inputs';
+import { TextInput } from '@/components/ui/inputs';
 import * as formUtil from '@/components/util/form/hooks/useSaveField';
 
 import { useFormFieldGroup } from './useFormFieldGroup';
@@ -20,8 +20,8 @@ describe('useFormFieldGroup', () => {
     name: 'firstName',
     required: true,
     fields: [
-      { name: 'firstName', label: 'First Name', component: BasicInput },
-      { name: 'lastName', label: 'Last Name', component: BasicInput },
+      { name: 'firstName', label: 'First Name', component: TextInput },
+      { name: 'lastName', label: 'Last Name', component: TextInput },
     ],
     size: 4,
   };

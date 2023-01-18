@@ -45,7 +45,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(fun
 
   const [, setRef] = useCombinedRefs([ref, autosize ? autosizeRef : null]);
 
-  const baseStyle = classnames(`${width} flex text-base rounded outline bg-gray-5 hover:bg-gray-10 p-3`, {
+  const baseStyle = classnames(`${width} transition-all ease-in flex text-base rounded outline bg-gray-5 hover:bg-gray-10 p-3`, {
     'outline-1 outline-gray-10 bg-transparent hover:bg-transparent': disabled,
     'outline-0 outline-fmg-green active:outline-1 focus-within:outline-1': !disabled && !error,
     'outline-1 outline-error': error,

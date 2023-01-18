@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { BasicInput } from '@/components/ui/inputs';
+import { TextInput } from '@/components/ui/inputs';
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         <input type="text" placeholder="Search…" className={`input input-bordered bg-inputs-5 relative`} />
       </div>
       <div>
-        <BasicInput name="name" />
+        <TextInput name="name" />
       </div>
     </div>
   );
