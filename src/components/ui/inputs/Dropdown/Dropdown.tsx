@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import Select, { Props } from 'react-select';
 
 import { InputProps, OptionProps as OptionDataProps } from '@/components/ui/inputs';
+import Caret from '@/assets/icons/18x18/caret.svg';
 
 export type CustomSelectProps = Omit<Props, 'size'> & InputProps;
 
@@ -35,6 +36,7 @@ export const Dropdown = React.forwardRef(function CustomInput(
             'border-1 border-gray-10 !cursor-not-allowed': isDisabled,
             'border-b-0 rounded-b-none': menuIsOpen,
             'border-1 border-fmg-green': isFocused && !isDisabled && !error,
+            'border-transparent': !isDisabled && !error && !menuIsOpen,
             'border-1 border-error': error,
             className,
           }),
@@ -46,12 +48,13 @@ export const Dropdown = React.forwardRef(function CustomInput(
             [PLACEHOLDER]: isPlaceholder(data),
           }),
         menu: () =>
-          classnames('border rounded-b border-1 border-t-0 border-fmg-green', {
+          classnames('border rounded-b border-1 border-t-0 border-fmg-green mt-[-1px]', {
             'border-error': error,
           }),
         singleValue: ({ data }) => classnames({ [PLACEHOLDER]: isPlaceholder(data) }),
         placeholder: () => classnames(PLACEHOLDER),
       }}
+      components={{ DropdownIndicator: () => <Caret className={classnames({ 'fill-gray-20': disabled, 'fill-error': error })} /> }}
       {...props}
       ref={ref}
       isDisabled={disabled}
