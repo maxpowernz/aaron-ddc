@@ -1,6 +1,6 @@
 import { act, render, renderHook, screen, userEvent, withFormWrapper } from '@/test-utils';
 
-import { TextInput } from '@/components/ui/inputs';
+import { TextInput } from '@/components/ui/atoms';
 import * as formUtil from '@/components/util/form/hooks/useSaveField';
 
 import { useFormFieldGroup } from './useFormFieldGroup';

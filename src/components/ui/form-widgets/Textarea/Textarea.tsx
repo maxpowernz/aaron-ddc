@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FieldProps, useFormField, useScope } from '@/components/util/form';
-import TextareaInput from '@/components/ui/inputs/Textarea/Textarea';
+import TextareaInput from '@/components/ui/atoms/Textarea/Textarea';
 
 export type TextareaProps = Omit<FieldProps, 'component'> & {
   minRows?: number;

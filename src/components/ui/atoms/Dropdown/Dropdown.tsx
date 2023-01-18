@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Select, { Props } from 'react-select';
 
-import { InputProps, OptionProps as OptionDataProps } from '@/components/ui/inputs';
+import { InputProps, OptionProps as OptionDataProps } from '@/components/ui/atoms';
 import Caret from '@/assets/icons/18x18/caret.svg';
 
 export type CustomSelectProps = Omit<Props, 'size'> & InputProps;

@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { TextInput } from '@/components/ui/inputs';
+import { TextInput } from '@/components/ui/atoms';
 
 export default function Home() {
   return (

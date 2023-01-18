@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FieldProps, useFormField, useScope } from '@/components/util/form';
-import { TextInput } from '@/components/ui/inputs';
+import { TextInput } from '@/components/ui/atoms';
 
 export type TextProps = Omit<FieldProps, 'component'> & {
   multiline?: boolean;

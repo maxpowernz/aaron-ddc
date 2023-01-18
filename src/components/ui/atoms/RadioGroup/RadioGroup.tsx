@@ -4,8 +4,6 @@ import React from 'react';
 // import Radio from '@mui/material/Radio';
 // import RadioGroupMui from '@mui/material/RadioGroup';
 
-import { CustomRadioGroupProps, OptionProps } from '../input-types';
-
 // const BpIcon = styled('span')(({ theme }) => ({
 //   borderRadius: '50%',
 //   width: 16,

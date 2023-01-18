@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TextInput } from '@/components/ui/inputs';
+import { TextInput } from '@/components/ui/atoms';
 import { FieldGroupProps, TargetFieldProps, useFormFieldGroup, useScope } from '@/components/util/form';
 
 export type MultiTextsProps = Omit<FieldGroupProps, 'fields'> & {

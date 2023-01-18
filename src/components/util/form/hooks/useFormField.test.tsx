@@ -1,6 +1,6 @@
 import { renderHook, withFormWrapper } from '@/test-utils';
 
-import { TextInput } from '@/components/ui/inputs';
+import { TextInput } from '@/components/ui/atoms';
 import * as formUtil from '@/components/util/form/hooks/useFormFieldGroup';
 
 import { useFormField } from './useFormField';

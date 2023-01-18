@@ -5,7 +5,7 @@ import { Control } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 import { UseFormReturn } from 'react-hook-form/dist/types/form';
 
-import { InputProps, OptionProps } from '@/components/ui/inputs';
+import { InputProps, OptionProps } from '@/components/ui/atoms';
 import { IModel, KeyType } from '@/context/model-type';
 
 export type FieldProps = {
