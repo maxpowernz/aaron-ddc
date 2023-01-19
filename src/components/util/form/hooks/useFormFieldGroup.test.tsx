@@ -3,7 +3,7 @@ import { act, render, renderHook, screen, userEvent, withFormWrapper } from '@/t
 import { TextInput } from '@/components/ui/atoms';
 import * as formUtil from '@/components/util/form/hooks/useSaveField';
 
-import { useFormFieldGroup } from './useFormFieldGroup';
+import { useFormFieldGroup, isNestedFieldError, getErrorMessage } from './useFormFieldGroup';
 
 type TestData = {
   firstName: string;
@@ -84,5 +84,12 @@ describe('useFormFieldGroup', () => {
 
     await userEvent.tab();
     await expect(saveField).toHaveBeenCalledWith(expect.objectContaining({ name: 'firstName', value: textContent }));
+  });
+
+  it('should return correct type guard result', async () => {
+    expect(isNestedFieldError({ message: 'Required' })).toBeFalsy();
+    expect(getErrorMessage({ message: 'Required' })).toBe('Required');
+    expect(isNestedFieldError({ value: { message: 'Required' } })).toBeTruthy();
+    expect(getErrorMessage({ value: { message: 'Required' } })).toBe('Required');
   });
 });

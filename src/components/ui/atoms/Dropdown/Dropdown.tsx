@@ -1,13 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
-import Select, { Props } from 'react-select';
+import Select from 'react-select';
 
-import { InputProps, OptionProps as OptionDataProps } from '@/components/ui/atoms';
+import { CustomDropdownProps } from '@/components/ui/atoms/input-types';
+import { OptionProps as OptionDataProps } from '@/components/ui/atoms';
 import Caret from '@/assets/icons/18x18/caret.svg';
-
-export type CustomSelectProps = Omit<Props, 'size'> & InputProps;
-
-const PLACEHOLDER = 'text-placeholder opacity-50';
 
 export function isOptionType(data: OptionDataProps | unknown): data is OptionDataProps {
   return (data as OptionDataProps).value !== undefined;
@@ -18,11 +15,10 @@ export function isPlaceholder(data: OptionDataProps | unknown): boolean {
 }
 
 export const Dropdown = React.forwardRef(function CustomInput(
-  { className, error, disabled, label, options, placeholder = 'Select', size = 4, ...props }: CustomSelectProps,
+  { className, error, disabled, label, size = 4, ...props }: CustomDropdownProps,
   ref: React.ForwardedRef<never>
 ) {
-  const defaultOption = { value: '', label: placeholder };
-  const allOptions = [defaultOption, options].flat();
+  const PLACEHOLDER = 'text-placeholder opacity-50';
 
   return (
     <Select
@@ -32,11 +28,11 @@ export const Dropdown = React.forwardRef(function CustomInput(
         container: () => classnames({ '!cursor-not-allowed': disabled }),
         control: ({ isFocused, isDisabled, menuIsOpen }) =>
           classnames(`flex text-base border rounded bg-gray-5 hover:bg-gray-10 p-3`, {
-            'bg-transparent hover:bg-transparent': isDisabled || menuIsOpen,
+            'bg-white hover:bg-white': isDisabled || menuIsOpen,
             'border-1 border-gray-10 !cursor-not-allowed': isDisabled,
             'border-b-0 rounded-b-none': menuIsOpen,
             'border-1 border-fmg-green': isFocused && !isDisabled && !error,
-            'border-transparent': !isDisabled && !error && !menuIsOpen,
+            'border-transparent': !isDisabled && !error && !menuIsOpen && !isFocused,
             'border-1 border-error': error,
             className,
           }),
@@ -53,16 +49,21 @@ export const Dropdown = React.forwardRef(function CustomInput(
           }),
         singleValue: ({ data }) => classnames({ [PLACEHOLDER]: isPlaceholder(data) }),
         placeholder: () => classnames(PLACEHOLDER),
+        noOptionsMessage: () => 'p-3',
       }}
-      components={{ DropdownIndicator: () => <Caret className={classnames({ 'fill-gray-20': disabled, 'fill-error': error })} /> }}
+      components={{
+        DropdownIndicator: ({ isFocused, isDisabled }) => (
+          <Caret
+            className={classnames({ 'opacity-50': !isDisabled && !error && !isFocused, 'fill-gray-20': isDisabled, 'fill-error': error })}
+          />
+        ),
+      }}
       {...props}
       ref={ref}
       isDisabled={disabled}
       aria-disabled={disabled}
       aria-invalid={Boolean(error)}
       aria-label={label}
-      options={allOptions}
-      placeholder={placeholder}
     />
   );
 });

@@ -47,6 +47,19 @@ Default.args = {
   defaultValue: '',
 };
 
+export const NoOptions = Template.bind({});
+NoOptions.args = {
+  ...Default.args,
+  noOptionsMessage: () => <>No data</>,
+  options: [],
+};
+
+export const SelectedValue = Template.bind({});
+SelectedValue.args = {
+  ...Default.args,
+  value: { value: '10', label: 'Kg' },
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...Default.args,

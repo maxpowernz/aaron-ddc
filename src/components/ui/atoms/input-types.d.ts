@@ -1,3 +1,5 @@
+import { Props } from 'react-select';
+
 export type InputProps = {
   'aria-label'?: string | undefined;
   className?: string;
@@ -24,3 +26,5 @@ export type CustomRadioGroupProps = {
   cols?: number;
   error?: string | boolean | object;
 } & InputProps;
+
+export type CustomDropdownProps = Omit<Props, 'size' | 'onChange' | 'options'> & InputProps;

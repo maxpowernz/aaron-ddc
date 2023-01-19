@@ -1,8 +1,18 @@
 import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, FieldError, useFormContext } from 'react-hook-form';
 
 import { FieldGroupProps, FieldGroupReturn } from '../form-types';
 import { useSaveField } from './useSaveField';
+
+type CustomFieldError = Partial<FieldError> & { value: Partial<FieldError> };
+
+export function isNestedFieldError(error: Partial<FieldError> | CustomFieldError): error is CustomFieldError {
+  return (error as CustomFieldError)?.value !== undefined;
+}
+
+export function getErrorMessage(error: Partial<FieldError> | CustomFieldError) {
+  return error?.message ?? (isNestedFieldError(error) ? error?.value?.message : undefined);
+}
 
 export function useFormFieldGroup({
   question,
@@ -18,7 +28,7 @@ export function useFormFieldGroup({
   const control = defaultControl ?? contextControl;
   const render = () => (
     <>
-      <div id={`question-${name}`} className="form-question text-base text-default font-medium">
+      <div id={`question-${name}`} className="form-question text-base text-text font-medium">
         <span className="text-right">{question}</span>
         <span className="w-[0.75rem] text-warning text-center pt-1.5">
           {required ? (
@@ -53,7 +63,7 @@ export function useFormFieldGroup({
                   />
                   {!(error || label) ? null : (
                     <div className={`text-xs text-${error ? 'error' : 'default opacity-75'} font-normal px-1.5`}>
-                      {error?.message ?? label}
+                      {getErrorMessage(error as FieldError) ?? label}
                     </div>
                   )}
                 </div>

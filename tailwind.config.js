@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         'fmg-green': '#209400',
         text: {
+          DEFAULT: 'rgba(25, 30, 38, 1)',
           primary: 'rgba(25, 30, 38, 1)',
           placeholder: 'rgba(25, 30, 38, .5)',
           secondary: 'rgba(0, 0, 0, 0.05)',
@@ -21,6 +22,7 @@ module.exports = {
           10: 'rgba(0, 0, 0, 0.10)',
           15: 'rgba(0, 0, 0, 0.15)',
           20: 'rgba(0, 0, 0, 0.20)',
+          100: 'rgba(0, 0, 0, 1)',
         },
       },
       fontSize: {

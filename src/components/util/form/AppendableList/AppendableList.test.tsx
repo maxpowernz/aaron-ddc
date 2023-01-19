@@ -1,9 +1,7 @@
 import { render, screen, userEvent, withFormWrapper } from '@/test-utils';
 
 import { AppendableList } from './AppendableList';
-import { Text } from '@/components/ui/form-widgets';
-
-vi.mock('@/assets/icons/18x18/plus.svg', () => ({ default: 'svg' }));
+import { TextInputWidget } from '@/components/ui/form-widgets';
 
 type TestData = {
   firstName: string;
@@ -24,7 +22,7 @@ describe('AppendableList', () => {
 
     render(
       <AppendableList {...props}>
-        <Text name="name" />
+        <TextInputWidget name="name" />
       </AppendableList>,
       { wrapper: withFormWrapper<TestData>({ defaultValues: {} }) }
     );

@@ -19,7 +19,15 @@ export const TextInput = React.forwardRef(function TextInput(
 
   return (
     <div className="form-control inline-flex relative">
-      <input aria-label={props['aria-label']} className={classes} ref={ref} type="text" {...props} disabled={props.disabled} />
+      <input
+        aria-label={props['aria-label']}
+        className={classes}
+        ref={ref}
+        type="text"
+        {...props}
+        disabled={props.disabled}
+        aria-invalid={Boolean(error)}
+      />
       {error && <InvalidIcon className="fill-error absolute top-3 right-3" />}
     </div>
   );

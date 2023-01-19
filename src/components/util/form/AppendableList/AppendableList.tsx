@@ -53,9 +53,14 @@ export function AppendableList({ question, name, required, addButtonLabel, min =
         );
       })}
       <div className="form-fields">
-        {/* <button onClick={append} color="secondary" startIcon={<AddIcon className="fill-secondary" />}>
+        <button
+          type="button"
+          onClick={append}
+          className="flex gap-2.5 btn btn-ghost normal-case text-secondary font-normal hover:bg-secondary hover:bg-opacity-5 p-3"
+        >
+          <AddIcon className="fill-secondary" />
           {addButtonLabel}
-        </button> */}
+        </button>
       </div>
     </>
   );

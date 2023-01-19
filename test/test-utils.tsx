@@ -3,6 +3,7 @@ import { cleanup, render } from '@testing-library/react';
 import { afterEach } from 'vitest';
 
 vi.mock('@/src/assets/icons/18x18/invalid.svg', () => ({ default: 'svg' }));
+vi.mock('@/src/assets/icons/18x18/caret.svg', () => ({ default: 'svg' }));
 
 afterEach(() => {
   cleanup();

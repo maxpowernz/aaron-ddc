@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import * as model from '@/model/client-info.db';
 import { Form } from '@/components/util/form';
-import { MultiTexts, RadioGroup, Text, Textarea } from '@/components/ui/form-widgets';
+import { MultiTexts, RadioGroup, TextInputWidget, Textarea } from '@/components/ui/form-widgets';
 import { AppendableList } from '@/components/util/form/AppendableList/AppendableList';
 
 export function ClientInfo(props = {}) {
@@ -33,13 +33,20 @@ export function ClientInfo(props = {}) {
         required
         scope={{ source: 'accountType', condition: 'other' }}
       /> */}
-      <Text name="accountName" question="Account name" aria-label="this is the aria label" label="this is the label" size={10} required />
-      {/* <AppendableList question="Friends" addButtonLabel="Add Friend" name="friends" required>
-        <Text name="friend" size={12} />
+      <TextInputWidget
+        name="accountName"
+        question="Account name"
+        aria-label="this is the aria label"
+        label="this is the label"
+        size={10}
+        required
+      />
+      <AppendableList question="Friends" addButtonLabel="Add Friend" name="friends" required>
+        <TextInputWidget name="friend" size={12} />
       </AppendableList>
-      <Text name="mailName" question="Mail name" size={9} placeholder="Add Mail Name if different from Account Name" />
+      <TextInputWidget name="mailName" question="Mail name" size={9} placeholder="Add Mail Name if different from Account Name" />
       <Textarea name="associatedEntities" question="Associated entities" size={12} />
-      <Text name="accountOwner" question="Account owner" size={6} required />
+      <TextInputWidget name="accountOwner" question="Account owner" size={6} required />
       <MultiTexts
         name="emails"
         question="Owner email addresses"
@@ -49,15 +56,15 @@ export function ClientInfo(props = {}) {
           { name: 'emails.email2', label: 'Other' },
         ]}
       />
-      <RadioGroup name="statementDelivery" question="Statement delivery" options={stmtDeliveryMethods} required />
-      <RadioGroup name="shouldRegister" question="Register for FMG Connect" required />
-      <Text name="industryType" question="Industry type" size={12} required placeholder="Primary source of income" />
+      {/*<RadioGroup name="statementDelivery" question="Statement delivery" options={stmtDeliveryMethods} required />
+      <RadioGroup name="shouldRegister" question="Register for FMG Connect" required />*/}
+      <TextInputWidget name="industryType" question="Industry type" size={12} required placeholder="Primary source of income" />
       <Textarea
         name="otherActivities"
         question="What other income generating activities are you involved in?"
         size={12}
         placeholder="For example: Beekeeping, Frestry, Orchard Fruit, etc..."
-      /> */}
+      />
     </Form>
   );
 }

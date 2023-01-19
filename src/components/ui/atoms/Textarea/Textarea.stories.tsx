@@ -32,10 +32,6 @@ Disabled.args = {
   ...Default.args,
   disabled: true,
 };
-Disabled.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await expect((await canvas.getByTestId('textarea')).closest('div')).toHaveClass('Mui-disabled');
-};
 
 export const Placeholder = Template.bind({});
 Placeholder.args = {
@@ -53,8 +49,4 @@ export const Invalid = Template.bind({});
 Invalid.args = {
   ...Default.args,
   error: true,
-};
-Invalid.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await expect((await canvas.getByTestId('textarea')).closest('div')).toHaveClass('Mui-error');
 };

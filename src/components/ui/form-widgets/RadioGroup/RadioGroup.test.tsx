@@ -52,7 +52,7 @@ describe('form-widgets/RadioGroup', () => {
     isVisible | calledTimes
     ${false}  | ${0}
     ${true}   | ${1}
-  `('should not render when in scope = $isVisible', async ({ isVisible, calledTimes }) => {
+  `('should render depending on when in scope = $isVisible', async ({ isVisible, calledTimes }) => {
     const renderFn = vi.fn();
     vi.spyOn(scope, 'useScope').mockReturnValueOnce({ options: [], isVisible });
     vi.spyOn(formFieldGroup, 'useFormFieldGroup').mockReturnValueOnce({ render: renderFn });

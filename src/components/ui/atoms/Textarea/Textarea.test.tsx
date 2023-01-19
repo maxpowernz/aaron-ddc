@@ -7,7 +7,7 @@ import React from 'react';
 
 const { Default, FixedSized } = composeStories(stories);
 
-describe('inputs/Textarea', () => {
+describe('atoms/Textarea', () => {
   it('should render hook correctly', async () => {
     const { result } = renderHook(useAutosizeTextArea);
     const { ref } = result.current;

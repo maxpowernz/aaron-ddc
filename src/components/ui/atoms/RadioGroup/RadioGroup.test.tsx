@@ -4,7 +4,7 @@ import * as stories from './RadioGroup.stories';
 
 const { Default } = composeStories(stories);
 
-describe('inputs/RadioGroup', () => {
+describe('atoms/RadioGroup', () => {
   it.each`
     cols         | className
     ${3}         | ${'grid grid-cols-1 sm:grid-cols-3'}
