@@ -7,18 +7,6 @@
   src: url("../assets/fonts/Inter.ttf");
 }
 
-@layer components {
-  .text-input-focus {
-    @apply focus:outline-none focus:ring-1 focus:ring-inset focus:ring-primary focus:bg-gray-10;
-  }
-  .text-input-error {
-    @apply outline-none ring-1 ring-inset ring-error;
-  }
-  .text-input-disabled {
-    @apply outline-none ring-1 ring-inset ring-gray-10 disabled:hover:bg-white disabled:bg-white disabled:placeholder:text-text-placeholder;
-  }
-}
-
 :root {
   --grid-col-width: 48px;
   --grid-row-height: 42px;

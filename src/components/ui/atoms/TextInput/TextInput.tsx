@@ -1,6 +1,6 @@
 import React from 'react';
 import InvalidIcon from '@/assets/icons/18x18/invalid.svg';
-import { InputProps } from '../input-types';
+import { InputProps } from '../';
 import classNames from 'classnames';
 
 export const TextInput = React.forwardRef(function TextInput(
@@ -10,23 +10,23 @@ export const TextInput = React.forwardRef(function TextInput(
   console.log(props);
 
   const classes = classNames(
-    `input bg-gray-5 border-0 hover:bg-gray-10 focus:text-input-focus placeholder-text-placeholder rounded text-text-primary h-42 w-grid-${size}`,
+    `input bg-gray-5 border-0 hover:bg-gray-10 placeholder-text-placeholder rounded text-text-primary h-42 w-grid-${size} focus:outline-none focus:ring-1 focus:ring-inset focus:ring-primary focus:bg-gray-10`,
     {
-      'text-input-error': error,
-      'text-input-disabled': props.disabled,
+      'outline-none ring-1 ring-inset ring-error focus:ring-error': error,
+      'outline-none ring-1 ring-inset ring-gray-10 disabled:hover:bg-white disabled:bg-white ': props.disabled,
     }
   );
 
   return (
     <div className="form-control inline-flex relative">
       <input
+        aria-invalid={Boolean(error)}
         aria-label={props['aria-label']}
         className={classes}
+        disabled={props.disabled}
         ref={ref}
         type="text"
         {...props}
-        disabled={props.disabled}
-        aria-invalid={Boolean(error)}
       />
       {error && <InvalidIcon className="fill-error absolute top-3 right-3" />}
     </div>

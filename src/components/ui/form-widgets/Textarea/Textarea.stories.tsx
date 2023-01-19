@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof Textarea & z.infer<ZodTypeAny>> = (args: P
 
 export const Default = Template.bind({});
 Default.args = {
-  question: 'Other sctivities',
+  question: 'Other activities',
   name: 'otherActivities',
   schema: z.object({
     otherActivities: z.string(),
