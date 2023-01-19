@@ -27,6 +27,13 @@
   --primary: #209400;
   --error: #A62F1F;
   --warning: #EFAE41;
+  --gray-5: rgba(0, 0, 0, 0.05);
+  --gray-10: rgba(0, 0, 0, 0.10);
+  --gray-15: rgba(0, 0, 0, 0.15);
+  --gray-20: rgba(0, 0, 0, 0.20);
+  --gray-25: rgba(0, 0, 0, 0.25);
+  --gray-100: rgba(0, 0, 0, 1);
+  --gray-200: rgba(0, 0, 0, 2);
 }
 
 .form-container {
