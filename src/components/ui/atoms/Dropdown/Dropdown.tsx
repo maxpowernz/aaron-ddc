@@ -27,15 +27,18 @@ export const Dropdown = React.forwardRef(function CustomInput(
       classNames={{
         container: () => classnames({ '!cursor-not-allowed': disabled }),
         control: ({ isFocused, isDisabled, menuIsOpen }) =>
-          classnames(`flex text-base border rounded bg-gray-5 hover:bg-gray-10 p-3`, {
-            'bg-white hover:bg-white': isDisabled || menuIsOpen,
-            'border-1 border-gray-10 !cursor-not-allowed': isDisabled,
-            'border-b-0 rounded-b-none': menuIsOpen,
-            'border-1 border-fmg-green': isFocused && !isDisabled && !error,
-            'border-transparent': !isDisabled && !error && !menuIsOpen && !isFocused,
-            'border-1 border-error': error,
-            className,
-          }),
+          classnames(
+            `flex text-base border rounded bg-gray-5 hover:bg-gray-10 p-3`,
+            {
+              'bg-white hover:bg-white': isDisabled || menuIsOpen,
+              'border-1 border-gray-10 !cursor-not-allowed': isDisabled,
+              'border-b-0 rounded-b-none': menuIsOpen,
+              'border-1 border-fmg-green': isFocused && !isDisabled && !error,
+              'border-transparent': !isDisabled && !error && !menuIsOpen && !isFocused,
+              'border-1 border-error': error,
+            },
+            className
+          ),
         option: ({ isDisabled, isSelected, isFocused, data }) =>
           classnames('flex place-content-center h-12 p-3', {
             'bg-gray-5': isFocused && !isSelected,
