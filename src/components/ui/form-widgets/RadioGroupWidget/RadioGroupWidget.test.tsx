@@ -5,7 +5,7 @@ import * as scope from '@/components/util/form/hooks/useScope';
 import * as saveField from '@/components/util/form/hooks/useSaveField';
 import * as formFieldGroup from '@/components/util/form/hooks/useFormFieldGroup';
 import * as formField from '@/components/util/form/hooks/useFormField';
-import * as stories from './RadioGroup.stories';
+import * as stories from './RadioGroupWidget.stories';
 import React from 'react';
 import * as model from '@/components/util/form/test/mock-model';
 

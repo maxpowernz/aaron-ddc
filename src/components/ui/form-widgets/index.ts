@@ -1,4 +1,4 @@
 export * from './MultiTexts/MultiTexts';
-export * from './RadioGroup/RadioGroup';
+export * from './RadioGroupWidget/RadioGroupWidget';
 export * from './TextInput/TextInputWidget';
 export * from './Textarea/Textarea';

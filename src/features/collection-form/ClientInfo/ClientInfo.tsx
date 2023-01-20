@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import * as model from '@/model/client-info.db';
 import { Form } from '@/components/util/form';
-import { MultiTexts, RadioGroup, TextInputWidget, Textarea } from '@/components/ui/form-widgets';
+import { MultiTexts, RadioGroupWidget, Textarea, TextInputWidget } from '@/components/ui/form-widgets';
 import { AppendableList } from '@/components/util/form/AppendableList/AppendableList';
 
 export function ClientInfo(props = {}) {
@@ -25,14 +25,14 @@ export function ClientInfo(props = {}) {
 
   return (
     <Form model={model} uid={1} onSubmit={onSubmit}>
-      {/* <RadioGroup name="accountType" question="Account type" options={accountTypes} cols={3} size={10} required />
-      <Text
+      <RadioGroupWidget name="accountType" question="Account type" options={accountTypes} cols={3} size={10} required />
+      <TextInputWidget
         name="accountTypeOther"
         question="Please specify account type"
-        size={2}
+        size={12}
         required
         scope={{ source: 'accountType', condition: 'other' }}
-      /> */}
+      />
       <TextInputWidget
         name="accountName"
         question="Account name"
@@ -56,8 +56,8 @@ export function ClientInfo(props = {}) {
           { name: 'emails.email2', label: 'Other' },
         ]}
       />
-      {/*<RadioGroup name="statementDelivery" question="Statement delivery" options={stmtDeliveryMethods} required />
-      <RadioGroup name="shouldRegister" question="Register for FMG Connect" required />*/}
+      <RadioGroupWidget name="statementDelivery" question="Statement delivery" options={stmtDeliveryMethods} required />
+      <RadioGroupWidget name="shouldRegister" question="Register for FMG Connect" required />
       <TextInputWidget name="industryType" question="Industry type" size={12} required placeholder="Primary source of income" />
       <Textarea
         name="otherActivities"

@@ -1,7 +1,7 @@
-import { CustomRadioGroupProps, InputProps, OptionProps } from './input-types';
+import { InputProps, OptionProps } from './input-types';
 
-export * from './RadioGroup/RadioGroup';
+export * from './Radio/Radio';
 export * from './TextInput/TextInput';
 export * from './Textarea/Textarea';
 
-export type { InputProps, OptionProps, CustomRadioGroupProps };
+export type { InputProps, OptionProps };
