@@ -1,3 +1,4 @@
+import React from 'react';
 import { composeStories, render, screen, userEvent } from '@/test-utils';
 
 import * as modelContext from '@/context/ModelContext';
@@ -6,8 +7,8 @@ import * as saveField from '@/components/util/form/hooks/useSaveField';
 import * as formFieldGroup from '@/components/util/form/hooks/useFormFieldGroup';
 import * as formField from '@/components/util/form/hooks/useFormField';
 import * as stories from './RadioGroupWidget.stories';
-import React from 'react';
 import * as model from '@/components/util/form/test/mock-model';
+import { RadioGroupInput } from '@/components/ui/form-widgets';
 
 const { Default } = composeStories(stories);
 
@@ -59,5 +60,19 @@ describe('form-widgets/RadioGroup', () => {
     render(<Default />);
 
     expect(renderFn).toHaveBeenCalledTimes(calledTimes);
+  });
+
+  it.each`
+    cols         | className
+    ${3}         | ${'grid grid-cols-1 sm:grid-cols-3'}
+    ${undefined} | ${'flex'}
+  `('should render correctly with $className', async ({ cols, className }) => {
+    const {
+      container: {
+        children: [radioGroup],
+      },
+    } = render(<RadioGroupInput cols={cols} name="Default" />);
+
+    expect(radioGroup).toHaveClass(className);
   });
 });

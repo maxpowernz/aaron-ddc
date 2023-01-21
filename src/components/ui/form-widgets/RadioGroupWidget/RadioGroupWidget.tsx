@@ -20,7 +20,6 @@ export const RadioGroupInput = React.forwardRef(function CustomInput(
   const groupId = useId();
   const layout = cols ? `grid grid-cols-1 sm:grid-cols-${cols}` : 'flex flex-wrap';
 
-  console.log({ value: props.value });
   return (
     <div className={`${layout} w-grid-${size} items-center gap-y-1 gap-x-4 mx-2 h-full`}>
       {options?.map(({ id, value, label }: OptionProps) => {

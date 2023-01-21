@@ -1,9 +1,8 @@
-import { composeStories, render, screen, userEvent } from '@/test-utils';
+import React from 'react';
+import { composeStories, render, renderHook, screen, userEvent } from '@/test-utils';
 
 import * as stories from './Textarea.stories';
-import { renderHook } from '@testing-library/react';
 import { useAutosizeTextArea } from '@/components/ui/atoms';
-import React from 'react';
 
 const { Default, FixedSized } = composeStories(stories);
 
