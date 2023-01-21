@@ -58,5 +58,5 @@ export type FormProps = {
   model: IModel;
   uid: KeyType;
   onSubmit: (value?: TypeOf<ZodObject> | unknown) => void | FormEventHandler;
-  children?: React.ReactElement | React.ReactElement[];
+  children?: React.ReactNode;
 };

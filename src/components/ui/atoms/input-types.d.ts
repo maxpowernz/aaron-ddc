@@ -23,4 +23,7 @@ export type OptionProps = {
   value?: string | number | string[];
 };
 
-export type CustomDropdownProps = Omit<Props, 'size' | 'onChange' | 'options'> & InputProps;
+export type CustomDropdownProps = Omit<Props, 'size' | 'onChange' | 'options'> &
+  Omit<InputProps, 'value'> & {
+    value?: string | number | string[] | object;
+  };
