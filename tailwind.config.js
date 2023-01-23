@@ -17,13 +17,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'fmg-green': '#209400',
+        'fmg-green': {
+          DEFAULT: '#209400',
+          20: 'rgba(32, 148, 0, 0.2)',
+        },
         text: {
           DEFAULT: 'rgba(25, 30, 38, 1)',
           primary: 'rgba(25, 30, 38, 1)',
           placeholder: 'rgba(25, 30, 38, .5)',
           secondary: 'rgba(0, 0, 0, 0.05)',
           disabled: 'rgba(25, 30, 38, .5)',
+        },
+
+        error: {
+          DEFAULT: '#A62F1F',
+          20: 'rgba(166, 47, 31, 0.2)',
         },
         // named by percent of gray
         gray: {

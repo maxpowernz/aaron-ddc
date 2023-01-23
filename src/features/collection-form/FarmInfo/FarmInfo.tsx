@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import * as model from '@/model/farm-info.db';
 import { Form } from '@/components/util/form';
-import { MultiTexts, RadioGroup, Text, Textarea } from '@/components/ui/form-widgets';
+import { MultiTexts, RadioGroupWidget, Textarea, TextInputWidget } from '@/components/ui/form-widgets';
 
 export function FarmInfo(props = {}) {
   const onSubmit = (data: model.FormValues) => console.log('Submit:', data);
@@ -24,9 +24,9 @@ export function FarmInfo(props = {}) {
 
   return (
     <Form model={model} uid={1} onSubmit={onSubmit}>
-      <Text name="operations" question="Operations" size={12} />
-      <Text name="trunover" question="Turnover" size={12} />
-      <RadioGroup name="operatingModel" question="Operating model" options={opModels} cols={3} size={10} />
+      <TextInputWidget name="operations" question="Operations" size={12} />
+      <TextInputWidget name="trunover" question="Turnover" size={12} />
+      <RadioGroupWidget name="operatingModel" question="Operating model" options={opModels} cols={3} size={10} />
       <Textarea name="productionType" question="Production type/Services offered" size={12} />
       <MultiTexts
         name="productionUnits"
@@ -44,7 +44,7 @@ export function FarmInfo(props = {}) {
           { name: 'operatingProps.description', label: 'Description', size: 9 },
         ]}
       />
-      <RadioGroup name="ownership" question="Ownership" options={ownerships} size={10} />
+      <RadioGroupWidget name="ownership" question="Ownership" options={ownerships} size={10} />
       <MultiTexts
         name="premSize"
         question="Block/Premise size"

@@ -26,3 +26,16 @@ Disabled.args = {
   ...Default.args,
   disabled: true,
 };
+
+export const Checked = Template.bind({});
+Checked.args = {
+  ...Default.args,
+  checked: true,
+};
+
+export const Invalid = Template.bind({});
+Invalid.args = {
+  ...Default.args,
+  checked: true,
+  error: true,
+};

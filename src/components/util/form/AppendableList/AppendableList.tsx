@@ -2,7 +2,6 @@ import React, { Children, cloneElement, useEffect, useRef } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import AddIcon from '@/assets/icons/18x18/plus.svg';
-// import { Button } from '@mui/material';
 
 type AppendableListProps = {
   question: string;
