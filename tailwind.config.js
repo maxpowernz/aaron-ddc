@@ -8,10 +8,6 @@ const widths = Array.from(Array(13).keys())
 
 widths['4.5'] = '18px';
 
-//console.log([widths.map((val, idx) => ({ [`grid-${idx}`]: val })).reduce((acc, val) => ({ ...acc, ...val }), {})]);
-
-console.log(widths);
-
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}', './src/**/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
