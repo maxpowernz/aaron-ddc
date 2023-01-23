@@ -1,7 +1,16 @@
 /** @type {number} */
 const baseWidth = 48;
 const basePixel = 6;
-const widths = Array.from(Array(13).keys()).map((num) => `${num * baseWidth + basePixel * (num > 0 ? num - 1 : 0)}px`);
+const widths = Array.from(Array(13).keys())
+  .map((num) => `${num * baseWidth + basePixel * (num > 0 ? num - 1 : 0)}px`)
+  .map((val, idx) => ({ [`grid-${idx}`]: val }))
+  .reduce((acc, val) => ({ ...acc, ...val }), {});
+
+widths['4.5'] = '18px';
+
+//console.log([widths.map((val, idx) => ({ [`grid-${idx}`]: val })).reduce((acc, val) => ({ ...acc, ...val }), {})]);
+
+console.log(widths);
 
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}', './src/**/components/**/*.{js,ts,jsx,tsx}'],
@@ -14,7 +23,7 @@ module.exports = {
           primary: 'rgba(25, 30, 38, 1)',
           placeholder: 'rgba(25, 30, 38, .5)',
           secondary: 'rgba(0, 0, 0, 0.05)',
-          disabled: 'rgba(0, 0, 0, 0.05)',
+          disabled: 'rgba(25, 30, 38, .5)',
         },
         // named by percent of gray
         gray: {
@@ -39,8 +48,10 @@ module.exports = {
         serif: ['Inter', 'sans-serif'],
       },
 
-      width: widths.map((val, idx) => ({ [`grid-${idx}`]: val })).reduce((acc, val) => ({ ...acc, ...val }), {}),
+      //width: [widths.map((val, idx) => ({ [`grid-${idx}`]: val })).reduce((acc, val) => ({ ...acc, ...val }), {}), { 'w-4.5': '18px' }],
+      width: widths,
       height: {
+        4.5: 18,
         42: 42,
       },
       gridTemplateColumns: {
