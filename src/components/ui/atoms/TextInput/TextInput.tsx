@@ -15,7 +15,8 @@ export const TextInput = React.forwardRef(function TextInput(
     focus:ring-1 focus:ring-inset focus:ring-primary focus:bg-gray-10`,
     {
       'outline-none ring-1 ring-inset ring-error focus:ring-error': error,
-      'outline-none ring-1 ring-inset ring-gray-10 disabled:hover:bg-white disabled:bg-white ': props.disabled,
+      'outline-none ring-1 ring-inset ring-gray-10 disabled:hover:bg-white disabled:bg-white disabled:placeholder-text-disabled':
+        props.disabled,
     }
   );
 
@@ -30,7 +31,7 @@ export const TextInput = React.forwardRef(function TextInput(
         type="text"
         {...props}
       />
-      {error && <InvalidIcon className="fill-error absolute top-3 right-3" />}
+      {error && <InvalidIcon className="fill-error absolute top-3.5 right-3" />}
     </div>
   );
 });
