@@ -1,4 +1,3 @@
 {
-  "jest.autoRun": "off",
-  "testing.automaticallyOpenPeekView": "never"
+  "jest.autoRun": "off"
 }
