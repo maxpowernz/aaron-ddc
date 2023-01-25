@@ -4,6 +4,7 @@ import * as model from '@/model/client-info.db';
 import { Form } from '@/components/util/form';
 import { MultiTexts, RadioGroupWidget, Textarea, TextInputWidget } from '@/components/ui/form-widgets';
 import { AppendableList } from '@/components/util/form/AppendableList/AppendableList';
+import { CheckboxGroupWidget } from '@/components/ui/form-widgets/CheckboxGroupWidget/CheckboxGroupWidget';
 
 export function ClientInfo(props = {}) {
   const onSubmit = (data: model.FormValues) => console.log('Submit:', data);
@@ -25,6 +26,7 @@ export function ClientInfo(props = {}) {
 
   return (
     <Form model={model} uid={1} onSubmit={onSubmit}>
+      <CheckboxGroupWidget name="checkboxes" question="do you have these" options={accountTypes} cols={3} size={10} />
       <RadioGroupWidget name="accountType" question="Account type" options={accountTypes} cols={3} size={10} required />
       <TextInputWidget
         name="accountTypeOther"

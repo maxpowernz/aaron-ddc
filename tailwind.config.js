@@ -9,7 +9,12 @@ const widths = Array.from(Array(13).keys())
 widths['4.5'] = '18px';
 
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}', './src/**/components/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    './src/**/components/**/*.{js,ts,jsx,tsx}',
+    'node_modules/daisyui/dist/**/*.js',
+    'node_modules/react-daisyui/dist/**/*.js',
+  ],
   theme: {
     extend: {
       colors: {
@@ -20,8 +25,8 @@ module.exports = {
         text: {
           DEFAULT: 'rgba(25, 30, 38, 1)',
           primary: 'rgba(25, 30, 38, 1)',
+          secondary: 'rgba(25, 30, 38, .75)',
           placeholder: 'rgba(25, 30, 38, .5)',
-          secondary: 'rgba(0, 0, 0, 0.05)',
           disabled: 'rgba(25, 30, 38, .5)',
         },
 
@@ -36,6 +41,7 @@ module.exports = {
           15: 'rgba(0, 0, 0, 0.15)',
           20: 'rgba(0, 0, 0, 0.20)',
           25: 'rgba(0, 0, 0, 0.25)',
+          30: 'rgba(0, 0, 0, 0.30)',
           100: 'rgba(0, 0, 0, 1)',
         },
       },
@@ -52,7 +58,6 @@ module.exports = {
         serif: ['Inter', 'sans-serif'],
       },
 
-      //width: [widths.map((val, idx) => ({ [`grid-${idx}`]: val })).reduce((acc, val) => ({ ...acc, ...val }), {}), { 'w-4.5': '18px' }],
       width: widths,
       height: {
         4.5: 18,
@@ -61,7 +66,6 @@ module.exports = {
       gridTemplateColumns: {
         // Simple 16 column grid
         //3: 'repeat(3, minmax(0, 1fr))',
-
         // Complex site-specific column configuration
         footer: '200px minmax(900px, 1fr) 100px',
       },
@@ -74,11 +78,10 @@ module.exports = {
           // eslint-disable-next-line @typescript-eslint/no-var-requires
           ...require('daisyui/src/colors/themes')['[data-theme=light]'],
           primary: '#209400',
+          'primary-focus': '#1b7e00',
           error: '#A62F1F',
           warning: '#EFAE41',
-          secondary: '#00A8CB',
-
-          fontSize: 14,
+          secondary: '#E5E5E5',
         },
       },
     ],

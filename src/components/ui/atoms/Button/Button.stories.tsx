@@ -1,13 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import AddIcon from '@/assets/icons/18x18/plus.svg';
 import React from 'react';
-
-const Button = (props: any) => (
-  <button className="flex gap-2.5 btn btn-ghost normal-case text-secondary font-normal hover:bg-secondary hover:bg-opacity-5 p-3">
-    <AddIcon className="fill-secondary" />
-    Button
-  </button>
-);
+import { Button } from 'react-daisyui';
 
 export default {
   title: 'Atoms/Button',
@@ -16,7 +10,16 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => {
-  return <Button {...args} />;
+  return (
+    <>
+      <Button color="primary">asfdsadfds f</Button>
+      <Button color="secondary" className="text-text-secondary">
+        asfdsadfds
+      </Button>
+      {/* <button className="btn btn-secondary">asfdsadfds f</button> */}
+      <Button color="error">asfdsadfds f</Button>
+    </>
+  );
 };
 
 export const Default = Template.bind({});
