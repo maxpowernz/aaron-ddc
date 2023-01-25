@@ -8,7 +8,6 @@ export type TextareaProps = {
   rows?: number;
 } & InputProps;
 
-// TODO: Write test
 export const useAutosizeTextArea = () => {
   const ref = useRef<HTMLTextAreaElement>();
 

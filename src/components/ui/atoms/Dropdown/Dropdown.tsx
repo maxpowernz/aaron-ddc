@@ -30,7 +30,7 @@ export const Dropdown = React.forwardRef(function CustomInput(
           classnames(
             `flex text-base border rounded bg-gray-5 hover:bg-gray-10 p-3`,
             {
-              'bg-white hover:bg-white': isDisabled || menuIsOpen,
+              '!bg-white !hover:bg-white': isDisabled || menuIsOpen,
               'border-1 border-gray-10 !cursor-not-allowed': isDisabled,
               'border-b-0 rounded-b-none': menuIsOpen,
               'border-1 border-fmg-green': isFocused && !isDisabled && !error,
