@@ -36,6 +36,7 @@ module.exports = {
           15: 'rgba(0, 0, 0, 0.15)',
           20: 'rgba(0, 0, 0, 0.20)',
           25: 'rgba(0, 0, 0, 0.25)',
+          30: 'rgba(0, 0, 0, 0.30)',
           100: 'rgba(0, 0, 0, 1)',
         },
       },
@@ -52,7 +53,6 @@ module.exports = {
         serif: ['Inter', 'sans-serif'],
       },
 
-      //width: [widths.map((val, idx) => ({ [`grid-${idx}`]: val })).reduce((acc, val) => ({ ...acc, ...val }), {}), { 'w-4.5': '18px' }],
       width: widths,
       height: {
         4.5: 18,
@@ -77,8 +77,6 @@ module.exports = {
           error: '#A62F1F',
           warning: '#EFAE41',
           secondary: '#00A8CB',
-
-          fontSize: 14,
         },
       },
     ],
