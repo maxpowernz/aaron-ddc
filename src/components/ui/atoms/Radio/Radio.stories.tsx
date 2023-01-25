@@ -15,27 +15,33 @@ const Template: ComponentStory<typeof Radio> = (args) => {
   return <Radio {...args} />;
 };
 
-export const Default = Template.bind({});
-Default.args = {
+export const Untoggled = Template.bind({});
+Untoggled.args = {
   label: 'First name',
   name: 'firstName',
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  ...Default.args,
-  disabled: true,
-};
-
-export const Checked = Template.bind({});
-Checked.args = {
-  ...Default.args,
+export const Toggled = Template.bind({});
+Toggled.args = {
+  ...Untoggled.args,
   checked: true,
 };
 
 export const Invalid = Template.bind({});
 Invalid.args = {
-  ...Default.args,
+  ...Untoggled.args,
   checked: true,
   error: true,
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Untoggled.args,
+  disabled: true,
+};
+
+export const DisabledToggled = Template.bind({});
+DisabledToggled.args = {
+  ...Toggled.args,
+  disabled: true,
 };

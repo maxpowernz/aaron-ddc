@@ -8,7 +8,6 @@ export type TextareaProps = {
   rows?: number;
 } & InputProps;
 
-// TODO: Write test
 export const useAutosizeTextArea = () => {
   const ref = useRef<HTMLTextAreaElement>();
 
@@ -25,6 +24,8 @@ export const useAutosizeTextArea = () => {
         const scrollHeight = currElement.scrollHeight;
         currElement.style.height = `${scrollHeight}px`;
       };
+
+      resize();
 
       currElement?.addEventListener('keyup', resize);
       return () => {
