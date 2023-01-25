@@ -8,7 +8,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function Cus
   { error, checked, className, disabled, label, value, ...props },
   ref
 ) {
-  const CENTER_ROUND = 'absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] rounded-full';
+  const CENTER_ROUND = 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full';
   const isError = Boolean(error);
 
   return (
@@ -29,6 +29,21 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function Cus
             'hover:bg-inherit transition-none': disabled,
             'cursor-pointer group-hover:bg-fmg-green-20': !disabled && !isError,
             'group-hover:bg-error-20': !disabled && isError,
+          id="checkmark"
+          className={classnames(
+            `${CENTER_ROUND} w-[18px] h-[18px] border border-1 border-gray-25 peer-checked:bg-fmg-green peer-checked:border-0`,
+            {
+              'bg-fmg-green border-0': checked && !isError,
+              'peer-checked:bg-error bg-error': checked && isError,
+              'opacity-50': checked && disabled,
+              'bg-gray-10': disabled,
+            }
+          )}
+        />
+        <div
+          id="checkcenter"
+          className={classnames(`${CENTER_ROUND} w-1.5 h-1.5 peer-checked:bg-white`, {
+            'bg-white border-0': checked,
           })}
         >
           <input value={value} type="radio" name="radio" ref={ref} disabled={disabled} className={classnames(`peer opacity-0`, {})} />

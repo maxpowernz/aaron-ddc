@@ -13,6 +13,7 @@ export type InputProps = {
   pattern?: string;
   placeholder?: string;
   size?: number;
+  value?: never;
 };
 
 export type OptionProps = {
