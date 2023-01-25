@@ -1,6 +1,4 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
 
 import { Textarea } from './Textarea';
 
@@ -19,6 +17,20 @@ export const Default = Template.bind({});
 Default.args = {
   name: 'firstName',
   pattern: String(/[a-zA-Z]/),
+  size: 6,
+};
+
+export const Filled2Lines = Template.bind({});
+Filled2Lines.args = {
+  ...Default.args,
+  defaultValue: 'Multi-line text fields show all user input at once. Overflow text causes the text ...',
+};
+
+export const Filled4Lines = Template.bind({});
+Filled4Lines.args = {
+  ...Default.args,
+  defaultValue:
+    'Multi-line text fields show all user input at once. Overflow text causes the text field to expand (shifting screen elements downward), and text wraps onto a new line.',
 };
 
 export const FixedSized = Template.bind({});
@@ -33,20 +45,20 @@ Disabled.args = {
   disabled: true,
 };
 
+export const Invalid = Template.bind({});
+Invalid.args = {
+  ...Filled4Lines.args,
+  error: true,
+};
+
 export const Placeholder = Template.bind({});
 Placeholder.args = {
   ...Placeholder.args,
-  placeholder: 'This is a placeholder',
+  placeholder: 'Placeholder',
 };
 
 export const PlaceholderDisabled = Template.bind({});
 PlaceholderDisabled.args = {
   ...Placeholder.args,
   disabled: true,
-};
-
-export const Invalid = Template.bind({});
-Invalid.args = {
-  ...Default.args,
-  error: true,
 };

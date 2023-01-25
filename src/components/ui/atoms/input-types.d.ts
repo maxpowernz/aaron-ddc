@@ -1,5 +1,4 @@
 import { Props } from 'react-select';
-import Checkbox from './CheckBox/Checkbox';
 
 export type InputProps = {
   'aria-label'?: string | undefined;
@@ -14,6 +13,7 @@ export type InputProps = {
   pattern?: string;
   placeholder?: string;
   size?: number;
+  value?: never;
 };
 
 export type OptionProps = {
