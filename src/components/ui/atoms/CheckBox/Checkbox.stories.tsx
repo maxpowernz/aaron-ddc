@@ -5,15 +5,13 @@ export default {
   title: 'Atoms/Checkbox',
   component: Checkbox,
   args: {
+    id: '01',
     label: 'Label',
     name: 'checkbox',
-    options: [{ value: '10', label: 'Kg' }],
+    'aria-label': 'Checkbox',
+    disabled: false,
   },
-  argTypes: {
-    error: {
-      control: { type: 'boolean' },
-    },
-  },
+  argTypes: {},
   parameters: {},
 } as ComponentMeta<typeof Checkbox>;
 
@@ -26,37 +24,21 @@ const Template: ComponentStory<typeof Checkbox> = (args) => {
 };
 
 export const Unchecked = Template.bind({});
-Unchecked.args = {
-  label: 'Label',
-  name: 'checkbox',
-  options: [{ value: '10', label: 'Kg' }],
-  error: false,
-  disabled: false,
-  'aria-label': 'Checkbox',
-};
 
 export const Checked = Template.bind({});
-Checked.args = {
-  label: 'Label',
-  name: 'checkbox',
-  options: [{ value: '10', label: 'Kg' }],
-  error: false,
-  disabled: false,
-  'aria-label': 'Checkbox',
-  checked: true,
-};
-
-export const DisabledChecked = Template.bind({});
-DisabledChecked.args = {
-  ...DisabledChecked.args,
-  disabled: true,
-  checked: true,
-};
+Checked.args = { defaultChecked: true };
 
 export const CheckedInvalid = Template.bind({});
 CheckedInvalid.args = {
-  ...DisabledChecked.args,
-  disabled: false,
-  checked: true,
+  defaultChecked: true,
   error: true,
+};
+
+export const DisabledUnchecked = Template.bind({});
+DisabledUnchecked.args = { disabled: true };
+
+export const DisabledChecked = Template.bind({});
+DisabledChecked.args = {
+  disabled: true,
+  defaultChecked: true,
 };
