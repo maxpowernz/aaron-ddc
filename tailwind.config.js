@@ -9,7 +9,12 @@ const widths = Array.from(Array(13).keys())
 widths['4.5'] = '18px';
 
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}', './src/**/components/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    './src/**/components/**/*.{js,ts,jsx,tsx}',
+    'node_modules/daisyui/dist/**/*.js',
+    'node_modules/react-daisyui/dist/**/*.js',
+  ],
   theme: {
     extend: {
       colors: {
@@ -20,8 +25,8 @@ module.exports = {
         text: {
           DEFAULT: 'rgba(25, 30, 38, 1)',
           primary: 'rgba(25, 30, 38, 1)',
+          secondary: 'rgba(25, 30, 38, .75)',
           placeholder: 'rgba(25, 30, 38, .5)',
-          secondary: 'rgba(0, 0, 0, 0.05)',
           disabled: 'rgba(25, 30, 38, .5)',
         },
 
@@ -74,9 +79,10 @@ module.exports = {
           // eslint-disable-next-line @typescript-eslint/no-var-requires
           ...require('daisyui/src/colors/themes')['[data-theme=light]'],
           primary: '#209400',
+          'primary-focus': '#1b7e00',
           error: '#A62F1F',
           warning: '#EFAE41',
-          secondary: '#00A8CB',
+          secondary: '#E5E5E5',
         },
       },
     ],
