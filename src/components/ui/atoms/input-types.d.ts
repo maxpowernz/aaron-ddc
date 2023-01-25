@@ -1,5 +1,4 @@
 import { Props } from 'react-select';
-import Checkbox from './CheckBox/Checkbox';
 
 export type InputProps = {
   'aria-label'?: string | undefined;
@@ -29,13 +28,9 @@ export type CustomRadioGroupProps = {
 } & InputProps;
 
 export type CheckboxProps = {
-  name: string;
-  label?: string;
-  'aria-label'?: string | undefined;
-  error?: string | boolean;
-  options?: OptionProps[];
-  disabled?: boolean;
+  cols?: number;
   checked?: boolean;
-};
+  defaultChecked?: boolean;
+} & InputProps;
 
 export type CustomDropdownProps = Omit<Props, 'size' | 'onChange' | 'options'> & InputProps;
