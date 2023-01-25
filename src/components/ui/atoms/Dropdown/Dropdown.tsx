@@ -25,7 +25,7 @@ export const Dropdown = React.forwardRef(function CustomInput(
       unstyled
       className={`w-grid-${size}`}
       classNames={{
-        container: () => classnames({ '!cursor-not-allowed': disabled }),
+        container: () => classnames({ '!cursor-not-allowed bg-white': disabled }),
         control: ({ isFocused, isDisabled, menuIsOpen }) =>
           classnames(
             `flex text-base border rounded bg-gray-5 hover:bg-gray-10 p-3`,

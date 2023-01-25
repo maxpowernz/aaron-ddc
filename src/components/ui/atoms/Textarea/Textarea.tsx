@@ -26,6 +26,8 @@ export const useAutosizeTextArea = () => {
         currElement.style.height = `${scrollHeight}px`;
       };
 
+      resize();
+
       currElement?.addEventListener('keyup', resize);
       return () => {
         return currElement?.removeEventListener('keyup', resize);

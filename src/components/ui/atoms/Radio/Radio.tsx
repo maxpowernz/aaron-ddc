@@ -8,7 +8,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function Cus
   { error, checked, className, disabled, label, value, ...props },
   ref
 ) {
-  const CENTER_ROUND = 'absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] rounded-full';
+  const CENTER_ROUND = 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full';
   const isError = Boolean(error);
 
   return (
@@ -37,8 +37,9 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function Cus
           className={classnames(
             `${CENTER_ROUND} w-[18px] h-[18px] border border-1 border-gray-25 peer-checked:bg-fmg-green peer-checked:border-0`,
             {
-              'bg-fmg-green border-0': checked && !disabled && !isError,
-              'peer-checked:bg-error bg-error': checked && !disabled && isError,
+              'bg-fmg-green border-0': checked && !isError,
+              'peer-checked:bg-error bg-error': checked && isError,
+              'opacity-50': checked && disabled,
               'bg-gray-10': disabled,
             }
           )}
@@ -46,7 +47,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function Cus
         <div
           id="checkcenter"
           className={classnames(`${CENTER_ROUND} w-1.5 h-1.5 peer-checked:bg-white`, {
-            'bg-white border-0': checked && !disabled,
+            'bg-white border-0': checked,
           })}
         />
       </div>
