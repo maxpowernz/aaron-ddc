@@ -1,0 +1,49 @@
+# Syncs (merges) forked repos master branch with its upstream branch.
+#
+# METHODS OF CALLING THIS WORKFLOW:
+#
+# 1. UI - via user running Workflow in GitHub.
+# 2. Push to Master branch - via trigger when push to master occurs.
+
+name: Sync forks with upstream master
+on:
+  # Setup manual run of Workflow
+  workflow_dispatch:
+
+  # Setup trigger on branch push
+  push:
+    branches: 
+      - 'master'
+
+jobs:
+  sync:
+    name: Sync forks with upstream master
+    # Prevent forked repos from running this workflow as it is designed to be upstream triggered only.
+    if: github.repository_owner == 'fmgcore'
+    runs-on: ubuntu-latest
+    steps:    
+    - name: Sync
+      shell: pwsh
+      run: |        
+        # Get Forked repos
+        $url = "https://api.github.com/repos/${{ github.repository }}/forks"
+        $response = Invoke-RESTMethod -Uri $url -Method Get  -Headers @{
+          Authorization = "Bearer ${{ secrets.FMG_CORE_WRITE_PAT }}"
+        }
+
+        if ($response){
+          $body = @{"branch"="master";}
+          # Step through each fork and request update from upstream repo
+          foreach ($fork in $response) {
+            Write-Output "Syncing fork '$($fork.full_name)' master branch with upstream..."
+            $url = "https://api.github.com/repos/$($fork.full_name)/merge-upstream"
+            
+            try {
+              Invoke-RESTMethod -Uri $url -Method POST  -Headers @{
+                Authorization = "Bearer ${{ secrets.FMG_CORE_WRITE_PAT }}"
+              } -Body ($body|ConvertTo-Json) -ContentType "application/json"
+            } catch {              
+              Write-Output $_.Exception.Message
+            }
+          }
+        }
