@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".storybook"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".storybook", "./src/assets/index.d.ts"],
   "exclude": ["node_modules"]
 }

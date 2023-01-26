@@ -22,6 +22,7 @@ module.exports = {
           DEFAULT: '#209400',
           20: 'rgba(32, 148, 0, 0.2)',
         },
+        light: '#00A8CB',
         text: {
           DEFAULT: 'rgba(25, 30, 38, 1)',
           primary: 'rgba(25, 30, 38, 1)',
