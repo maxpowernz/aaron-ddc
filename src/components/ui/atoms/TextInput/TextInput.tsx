@@ -10,7 +10,7 @@ export const TextInput = React.forwardRef(function TextInput(
   console.log(props);
 
   const classes = classNames(
-    `input bg-gray-5 border-0 hover:bg-gray-10 placeholder-text-placeholder 
+    `input text-base bg-gray-5 border-0 hover:bg-gray-10 placeholder-text-placeholder
     rounded text-text-primary h-42 w-grid-${size} focus:outline-none 
     focus:ring-1 focus:ring-inset focus:ring-primary focus:bg-gray-10`,
     {
