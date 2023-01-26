@@ -9,7 +9,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
   console.log(props);
   return (
     <>
-      <div className="group inline-flex p-1">
+      <div className="group inline-flex p-1.5">
         <div className="relative inline-flex">
           <input
             id={props.id}
