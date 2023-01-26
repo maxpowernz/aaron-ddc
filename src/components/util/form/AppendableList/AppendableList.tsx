@@ -55,9 +55,9 @@ export function AppendableList({ question, name, required, addButtonLabel, min =
         <button
           type="button"
           onClick={append}
-          className="flex gap-2.5 btn btn-ghost normal-case text-secondary font-normal hover:bg-secondary hover:bg-opacity-5 p-3"
+          className="flex gap-2.5 btn btn-ghost normal-case text-light font-normal hover:bg-secondary hover:bg-opacity-5 p-3"
         >
-          <AddIcon className="fill-secondary" />
+          <AddIcon className="fill-light" />
           {addButtonLabel}
         </button>
       </div>

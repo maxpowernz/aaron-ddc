@@ -5,9 +5,9 @@ import { ZodType } from 'zod/lib/types';
 import { LoadTableProps, LoadTableReturn } from '../form-types';
 
 export function safeResolve(type: ZodType, value: object | string | number | boolean) {
-  const result = type.safeParse(value);
+  const result = type?.safeParse(value);
 
-  if (result.success) return value;
+  if (!result || result?.success) return value;
 
   const { error: { issues = [] } = {} } = result;
   const hasArrayParseError = issues.find((issue) => (issue as ZodInvalidTypeIssue)?.expected === 'array');
