@@ -13,14 +13,14 @@ export type InputProps = {
   pattern?: string;
   placeholder?: string;
   size?: number;
-  value?: never;
+  value?: string;
 };
 
 export type OptionProps = {
   id?: string;
   label: string;
   name?: string;
-  value: string | boolean;
+  value: string;
 };
 
 export type CustomRadioGroupProps = {
@@ -32,6 +32,6 @@ export type CheckboxProps = {
   cols?: number;
   checked?: boolean;
   defaultChecked?: boolean;
-} & InputProps;
+} & Omit<InputProps, 'placeholder'>;
 
 export type CustomDropdownProps = Omit<Props, 'size' | 'onChange' | 'options'> & InputProps;

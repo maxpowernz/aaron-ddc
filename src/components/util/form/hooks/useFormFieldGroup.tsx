@@ -40,7 +40,7 @@ export function useFormFieldGroup({
       </div>
 
       <div className="form-fields">
-        {fields.map(({ component: Comp, name: fieldName, label, size = totalSize }) => (
+        {fields.map(({ component: Component, name: fieldName, label, size = totalSize }) => (
           <Controller
             key={fieldName}
             name={fieldName}
@@ -48,7 +48,7 @@ export function useFormFieldGroup({
             render={({ field, fieldState: { error } }) => {
               return (
                 <div className="flex flex-col p-0.5 gap-1">
-                  <Comp
+                  <Component
                     {...field}
                     {...props}
                     value={field.value ?? ''}
@@ -56,13 +56,17 @@ export function useFormFieldGroup({
                     size={size}
                     error={error}
                     label={label}
-                    onBlur={() => {
-                      field.onBlur();
-                      saveField(field);
-                    }}
+                    onBlur={
+                      !props.onChange
+                        ? () => {
+                            field.onBlur();
+                            saveField(field);
+                          }
+                        : null
+                    }
                   />
                   {!(error || label) ? null : (
-                    <div className={`text-xs text-${error ? 'error' : 'default opacity-75'} font-normal px-1.5`}>
+                    <div className={`text-xs ${error ? 'text-error' : 'default opacity-75'} font-normal px-1.5`}>
                       {getErrorMessage(error as FieldError) ?? label}
                     </div>
                   )}

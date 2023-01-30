@@ -15,6 +15,7 @@ export const schema = z.object({
   industryType: z.string(),
   otherActivities: z.string().optional(),
   friends: z.object({ friend: z.string().min(1, { message: 'Required' }) }).array(),
+  register: z.string(),
 });
 
 export type FormValues = z.infer<typeof schema>;
